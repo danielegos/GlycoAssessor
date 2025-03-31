@@ -139,12 +139,6 @@ class GridApplication:
         button_r2_c1 = tk.Frame(column_1)
         button_r2_c1.pack(pady=1, anchor="w")
 
-        #
-        #
-        # self.add_blue_circle_button = tk.Button(button_r2_c1, text="Add Blue Square",
-        #                                         command=self.select_add_blue_circle_mode, background="blue",
-        #                                         foreground="#1E1F22")
-        # self.add_blue_circle_button.pack(side="left", padx=5)
 
 
         # Add buttons to row 3
@@ -153,10 +147,16 @@ class GridApplication:
         button_r3_c1 = tk.Frame(column_1)
         button_r3_c1.pack(pady=1, anchor="w")
 
+        # Man
         # Green circle - #7BB23C
-        self.add_green_circle_button = tk.Button(button_r3_c1, text="Add Green Circle",
-                                                 command=self.select_add_green_circle_mode, background="green",
-                                                 foreground="#1E1F22")
+        self.man_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Man.png").resize((50, 50))
+        self.man_button_image = ImageTk.PhotoImage(self.man_img)
+
+        self.add_green_circle_button = tk.Button(button_r3_c1,
+                                                 image=self.man_button_image,
+                                                 borderwidth=0, highlightthickness=0,
+                                                 command=self.select_add_green_circle_mode)
         self.add_green_circle_button.pack(side="left", padx=5)
 
 
@@ -166,42 +166,66 @@ class GridApplication:
         button_r4_c1 = tk.Frame(column_1)
         button_r4_c1.pack(pady=1, anchor="w")
 
+        # Gal
+        self.gal_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Gal.png").resize((50, 50))
+        self.gal_button_image = ImageTk.PhotoImage(self.gal_img)
+
+
         #  Yellow - #8B741A
-        self.add_yellow_circle_button = tk.Button(button_r4_c1, text="Add Yellow Circle",
-                                                  command=self.select_add_yellow_circle_mode, background="yellow",
-                                                  foreground="#1E1F22")
+        self.add_yellow_circle_button = tk.Button(button_r4_c1,
+                                                  image=self.gal_button_image,
+                                                  borderwidth=0, highlightthickness=0,
+                                                  command=self.select_add_yellow_circle_mode)
         self.add_yellow_circle_button.pack(side="left", padx=5)
 
+        # Fuc
         # Add buttons to row 5
         button_r5_c1 = tk.Frame(column_1)
         button_r5_c1.pack(pady=1, anchor="w")
         # Red triangle - #AA4926
         # (treat as a circle; specific for Fucose/fucosylation)
-        self.add_red_circle_button = tk.Button(button_r5_c1, text="Add Red Triangle",
-                                               command=self.select_add_red_circle_mode, background="red",
-                                               foreground="#1E1F22")
+        self.fuc_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Fuc.png").resize((50, 50))
+        self.fuc_button_image = ImageTk.PhotoImage(self.fuc_img)
+
+
+        self.add_red_circle_button = tk.Button(button_r5_c1,
+                                               image=self.fuc_button_image,
+                                               borderwidth=0, highlightthickness=0,
+                                               command=self.select_add_red_circle_mode)
         self.add_red_circle_button.pack(side="left", padx=5)
 
-
+        # Neu5Ac
         # Add buttons to row 6
         button_r6_c1 = tk.Frame(column_1)
         button_r6_c1.pack(pady=1, anchor="w")
 
+        self.neu5ac_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Neu5Ac.png").resize((50, 50))
+        self.neu5ac_button_image = ImageTk.PhotoImage(self.neu5ac_img)
+
         # Purple diamond - #92548A
-        self.add_purple_circle_button = tk.Button(button_r6_c1, text="Add Purple Diamond",
-                                                  command=self.select_add_purple_circle_mode, background="purple",
-                                                  foreground="#1E1F22")
+        self.add_purple_circle_button = tk.Button(button_r6_c1,
+                                                  image=self.neu5ac_button_image,
+                                                  borderwidth=0, highlightthickness=0,
+                                                  command=self.select_add_purple_circle_mode)
         self.add_purple_circle_button.pack(side="left", padx=5)
 
-
+        # TalNAc
         # Add buttons to row 7
         button_r7_c1 = tk.Frame(column_1)
         button_r7_c1.pack(pady=1, anchor="w")
 
+        self.talnac_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/TalNAc.png").resize((50, 50))
+        self.talnac_button_image = ImageTk.PhotoImage(self.talnac_img)
+
         # Skyblue circle - #CB8B6B
-        self.add_skyblue_circle_button = tk.Button(button_r7_c1, text="Add Skyblue Square",
-                                                  command=self.select_add_skyblue_circle_mode, background="skyblue",
-                                                  foreground="#1E1F22")
+        self.add_skyblue_circle_button = tk.Button(button_r7_c1,
+                                                   image=self.talnac_button_image,
+                                                   borderwidth=0, highlightthickness=0,
+                                                  command=self.select_add_skyblue_circle_mode)
         self.add_skyblue_circle_button.pack(side="left", padx=5)
 
         button_r8_c1 = tk.Frame(column_1)
