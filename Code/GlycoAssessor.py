@@ -3,7 +3,7 @@ import math
 import os
 import sys
 from collections import deque, defaultdict
-from PIL import ImageGrab
+from PIL import ImageGrab, Image, ImageTk
 from prettytable import PrettyTable
 from tkinter import filedialog
 import pandas as pd
@@ -125,17 +125,26 @@ class GridApplication:
 
         # Add buttons to row 2
 
+        button_r0_c1 = tk.Frame(column_1)
+        button_r0_c1.pack(pady=1, anchor="w")  # Aligns row to the left
+        # Blue square - #24A5A2 - GlcNAc
 
+        self.glcnac_img = Image.open("C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/GlcNAc.png").resize((50, 50))
+        self.glcnac_button_image = ImageTk.PhotoImage(self.glcnac_img)
+
+        self.add_glcnac_button = tk.Button(button_r0_c1, image=self.glcnac_button_image, borderwidth=0, highlightthickness=0,command=self.select_add_glcnac_mode)
+        self.add_glcnac_button.pack(side="left", padx=5)
 
         # Initialize row 2 in column 1
         button_r2_c1 = tk.Frame(column_1)
         button_r2_c1.pack(pady=1, anchor="w")
 
-        # Blue square - #24A5A2
-        self.add_blue_circle_button = tk.Button(button_r2_c1, text="Add Blue Square",
-                                                command=self.select_add_blue_circle_mode, background="blue",
-                                                foreground="#1E1F22")
-        self.add_blue_circle_button.pack(side="left", padx=5)
+        #
+        #
+        # self.add_blue_circle_button = tk.Button(button_r2_c1, text="Add Blue Square",
+        #                                         command=self.select_add_blue_circle_mode, background="blue",
+        #                                         foreground="#1E1F22")
+        # self.add_blue_circle_button.pack(side="left", padx=5)
 
 
         # Add buttons to row 3
@@ -398,9 +407,9 @@ class GridApplication:
         """Switch to Add Circle mode."""
         self.mode = "Add Circle"
 
-    def select_add_blue_circle_mode(self):
+    def select_add_glcnac_mode(self):
         """Switch to Add Blue Node mode."""
-        self.mode = "Add Blue Node"
+        self.mode = "Add GlcNAc Node"
 
     def select_add_green_circle_mode(self):
         """Switch to Add Green Node mode."""
@@ -497,7 +506,7 @@ class GridApplication:
                             return  # Place only one circle per click
 
         # FIXME: NOTE: This is experimental code to try integrating the existing circle/vertex code with colors
-        elif self.mode == "Add Blue Node":
+        elif self.mode == "Add GlcNAc Node":
             # Place vertex in Circle mode
             grid_x = round(x / self.grid_size) * self.grid_size
             grid_y = round(y / self.grid_size) * self.grid_size
@@ -845,7 +854,8 @@ class GridApplication:
         self.circles[circle] = (x, y, color)
         # print(self.circles)
 
-    # FIXME: add all colored nodes
+    # FIXME: change color input to sugar code
+    # GlcNAc
     def add_blue_node(self, x, y):
         """Add a vertex and draw a blue node."""
         color = "blue"
@@ -858,9 +868,10 @@ class GridApplication:
             x + 2 * radius, y + 2 * radius,
             fill=color, outline="black", width=5, tags="blue_node" #, width=10
         )
-        self.circles[circle] = (x, y, color)
+        self.circles[circle] = (x, y, "GlcNAc")
         # print(self.circles)
 
+    # Man
     def add_green_node(self, x, y):
         """Add a vertex and draw a green node."""
         color = "green"
@@ -873,9 +884,10 @@ class GridApplication:
             x + 2 * radius, y + 2 * radius,
             fill=color, outline="black", width=5, tags="green_node"  # , width=10
         )
-        self.circles[circle] = (x, y, color)
+        self.circles[circle] = (x, y, "Man")
         # print(self.circles)
 
+    # Neu5Ac
     def add_purple_node(self, x, y):
         """Add a vertex and draw a purple node."""
         color = "purple"
@@ -887,9 +899,10 @@ class GridApplication:
             x, y-40, x + 40, y, x, y + 40, x-40, y,
             fill=color, outline="black", width=5, tags="purple_node"  # , width=10
         )
-        self.circles[circle] = (x, y, color)
+        self.circles[circle] = (x, y, "Neu5Ac")
         # print(self.circles)
 
+    # Fuc
     def add_red_node(self, x, y):
         """Add a vertex and draw a red node."""
         color = "red"
@@ -901,9 +914,10 @@ class GridApplication:
             x - 2*radius, y + 2*radius, x , y-2*radius, x + 2*radius, y + 2*radius,
             fill=color, outline="black", width=5, tags="red_node"  # , width=10
         )
-        self.circles[circle] = (x, y, color)
+        self.circles[circle] = (x, y, "Fuc")
         # print(self.circles)
 
+    # TalNAc
     def add_skyblue_node(self, x, y):
         """Add a vertex and draw a skyblue node."""
         color = "skyblue"
@@ -916,9 +930,10 @@ class GridApplication:
             x + 2 * radius, y + 2 * radius,
             fill=color, outline="black", width=5, tags="skyblue_node"  # , width=10
         )
-        self.circles[circle] = (x, y, color)
+        self.circles[circle] = (x, y, "TalNAc")
         # print(self.circles)
 
+    # Gal
     def add_yellow_node(self, x, y):
         """Add a vertex and draw a yellow node."""
         color = "yellow"
@@ -931,7 +946,7 @@ class GridApplication:
             x + 2 * radius, y + 2 * radius,
             fill=color, outline="black", width=5, tags="purple_node"  # , width=10
         )
-        self.circles[circle] = (x, y, color)
+        self.circles[circle] = (x, y, "Gal")
         # print(self.circles)
 
 
@@ -1268,7 +1283,7 @@ class GridApplication:
             # Layer: Layer Number
             results[layer_num]['Layer'] = 'L' + str(layer_num)
 
-
+            # FIXME: Count unique sugar codes, not colors
             # NMT: Count unique colors
             node_colors = {circles[node_id][2] for node_id in node_ids}
             NMT = len(node_colors)
