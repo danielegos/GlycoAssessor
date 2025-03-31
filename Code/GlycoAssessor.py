@@ -8,6 +8,33 @@ from prettytable import PrettyTable
 from tkinter import filedialog
 import pandas as pd
 
+# TODO: Move sugar and linkage menu to the left side
+# TODO: Expand the canvas on the right side
+# TODO: Make the canvas zoomable
+# TODO: Highlight the points where it's possible to add a sugar
+
+# 1. Change the sugar symbols to be the correct shape and color.
+#       I mean that the buttons themselves should be shapes and colors instead of
+#       colored rectangles containing text inside. See the second column in this image
+#       for all the symbol patterns that you will need. The columns after Column 2
+#       contain the colors you will need.
+#       Source: https://en.wikipedia.org/wiki/Symbol_Nomenclature_For_Glycans
+#       Note: For the buttons, you should also include the 3-letter code for each
+#       monosaccharide along with the shape.
+# 2. Keep in mind that the window that contains the shapes  should be able to accommodate
+#       about 30 more distinct shapes later on. We started with a handful because they are
+#       the common ones in vertebrates, but there are dozens more of them.
+# 3. If the user places the first sugar too near the top, can they move everything down to
+#       make room for a branch that moves toward the top of the drawing canvas? If not, we
+#       need to build in regulations about where the first sugar must be placed to allow
+#       for adequate branching space up or down.
+# 4. Is there a way to extend the canvas to the right, up, and down? Sole glycans are very
+#       long and will need more space than is on the default canvas size. We need to
+#       accommodate this.
+# 5. Change the canvas to have colors or something to let people know where they can place
+#       a shape.
+# 6. For people who accidentally place a fucose on the base node that is on the wrong level,
+#       the software should give some sort of warning.
 
 
 # Define the class to redirect print() output to a Text widget
