@@ -56,9 +56,34 @@ class GridApplication:
         self.master = master
         self.master.title("GlycoAssessor")
 
+        # Create frames for the three columns
+        #   Column 1 has buttons for nodes and edges
+        column_1 = tk.Frame(self.master)
+        column_1.pack(side="left", padx=10, pady=10, anchor="n")
+
+        # Create frames for the three columns
+        #   Column 1 has buttons for nodes and edges
+        column_1_5 = tk.Frame(self.master)
+        column_1_5.pack(side="left", padx=10, pady=10, anchor="n")
+
+        #   Column 2 has buttons to calculate DCI, PCI, and Reset the program
+        column_2 = tk.Frame(self.master)
+        column_2.pack(side="left", padx=10, pady=10, anchor="n")
+
+        # #   Column 3 displays the text output
+        # column_3 = tk.Frame(self.master)
+        # column_3.pack(side="left", padx=20, pady=10, anchor="n")
+        #
+        # column_4 = tk.Frame(self.master)
+        # column_4.pack(side="left", padx=200, pady=10, anchor="n")
+
+
+        # Create column_0 to hold the Canvas
+        column_0 = tk.Frame(self.master)
+        column_0.pack(side="left", padx=20, pady=10, anchor="n")
+
         # # Original Canvas widget
-        self.canvas = tk.Canvas(self.master, width=1800, height=550, bg='#2B2D30') # Uncomment for large UI
-        # # self.canvas = tk.Canvas(self.master, width=600, height=600, bg='#1E1F22')  # Uncomment for small UI
+        self.canvas = tk.Canvas(column_0, width=1300, height=1080, bg='#2B2D30') # Uncomment for large UI
         self.canvas.pack()
 
 
@@ -87,21 +112,7 @@ class GridApplication:
         self.draw_grid()
 
 
-        # Create frames for the three columns
-        #   Column 1 has buttons for nodes and edges
-        column_1 = tk.Frame(self.master)
-        column_1.pack(side="left", padx=20, pady=10, anchor="n")
 
-        #   Column 2 has buttons to calculate DCI, PCI, and Reset the program
-        column_2 = tk.Frame(self.master)
-        column_2.pack(side="left", padx=20, pady=10, anchor="n")
-
-        #   Column 3 displays the text output
-        column_3 = tk.Frame(self.master)
-        column_3.pack(side="left", padx=20, pady=10, anchor="n")
-
-        column_4 = tk.Frame(self.master)
-        column_4.pack(side="left", padx=20, pady=10, anchor="n")
 
         # Buttons for mode selection
         # FIXME: Edit "Circle" Button to account for up to 6 different Node types
@@ -191,9 +202,21 @@ class GridApplication:
                                           background="#2B2D30", foreground="#DFE1E5")
         self.rm_circle_button.pack(side="left", padx=5)
 
+        # Example buttons to fill space and show how many buttons I can add on the left
+        for i in range(1, 21):
+            button_r9_c1 = tk.Frame(column_1)
+            button_r9_c1.pack(pady=1, anchor="w")
+            self.add_example_button = tk.Button(button_r9_c1, text=f"Example Button {i}", background="#2B2D30", foreground="#DFE1E5")
+            self.add_example_button.pack(side="left", padx=5)
+
+        # Example buttons to populate column 2 of sugar menu
+        for i in range(1, 29):
+            button_r_c1_5 = tk.Frame(column_1_5)
+            button_r_c1_5.pack(pady=1, anchor="w")
+            self.add_example_button = tk.Button(button_r_c1_5, text=f"Ex {i}", background="#2B2D30", foreground="#DFE1E5").pack(side="left", padx=5)
 
 
-        # Create Linkage Menu
+        # Create Linkage Menu on Column 3
         # Initialize row 1 in column 2
         button_r1_c2 = tk.Frame(column_2)
         button_r1_c2.pack(pady=1, anchor="w")
@@ -283,20 +306,25 @@ class GridApplication:
         # Initialize column 3
         # Initialize row 1, column 3
 
+        # TODO: Fix the button names. I've added a quick fix to adjust the placement,
+        #  but the row and column numbers in the button names are off.
 
-        button_r1_c3 = tk.Frame(column_3)
+        empty_space = tk.Frame(column_2)
+        empty_space.pack(pady=15, anchor="w")
+
+        button_r1_c3 = tk.Frame(column_2)
         button_r1_c3.pack(pady=1, anchor="w")
 
         tk.Label(button_r1_c3, text="Analysis Tools", font=("Arial", 12, "bold"), bg='lightgray').pack()
 
-        button_r2_c3 = tk.Frame(column_3)
+        button_r2_c3 = tk.Frame(column_2)
         button_r2_c3.pack(pady=1, anchor="w")
         # Export image
         self.dci_calc_button = tk.Button(button_r2_c3, text="Export Image", command=self.select_export_image_mode,
                                          background="#2B2D30", foreground="#DFE1E5")
         self.dci_calc_button.pack(side="left", padx=5)
 
-        button_r3_c3 = tk.Frame(column_3)
+        button_r3_c3 = tk.Frame(column_2)
         button_r3_c3.pack(pady=1, anchor="w")
 
         # Button to calculate DCI
@@ -304,7 +332,7 @@ class GridApplication:
                                          background="#639F52", foreground="#1E1F22")
         self.dci_calc_button.pack(side="left", padx=5)
 
-        button_r4_c3 = tk.Frame(column_3)
+        button_r4_c3 = tk.Frame(column_2)
         button_r4_c3.pack(pady=1, anchor="w")
 
         # Button to calculate PCI
@@ -318,21 +346,23 @@ class GridApplication:
         # self.reset_button = tk.Button(button_r5_c3, text="Reset Program", command=self.reset_program, background="#AA4926", foreground="#DFE1E5")
         # self.reset_button.pack(side="left", padx=5)
 
+        # TODO: Fix the button names. I've added a quick fix to adjust the placement,
+        #  but the row and column numbers in the button names are off.
 
-
-
+        empty_space2 = tk.Frame(column_2)
+        empty_space2.pack(pady=15, anchor="w")
 
         # Initialize row 1 in column 4
-        button_r1_c4 = tk.Frame(column_4)
+        button_r1_c4 = tk.Frame(column_2)
         button_r1_c4.pack(pady=1, anchor="w")
         tk.Label(button_r1_c4, text="Instructions and Log", font=("Arial", 12, "bold"), bg='lightgray').pack()
 
-        button_r2_c4 = tk.Frame(column_4)
+        button_r2_c4 = tk.Frame(column_2)
         button_r2_c4.pack(pady=1, anchor="w")
 
         # Create a Text widget for printing output
-        self.text_area = tk.Text(button_r2_c4, height=100, width=200)
-        self.text_area.pack(side="right",padx=1, pady=0)
+        self.text_area = tk.Text(button_r2_c4, height=100, width=45)
+        self.text_area.pack(side="left",padx=5)
 
 
         # Redirect print() to the Text widget
@@ -340,14 +370,12 @@ class GridApplication:
         sys.stdout = printer
 
         print("Instructions:"
-              "\nSelect a sugar type from the Sugar Menu, "
-              "then click on the left side of the grid to place the base node."
-              "\nPlacement of subsequent nodes is restricted to specific points. "
-              "\nSelect a linkage type from "
-              "the Linkage Menu and then click on two sugar nodes to connect them with the linkage."
-              "\nOrient the N-glycan with the base node at the left and the furthest node on the right.")
+              "\nSelect a sugar type. Click the left side of the grid to place the base node."
+              "\n\nPlacement of subsequent nodes is restricted to specific points."
+              "\n\nSelect a linkage type. Click on two sugar nodes to connect them with the linkage."
+              "\n\nOrient the N-glycan with the base node at the left and the furthest node on the right.")
 
-        print("\nSee video tutorial at this link: https://youtu.be/TVWvqSvYwtQ")
+        print("\n\nSee video tutorial at this link: https://youtu.be/TVWvqSvYwtQ")
 
         print("\nAssumptions:"
               "\n1) The leftmost node you add is the base node of the N-glycan. "
@@ -1132,12 +1160,12 @@ class GridApplication:
 
     def calculate_dci(self, paths):
         node_table = PrettyTable()
-        node_table.field_names = ["Node",
-                                  "Steps to Base Node",
-                                  "2ndDeg Nodes\u2E4B * 2",
-                                  "3rdDeg Nodes\u2E4B * 3",
-                                  "4thDeg Nodes\u2E4B * 4",
-                                  "Node Score"]
+        node_table.field_names = ["Nd",
+                                  "Stp",
+                                  "2nd",
+                                  "3rd",
+                                  "4th",
+                                  "Scr"]
 
         # Extract information from paths dictionary and append that into the node_table_rows list
         #   Keep track of dci_score
@@ -1196,7 +1224,8 @@ class GridApplication:
               "\n\u2E4BExcluding the degree of the node in question. Weights equal node degree.")
 
         # Calculate dci_score by summing all node scores in node_table
-        print("Distance & Connectivity Index (DCI Score): ", dci_score)
+        print("\nDistance & Connectivity Index"
+              "\n(DCI Score): ", dci_score)
 
         # print("Printing circles: ", self.circles)
         # print("Printing edges: ", self.edges)
@@ -1332,7 +1361,7 @@ class GridApplication:
         pci_score = 0
 
         table = PrettyTable()
-        table.field_names = ["Layer", "NMT", "TNU", "NEL", "NLT", "NCDSPL", "Layer Score"]
+        table.field_names = ["L", "NMT", "TNU", "NEL", "NLT", "NCDSPL", "Scr"]
 
         # Populate table rows
         for layer, values in sorted(results.items()):  # Ensure sorted layer order
@@ -1351,10 +1380,11 @@ class GridApplication:
 
 
 
-        print("\nPrinting PCI Matrix for Structure:")
+        print("\n\nPrinting PCI Matrix for Structure:")
         print(table)
 
-        print("Position & Composition Index (PCI Score): ", pci_score)
+        print("\nPosition & Composition Index "
+              "\n(PCI Score): ", pci_score)
 
         # Export results dict to a pandas df, then the df to csv
         df = pd.DataFrame.from_dict(results, orient='index')
