@@ -7,6 +7,10 @@ from PIL import ImageGrab, Image, ImageTk
 from prettytable import PrettyTable
 from tkinter import filedialog
 import pandas as pd
+from sympy.codegen.ast import continue_
+
+from Code.Shapes.Vertex import add_vertex
+
 
 # TODO: Move sugar and linkage menu to the left side
 # TODO: Expand the canvas on the right side
@@ -427,7 +431,7 @@ class GridApplication:
             self.canvas.create_line(0, i, 1800, i, fill="#545557", tags="grid")
 
     # Modes to add circles
-    def select_add_circle_mode(self):
+    def select_add_vertex_mode(self):
         """Switch to Add Circle mode."""
         self.mode = "Add Circle"
 
@@ -504,184 +508,23 @@ class GridApplication:
         x, y = event.x, event.y
 
         # Check the current mode
-        if self.mode == "Add Circle":
-            # Place vertex in Circle mode
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_circle_placed:
-                self.add_vertex(grid_x, grid_y)
-                self.first_circle_placed = True
-                # print("First Vertex:",self.vertices)
-            else:
-                # Check if the distance condition (8 times the radius) and perpendicular/parallel condition hold
-                radius = self.grid_size / 2
-                for center in self.vertices:
-                    dx = grid_x - center[0]
-                    dy = grid_y - center[1]
-                    distance = math.sqrt(dx ** 2 + dy ** 2)
-                    required_distance = 8 * radius  # Distance should be eight times the radius
-
-                    # If the distance is correct, check for perpendicular or parallel alignment
-                    if abs(distance - required_distance) < self.grid_size / 2:
-                        if grid_x == center[0] or grid_y == center[1]:  # Same x or same y
-                            self.add_vertex(grid_x, grid_y)
-                            # print("Adding Vertex:",self.vertices)
-                            return  # Place only one circle per click
-
-        # FIXME: NOTE: This is experimental code to try integrating the existing circle/vertex code with colors
-        elif self.mode == "Add GlcNAc Node":
-            # Place vertex in Circle mode
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_circle_placed:
-                self.add_blue_node(grid_x, grid_y)
-                self.first_circle_placed = True
-                # print("First Vertex:",self.vertices)
-            else:
-                # Check if the distance condition (8 times the radius) and perpendicular/parallel condition hold
-                radius = self.grid_size / 2
-                for center in self.vertices:
-                    dx = grid_x - center[0]
-                    dy = grid_y - center[1]
-                    distance = math.sqrt(dx ** 2 + dy ** 2)
-                    required_distance = 8 * radius  # Distance should be eight times the radius
-
-                    # If the distance is correct, check for perpendicular or parallel alignment
-                    if abs(distance - required_distance) < self.grid_size / 2:
-                        if grid_x == center[0] or grid_y == center[1]:  # Same x or same y
-                            self.add_blue_node(grid_x, grid_y)
-                            # print("Adding Vertex:",self.vertices)
-                            return  # Place only one circle per click
+        if self.mode == "Add GlcNAc Node":
+            add_vertex(self, x, y, self.add_blue_node)
 
         elif self.mode == "Add Green Node":
-            # Place vertex in Circle mode
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_circle_placed:
-                self.add_green_node(grid_x, grid_y)
-                self.first_circle_placed = True
-                # print("First Vertex:",self.vertices)
-            else:
-                # Check if the distance condition (8 times the radius) and perpendicular/parallel condition hold
-                radius = self.grid_size / 2
-                for center in self.vertices:
-                    dx = grid_x - center[0]
-                    dy = grid_y - center[1]
-                    distance = math.sqrt(dx ** 2 + dy ** 2)
-                    required_distance = 8 * radius  # Distance should be eight times the radius
-
-                    # If the distance is correct, check for perpendicular or parallel alignment
-                    if abs(distance - required_distance) < self.grid_size / 2:
-                        if grid_x == center[0] or grid_y == center[1]:  # Same x or same y
-                            self.add_green_node(grid_x, grid_y)
-                            # print("Adding Vertex:",self.vertices)
-                            return  # Place only one circle per click
-
+            add_vertex(self, x, y, self.add_green_node)
 
         elif self.mode == "Add Purple Node":
-            # Place vertex in Circle mode
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_circle_placed:
-                self.add_purple_node(grid_x, grid_y)
-                self.first_circle_placed = True
-                # print("First Vertex:",self.vertices)
-            else:
-                # Check if the distance condition (8 times the radius) and perpendicular/parallel condition hold
-                radius = self.grid_size / 2
-                for center in self.vertices:
-                    dx = grid_x - center[0]
-                    dy = grid_y - center[1]
-                    distance = math.sqrt(dx ** 2 + dy ** 2)
-                    required_distance = 8 * radius  # Distance should be eight times the radius
-
-                    # If the distance is correct, check for perpendicular or parallel alignment
-                    if abs(distance - required_distance) < self.grid_size / 2:
-                        if grid_x == center[0] or grid_y == center[1]:  # Same x or same y
-                            self.add_purple_node(grid_x, grid_y)
-                            # print("Adding Vertex:",self.vertices)
-                            return  # Place only one circle per click
+            add_vertex(self, x, y, self.add_purple_node)
 
         elif self.mode == "Add skyblue Node":
-            # Place vertex in Circle mode
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_circle_placed:
-                self.add_skyblue_node(grid_x, grid_y)
-                self.first_circle_placed = True
-                # print("First Vertex:",self.vertices)
-            else:
-                # Check if the distance condition (8 times the radius) and perpendicular/parallel condition hold
-                radius = self.grid_size / 2
-                for center in self.vertices:
-                    dx = grid_x - center[0]
-                    dy = grid_y - center[1]
-                    distance = math.sqrt(dx ** 2 + dy ** 2)
-                    required_distance = 8 * radius  # Distance should be eight times the radius
-
-                    # If the distance is correct, check for perpendicular or parallel alignment
-                    if abs(distance - required_distance) < self.grid_size / 2:
-                        if grid_x == center[0] or grid_y == center[1]:  # Same x or same y
-                            self.add_skyblue_node(grid_x, grid_y)
-                            # print("Adding Vertex:",self.vertices)
-                            return  # Place only one circle per click
-
+            add_vertex(self, x, y, self.add_skyblue_node)
 
         elif self.mode == "Add Yellow Node":
-            # Place vertex in Circle mode
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_circle_placed:
-                self.add_yellow_node(grid_x, grid_y)
-                self.first_circle_placed = True
-                # print("First Vertex:",self.vertices)
-            else:
-                # Check if the distance condition (8 times the radius) and perpendicular/parallel condition hold
-                radius = self.grid_size / 2
-                for center in self.vertices:
-                    dx = grid_x - center[0]
-                    dy = grid_y - center[1]
-                    distance = math.sqrt(dx ** 2 + dy ** 2)
-                    required_distance = 8 * radius  # Distance should be eight times the radius
-
-                    # If the distance is correct, check for perpendicular or parallel alignment
-                    if abs(distance - required_distance) < self.grid_size / 2:
-                        if grid_x == center[0] or grid_y == center[1]:  # Same x or same y
-                            self.add_yellow_node(grid_x, grid_y)
-                            # print("Adding Vertex:",self.vertices)
-                            return  # Place only one circle per click
-
+            add_vertex(self, x, y, self.add_yellow_node)
 
         elif self.mode == "Add Red Node":
-            # Place vertex in Circle mode
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_circle_placed:
-                self.add_red_node(grid_x, grid_y)
-                self.first_circle_placed = True
-                # print("First Vertex:",self.vertices)
-            else:
-                # Check if the distance condition (8 times the radius) and perpendicular/parallel condition hold
-                radius = self.grid_size / 2
-                for center in self.vertices:
-                    dx = grid_x - center[0]
-                    dy = grid_y - center[1]
-                    distance = math.sqrt(dx ** 2 + dy ** 2)
-                    required_distance = 8 * radius  # Distance should be eight times the radius
-
-                    # If the distance is correct, check for perpendicular or parallel alignment
-                    if abs(distance - required_distance) < self.grid_size / 2:
-                        if grid_x == center[0] or grid_y == center[1]:  # Same x or same y
-                            self.add_red_node(grid_x, grid_y)
-                            # print("Adding Vertex:",self.vertices)
-                            return  # Place only one circle per click
+            add_vertex(self, x, y, self.add_red_node)
 
 
         elif self.mode == "Add A1to2":
@@ -863,20 +706,20 @@ class GridApplication:
                 del self.edge_text[item]
 
 
-    def add_vertex(self, x, y):
-        """Add a vertex and draw a white node."""
-        color = "#DFE1E5"
-        radius = self.grid_size / 2
-        self.vertices.append((x, y))
-
-        # Draw blue circle with radius = 2 * vertex radius
-        circle = self.canvas.create_oval(
-            x - 2 * radius, y - 2 * radius,
-            x + 2 * radius, y + 2 * radius,
-            fill=color, outline=color, tags="circle" #, width=10
-        )
-        self.circles[circle] = (x, y, color)
-        # print(self.circles)
+    # def add_vertex(self, x, y):
+    #     """Add a vertex and draw a white node."""
+    #     color = "#DFE1E5"
+    #     radius = self.grid_size / 2
+    #     self.vertices.append((x, y))
+    #
+    #     # Draw blue circle with radius = 2 * vertex radius
+    #     circle = self.canvas.create_oval(
+    #         x - 2 * radius, y - 2 * radius,
+    #         x + 2 * radius, y + 2 * radius,
+    #         fill=color, outline=color, tags="circle" #, width=10
+    #     )
+    #     self.circles[circle] = (x, y, color)
+    #     # print(self.circles)
 
     # FIXME: change color input to sugar code
     # GlcNAc
