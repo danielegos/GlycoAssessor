@@ -9,7 +9,9 @@ from tkinter import filedialog
 import pandas as pd
 from sympy.codegen.ast import continue_
 
+from Code.Shapes.Edge import add_edge
 from Code.Shapes.Vertex import add_vertex
+from Code.Shapes.Polygon import add_polygon_shape
 
 
 # TODO: Move sugar and linkage menu to the left side
@@ -157,11 +159,11 @@ class GridApplication:
             "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Man.png").resize((50, 50))
         self.man_button_image = ImageTk.PhotoImage(self.man_img)
 
-        self.add_green_circle_button = tk.Button(button_r3_c1,
+        self.add_man_button = tk.Button(button_r3_c1,
                                                  image=self.man_button_image,
                                                  borderwidth=0, highlightthickness=0,
-                                                 command=self.select_add_green_circle_mode)
-        self.add_green_circle_button.pack(side="left", padx=5)
+                                                 command=self.select_add_man_mode)
+        self.add_man_button.pack(side="left", padx=5)
 
 
         # Add buttons to row 4
@@ -177,11 +179,11 @@ class GridApplication:
 
 
         #  Yellow - #8B741A
-        self.add_yellow_circle_button = tk.Button(button_r4_c1,
+        self.add_gal_button = tk.Button(button_r4_c1,
                                                   image=self.gal_button_image,
                                                   borderwidth=0, highlightthickness=0,
-                                                  command=self.select_add_yellow_circle_mode)
-        self.add_yellow_circle_button.pack(side="left", padx=5)
+                                                  command=self.select_add_gal_mode)
+        self.add_gal_button.pack(side="left", padx=5)
 
         # Fuc
         # Add buttons to row 5
@@ -194,11 +196,11 @@ class GridApplication:
         self.fuc_button_image = ImageTk.PhotoImage(self.fuc_img)
 
 
-        self.add_red_circle_button = tk.Button(button_r5_c1,
+        self.add_fuc_button = tk.Button(button_r5_c1,
                                                image=self.fuc_button_image,
                                                borderwidth=0, highlightthickness=0,
-                                               command=self.select_add_red_circle_mode)
-        self.add_red_circle_button.pack(side="left", padx=5)
+                                               command=self.select_add_fuc_mode)
+        self.add_fuc_button.pack(side="left", padx=5)
 
         # Neu5Ac
         # Add buttons to row 6
@@ -210,11 +212,11 @@ class GridApplication:
         self.neu5ac_button_image = ImageTk.PhotoImage(self.neu5ac_img)
 
         # Purple diamond - #92548A
-        self.add_purple_circle_button = tk.Button(button_r6_c1,
+        self.add_neu5ac_button = tk.Button(button_r6_c1,
                                                   image=self.neu5ac_button_image,
                                                   borderwidth=0, highlightthickness=0,
-                                                  command=self.select_add_purple_circle_mode)
-        self.add_purple_circle_button.pack(side="left", padx=5)
+                                                  command=self.select_add_neu5ac_mode)
+        self.add_neu5ac_button.pack(side="left", padx=5)
 
         # TalNAc
         # Add buttons to row 7
@@ -226,11 +228,11 @@ class GridApplication:
         self.talnac_button_image = ImageTk.PhotoImage(self.talnac_img)
 
         # Skyblue circle - #CB8B6B
-        self.add_skyblue_circle_button = tk.Button(button_r7_c1,
+        self.add_talnac_button = tk.Button(button_r7_c1,
                                                    image=self.talnac_button_image,
                                                    borderwidth=0, highlightthickness=0,
-                                                  command=self.select_add_skyblue_circle_mode)
-        self.add_skyblue_circle_button.pack(side="left", padx=5)
+                                                  command=self.select_add_talnac_mode)
+        self.add_talnac_button.pack(side="left", padx=5)
 
         button_r8_c1 = tk.Frame(column_1)
         button_r8_c1.pack(pady=1, anchor="w")
@@ -431,33 +433,29 @@ class GridApplication:
             self.canvas.create_line(0, i, 1800, i, fill="#545557", tags="grid")
 
     # Modes to add circles
-    def select_add_vertex_mode(self):
-        """Switch to Add Circle mode."""
-        self.mode = "Add Circle"
-
     def select_add_glcnac_mode(self):
         """Switch to Add Blue Node mode."""
         self.mode = "Add GlcNAc Node"
 
-    def select_add_green_circle_mode(self):
-        """Switch to Add Green Node mode."""
-        self.mode = "Add Green Node"
+    def select_add_man_mode(self):
+        """Switch to Add Man Node mode."""
+        self.mode = "Add Man Node"
 
-    def select_add_purple_circle_mode(self):
-        """Switch to Add purple Node mode."""
-        self.mode = "Add Purple Node"
+    def select_add_neu5ac_mode(self):
+        """Switch to Add Neu5Ac Node mode."""
+        self.mode = "Add Neu5Ac Node"
 
-    def select_add_skyblue_circle_mode(self):
-        """Switch to Add skyblue Node mode."""
-        self.mode = "Add skyblue Node"
+    def select_add_talnac_mode(self):
+        """Switch to Add TalNAc Node mode."""
+        self.mode = "Add TalNAc Node"
 
-    def select_add_yellow_circle_mode(self):
-        """Switch to Add yellow Node mode."""
-        self.mode = "Add Yellow Node"
+    def select_add_gal_mode(self):
+        """Switch to Add Gal Node mode."""
+        self.mode = "Add Gal Node"
 
-    def select_add_red_circle_mode(self):
-        """Switch to Add red Node mode."""
-        self.mode = "Add Red Node"
+    def select_add_fuc_mode(self):
+        """Switch to Add Fuc Node mode."""
+        self.mode = "Add Fuc Node"
 
     def select_rm_circle_mode(self):
         """Switch to Remove Circle mode."""
@@ -507,179 +505,51 @@ class GridApplication:
         """Handle click events for adding vertices or starting edges."""
         x, y = event.x, event.y
 
-        # Check the current mode
+        # Check for sugar modes
         if self.mode == "Add GlcNAc Node":
-            add_vertex(self, x, y, self.add_blue_node)
+            add_vertex(self, x, y, self.add_glcnac_node)
 
-        elif self.mode == "Add Green Node":
-            add_vertex(self, x, y, self.add_green_node)
+        elif self.mode == "Add Man Node":
+            add_vertex(self, x, y, self.add_man_node)
 
-        elif self.mode == "Add Purple Node":
-            add_vertex(self, x, y, self.add_purple_node)
+        elif self.mode == "Add Neu5Ac Node":
+            add_vertex(self, x, y, self.add_neu5ac_node)
 
-        elif self.mode == "Add skyblue Node":
-            add_vertex(self, x, y, self.add_skyblue_node)
+        elif self.mode == "Add TalNAc Node":
+            add_vertex(self, x, y, self.add_talnac_node)
 
-        elif self.mode == "Add Yellow Node":
-            add_vertex(self, x, y, self.add_yellow_node)
+        elif self.mode == "Add Gal Node":
+            add_vertex(self, x, y, self.add_gal_node)
 
-        elif self.mode == "Add Red Node":
-            add_vertex(self, x, y, self.add_red_node)
+        elif self.mode == "Add Fuc Node":
+            add_vertex(self, x, y, self.add_fuc_node)
 
-
+        # Check for linkage modes
         elif self.mode == "Add A1to2":
-            # Handle adding edges (black) between two vertices
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_vertex:
-                # First click to select the first vertex for the edge
-                if (grid_x, grid_y) in self.vertices:
-                    self.first_vertex = (grid_x, grid_y)
-                else:
-                    print("First point must be an existing vertex!")
-            else:
-                # Second click to select the second vertex and add an edge
-                if (grid_x, grid_y) in self.vertices and (grid_x, grid_y) != self.first_vertex:
-                    self.add_a1to2(self.first_vertex, (grid_x, grid_y))
-                    self.first_vertex = None  # Reset for the next edge creation
-                else:
-                    print("Second point must be an existing vertex and different from the first one!")
+            add_edge(self, x, y, self.add_a1to2)
 
         elif self.mode == "Add A1to3":
-            # Handle adding edges (black) between two vertices
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_vertex:
-                # First click to select the first vertex for the edge
-                if (grid_x, grid_y) in self.vertices:
-                    self.first_vertex = (grid_x, grid_y)
-                else:
-                    print("First point must be an existing vertex!")
-            else:
-                # Second click to select the second vertex and add an edge
-                if (grid_x, grid_y) in self.vertices and (grid_x, grid_y) != self.first_vertex:
-                    self.add_a1to3(self.first_vertex, (grid_x, grid_y))
-                    self.first_vertex = None  # Reset for the next edge creation
-                else:
-                    print("Second point must be an existing vertex and different from the first one!")
+            add_edge(self, x, y, self.add_a1to3)
 
         elif self.mode == "Add A1to4":
-            # Handle adding edges (black) between two vertices
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_vertex:
-                # First click to select the first vertex for the edge
-                if (grid_x, grid_y) in self.vertices:
-                    self.first_vertex = (grid_x, grid_y)
-                else:
-                    print("First point must be an existing vertex!")
-            else:
-                # Second click to select the second vertex and add an edge
-                if (grid_x, grid_y) in self.vertices and (grid_x, grid_y) != self.first_vertex:
-                    self.add_a1to4(self.first_vertex, (grid_x, grid_y))
-                    self.first_vertex = None  # Reset for the next edge creation
-                else:
-                    print("Second point must be an existing vertex and different from the first one!")
+            add_edge(self, x, y, self.add_a1to4)
 
         elif self.mode == "Add A1to6":
-            # Handle adding edges (black) between two vertices
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_vertex:
-                # First click to select the first vertex for the edge
-                if (grid_x, grid_y) in self.vertices:
-                    self.first_vertex = (grid_x, grid_y)
-                else:
-                    print("First point must be an existing vertex!")
-            else:
-                # Second click to select the second vertex and add an edge
-                if (grid_x, grid_y) in self.vertices and (grid_x, grid_y) != self.first_vertex:
-                    self.add_a1to6(self.first_vertex, (grid_x, grid_y))
-                    self.first_vertex = None  # Reset for the next edge creation
-                else:
-                    print("Second point must be an existing vertex and different from the first one!")
+            add_edge(self, x, y, self.add_a1to6)
 
         elif self.mode == "Add B1to2":
-            # Handle adding edges (black) between two vertices
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_vertex:
-                # First click to select the first vertex for the edge
-                if (grid_x, grid_y) in self.vertices:
-                    self.first_vertex = (grid_x, grid_y)
-                else:
-                    print("First point must be an existing vertex!")
-            else:
-                # Second click to select the second vertex and add an edge
-                if (grid_x, grid_y) in self.vertices and (grid_x, grid_y) != self.first_vertex:
-                    self.add_b1to2(self.first_vertex, (grid_x, grid_y))
-                    self.first_vertex = None  # Reset for the next edge creation
-                else:
-                    print("Second point must be an existing vertex and different from the first one!")
-
+            add_edge(self, x, y, self.add_b1to2)
 
         elif self.mode == "Add B1to3":
-            # Handle adding edges (black) between two vertices
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_vertex:
-                # First click to select the first vertex for the edge
-                if (grid_x, grid_y) in self.vertices:
-                    self.first_vertex = (grid_x, grid_y)
-                else:
-                    print("First point must be an existing vertex!")
-            else:
-                # Second click to select the second vertex and add an edge
-                if (grid_x, grid_y) in self.vertices and (grid_x, grid_y) != self.first_vertex:
-                    self.add_b1to3(self.first_vertex, (grid_x, grid_y))
-                    self.first_vertex = None  # Reset for the next edge creation
-                else:
-                    print("Second point must be an existing vertex and different from the first one!")
+            add_edge(self, x, y, self.add_b1to3)
 
         elif self.mode == "Add B1to4":
-            # Handle adding edges (black) between two vertices
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
-
-            if not self.first_vertex:
-                # First click to select the first vertex for the edge
-                if (grid_x, grid_y) in self.vertices:
-                    self.first_vertex = (grid_x, grid_y)
-                else:
-                    print("First point must be an existing vertex!")
-            else:
-                # Second click to select the second vertex and add an edge
-                if (grid_x, grid_y) in self.vertices and (grid_x, grid_y) != self.first_vertex:
-                    self.add_b1to4(self.first_vertex, (grid_x, grid_y))
-                    self.first_vertex = None  # Reset for the next edge creation
-                else:
-                    print("Second point must be an existing vertex and different from the first one!")
+            add_edge(self, x, y, self.add_b1to4)
 
         elif self.mode == "Add B1to6":
-            # Handle adding edges (black) between two vertices
-            grid_x = round(x / self.grid_size) * self.grid_size
-            grid_y = round(y / self.grid_size) * self.grid_size
+            add_edge(self, x, y, self.add_b1to6)
 
-            if not self.first_vertex:
-                # First click to select the first vertex for the edge
-                if (grid_x, grid_y) in self.vertices:
-                    self.first_vertex = (grid_x, grid_y)
-                else:
-                    print("First point must be an existing vertex!")
-            else:
-                # Second click to select the second vertex and add an edge
-                if (grid_x, grid_y) in self.vertices and (grid_x, grid_y) != self.first_vertex:
-                    self.add_b1to6(self.first_vertex, (grid_x, grid_y))
-                    self.first_vertex = None  # Reset for the next edge creation
-                else:
-                    print("Second point must be an existing vertex and different from the first one!")
-
+        # Check for removal modes
         elif self.mode == "Remove Circle":
             # Check if a circle exists at the clicked location
             item = self.canvas.find_closest(event.x, event.y)[0]
@@ -688,8 +558,6 @@ class GridApplication:
                 # print(self.circles[item])
                 self.vertices.remove(self.circles[item])
                 del self.circles[item]
-
-                # print("\nPrinting vertices:",self.vertices)
 
         elif self.mode == "Remove Edge":
             # Check if an edge exists at the clicked location
@@ -705,117 +573,32 @@ class GridApplication:
                 self.canvas.delete(item)
                 del self.edge_text[item]
 
+    # Define add node functions
 
-    # def add_vertex(self, x, y):
-    #     """Add a vertex and draw a white node."""
-    #     color = "#DFE1E5"
-    #     radius = self.grid_size / 2
-    #     self.vertices.append((x, y))
-    #
-    #     # Draw blue circle with radius = 2 * vertex radius
-    #     circle = self.canvas.create_oval(
-    #         x - 2 * radius, y - 2 * radius,
-    #         x + 2 * radius, y + 2 * radius,
-    #         fill=color, outline=color, tags="circle" #, width=10
-    #     )
-    #     self.circles[circle] = (x, y, color)
-    #     # print(self.circles)
-
-    # FIXME: change color input to sugar code
     # GlcNAc
-    def add_blue_node(self, x, y):
-        """Add a vertex and draw a blue node."""
-        color = "blue"
-        radius = self.grid_size / 2
-        self.vertices.append((x, y))
-
-        # Draw blue circle with radius = 2 * vertex radius
-        circle = self.canvas.create_rectangle(
-            x - 2 * radius, y - 2 * radius,
-            x + 2 * radius, y + 2 * radius,
-            fill=color, outline="black", width=5, tags="blue_node" #, width=10
-        )
-        self.circles[circle] = (x, y, "GlcNAc")
-        # print(self.circles)
+    def add_glcnac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'square', 'blue', 'GlcNAc')
 
     # Man
-    def add_green_node(self, x, y):
-        """Add a vertex and draw a green node."""
-        color = "green"
-        radius = self.grid_size / 2
-        self.vertices.append((x, y))
-
-        # Draw green circle with radius = 2 * vertex radius
-        circle = self.canvas.create_oval(
-            x - 2 * radius, y - 2 * radius,
-            x + 2 * radius, y + 2 * radius,
-            fill=color, outline="black", width=5, tags="green_node"  # , width=10
-        )
-        self.circles[circle] = (x, y, "Man")
-        # print(self.circles)
+    def add_man_node(self, x, y):
+        add_polygon_shape(self, x, y, 'circle', 'green', 'Man')
 
     # Neu5Ac
-    def add_purple_node(self, x, y):
-        """Add a vertex and draw a purple node."""
-        color = "purple"
-        radius = self.grid_size / 2
-        self.vertices.append((x, y))
-
-        # Draw purple circle with radius = 2 * vertex radius
-        circle = self.canvas.create_polygon(
-            x, y-40, x + 40, y, x, y + 40, x-40, y,
-            fill=color, outline="black", width=5, tags="purple_node"  # , width=10
-        )
-        self.circles[circle] = (x, y, "Neu5Ac")
-        # print(self.circles)
+    def add_neu5ac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'diamond', 'purple', 'Neu5Ac')
 
     # Fuc
-    def add_red_node(self, x, y):
-        """Add a vertex and draw a red node."""
-        color = "red"
-        radius = self.grid_size / 2
-        self.vertices.append((x, y))
-
-        # Draw red circle with radius = 2 * vertex radius
-        circle = self.canvas.create_polygon(
-            x - 2*radius, y + 2*radius, x , y-2*radius, x + 2*radius, y + 2*radius,
-            fill=color, outline="black", width=5, tags="red_node"  # , width=10
-        )
-        self.circles[circle] = (x, y, "Fuc")
-        # print(self.circles)
+    def add_fuc_node(self, x, y):
+        add_polygon_shape(self, x, y, 'triangle', 'red', 'Fuc')
 
     # TalNAc
-    def add_skyblue_node(self, x, y):
-        """Add a vertex and draw a skyblue node."""
-        color = "skyblue"
-        radius = self.grid_size / 2
-        self.vertices.append((x, y))
-
-        # Draw skyblue circle with radius = 2 * vertex radius
-        circle = self.canvas.create_rectangle(
-            x - 2 * radius, y - 2 * radius,
-            x + 2 * radius, y + 2 * radius,
-            fill=color, outline="black", width=5, tags="skyblue_node"  # , width=10
-        )
-        self.circles[circle] = (x, y, "TalNAc")
-        # print(self.circles)
+    def add_talnac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'square', 'skyblue', 'TalNAc')
 
     # Gal
-    def add_yellow_node(self, x, y):
-        """Add a vertex and draw a yellow node."""
-        color = "yellow"
-        radius = self.grid_size / 2
-        self.vertices.append((x, y))
-
-        # Draw purple circle with radius = 2 * vertex radius
-        circle = self.canvas.create_oval(
-            x - 2 * radius, y - 2 * radius,
-            x + 2 * radius, y + 2 * radius,
-            fill=color, outline="black", width=5, tags="purple_node"  # , width=10
-        )
-        self.circles[circle] = (x, y, "Gal")
-        # print(self.circles)
-
+    def add_gal_node(self, x, y):
+        add_polygon_shape(self, x, y, 'circle', 'yellow', 'Gal')
+        
 
 
     # FIXME: experimental code to add an α1,2 edge
@@ -1291,6 +1074,7 @@ class GridApplication:
         self.mode = "Calculate PCI"
         self.calculate_pci(self.circles, self.edges)
 
+    # FIXME: Export image not working properly
     def select_export_image_mode(self):
         """Switch to Export Image mode."""
         self.mode = "Export Image"
