@@ -4,6 +4,12 @@ GlycoAssessor is a Python application designed to calculate and visualize Distan
 
 ---
 
+
+https://github.com/user-attachments/assets/d894501c-46f7-4274-91c9-511ae13a6dac
+
+
+
+---
 ## **Features**
 
 - **Distance & Connectivity Index (DCI)**: 
