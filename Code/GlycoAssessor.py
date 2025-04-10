@@ -10,6 +10,7 @@ import pandas as pd
 from sympy.codegen.ast import continue_
 
 from Code.Shapes.Edge import add_edge
+from Code.Shapes.Linkage import add_linkage_type
 from Code.Shapes.Vertex import add_vertex
 from Code.Shapes.Polygon import add_polygon_shape
 
@@ -55,7 +56,7 @@ class PrintToText:
     def flush(self):
         pass  # This is required to avoid errors, but we don’t need it for this purpose
 
-
+# TODO: Organize buttons, both the code and the GUI
 # Define the main application class
 class GridApplication:
     def __init__(self, master):
@@ -95,7 +96,7 @@ class GridApplication:
 
 
         # Grid size
-        self.grid_size = 30
+        self.grid_size = 20
         self.vertices = []  # List to store the centers of circles
 
         # Dictionaries to store edges and circles
@@ -573,7 +574,7 @@ class GridApplication:
                 self.canvas.delete(item)
                 del self.edge_text[item]
 
-    # Define add node functions
+    # Sugars _______________________________________________________________
 
     # GlcNAc
     def add_glcnac_node(self, x, y):
@@ -598,130 +599,42 @@ class GridApplication:
     # Gal
     def add_gal_node(self, x, y):
         add_polygon_shape(self, x, y, 'circle', 'yellow', 'Gal')
-        
 
+    # Linkages _______________________________________________________________
 
-    # FIXME: experimental code to add an α1,2 edge
+    # Add α1,2
     def add_a1to2(self, vertex1, vertex2):
-        """Draw a black edge between two vertices."""
-        # Draw a black edge between the selected vertices with increased width (3x)
-        edge_label = "α1,2"
-        edge = self.canvas.create_line(
-            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
-            width=10, fill="black", capstyle=tk.ROUND, tags="a1to2"
-        )
-        edge_text = self.canvas.create_text(
-            (vertex1[0] + vertex2[0])/2, (vertex1[1] + vertex2[1])/2, text=edge_label, fill="#DFE1E5",anchor=tk.N,)
-        self.edges[edge] = (vertex1, vertex2, "a1to2")
-        self.edge_text[edge_text] = edge_label
-        # print(self.edges)
+        add_linkage_type(self, vertex1, vertex2, "α1,2", "a1to2")
 
-    # FIXME: add code to add an α1,3 edge
+    # Add α1,3
     def add_a1to3(self, vertex1, vertex2):
-        """Draw a black edge between two vertices."""
-        # Draw a black edge between the selected vertices with increased width (3x)
-        edge_label = "α1,3"
-        edge = self.canvas.create_line(
-            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
-            width=10, fill="black", capstyle=tk.ROUND, tags="a1to3"
-        )
-        edge_text = self.canvas.create_text(
-            (vertex1[0] + vertex2[0])/2, (vertex1[1] + vertex2[1])/2, text=edge_label, fill="#DFE1E5",anchor=tk.N,)
-        self.edges[edge] = (vertex1, vertex2, "a1to3")
-        self.edge_text[edge_text] = edge_label
-        # print(self.edges)
+        add_linkage_type(self, vertex1, vertex2, "α1,3", "a1to3")
 
-    # FIXME: experimental code to add an α1,4 edge
+    # Add α1,4
     def add_a1to4(self, vertex1, vertex2):
-        """Draw a black edge between two vertices."""
-        # Draw a black edge between the selected vertices with increased width (3x)
-        edge_label = "α1,4"
-        edge = self.canvas.create_line(
-            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
-            width=10, fill="black", capstyle=tk.ROUND, tags="a1to4"
-        )
-        edge_text = self.canvas.create_text(
-            (vertex1[0] + vertex2[0])/2, (vertex1[1] + vertex2[1])/2, text=edge_label, fill="#DFE1E5",anchor=tk.N,)
-        self.edges[edge] = (vertex1, vertex2, "a1to4")
-        self.edge_text[edge_text] = edge_label
-        # print(self.edges)
+        add_linkage_type(self, vertex1, vertex2, "α1,4", "a1to4")
 
-    # FIXME: experimental code to add an α1,6 edge
+    # Add α1,6
     def add_a1to6(self, vertex1, vertex2):
-        """Draw a black edge between two vertices."""
-        # Draw a black edge between the selected vertices with increased width (3x)
-        edge_label = "α1,6"
-        edge = self.canvas.create_line(
-            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
-            width=10, fill="black", capstyle=tk.ROUND, tags="a1to6"
-        )
-        edge_text = self.canvas.create_text(
-            (vertex1[0] + vertex2[0])/2, (vertex1[1] + vertex2[1])/2, text=edge_label, fill="#DFE1E5",anchor=tk.N,)
-        self.edges[edge] = (vertex1, vertex2, "a1to6")
-        self.edge_text[edge_text] = edge_label
-        # print(self.edges)
+        add_linkage_type(self, vertex1, vertex2, "α1,6", "a1to6")
 
-    # FIXME: experimental code to add an ß1,2 edge
+    # Add ß1,2
     def add_b1to2(self, vertex1, vertex2):
-        """Draw a black edge between two vertices."""
-        # Draw a black edge between the selected vertices with increased width (3x)
-        edge_label = "ß1,2"
-        edge = self.canvas.create_line(
-            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
-            width=10, fill="black", capstyle=tk.ROUND, tags="b1to2"
-        )
-        edge_text = self.canvas.create_text(
-            (vertex1[0] + vertex2[0])/2, (vertex1[1] + vertex2[1])/2, text=edge_label, fill="#DFE1E5",anchor=tk.N,)
-        self.edges[edge] = (vertex1, vertex2, "b1to2")
-        self.edge_text[edge_text] = edge_label
-        # print(self.edges)
+        add_linkage_type(self, vertex1, vertex2, "ß1,2", "b1to2")
 
-
+    # Add ß1,3
     def add_b1to3(self, vertex1, vertex2):
-        """Draw a black edge between two vertices."""
-        # Draw a black edge between the selected vertices with increased width (3x)
-        edge_label = "ß1,3"
-        edge = self.canvas.create_line(
-            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
-            width=10, fill="black", capstyle=tk.ROUND, tags="b1to3"
-        )
-        edge_text = self.canvas.create_text(
-            (vertex1[0] + vertex2[0])/2, (vertex1[1] + vertex2[1])/2, text=edge_label, fill="#DFE1E5",anchor=tk.N,)
-        self.edges[edge] = (vertex1, vertex2, "b1to3")
-        self.edge_text[edge_text] = edge_label
-        # print(self.edges)
+        add_linkage_type(self, vertex1, vertex2, "ß1,3", "b1to3")
 
-    # FIXME: experimental code to add an ß1,4 edge
+    # Add ß1,4
     def add_b1to4(self, vertex1, vertex2):
-        """Draw a black edge between two vertices."""
-        # Draw a black edge between the selected vertices with increased width (3x)
-        edge_label = "ß1,4"
-        edge = self.canvas.create_line(
-            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
-            width=10, fill="black", capstyle=tk.ROUND, tags="b1to4"
-        )
-        edge_text = self.canvas.create_text(
-            (vertex1[0] + vertex2[0])/2, (vertex1[1] + vertex2[1])/2, text=edge_label, fill="#DFE1E5",anchor=tk.N,)
-        self.edges[edge] = (vertex1, vertex2, "b1to4")
-        self.edge_text[edge_text] = edge_label
-        # print(self.edges)
+        add_linkage_type(self, vertex1, vertex2, "ß1,4", "b1to4")
 
+    # Add ß1,6
     def add_b1to6(self, vertex1, vertex2):
-        """Draw a black edge between two vertices."""
-        # Draw a black edge between the selected vertices with increased width (3x)
-        edge_label = "ß1,6"
-        edge = self.canvas.create_line(
-            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
-            width=10, fill="black", capstyle=tk.ROUND, tags="b1to6"
-        )
-        edge_text = self.canvas.create_text(
-            (vertex1[0] + vertex2[0])/2, (vertex1[1] + vertex2[1])/2, text=edge_label, fill="#DFE1E5",anchor=tk.N,)
-        self.edges[edge] = (vertex1, vertex2, "b1to6")
-        self.edge_text[edge_text] = edge_label
-        # print(self.edges)
+        add_linkage_type(self, vertex1, vertex2, "ß1,6", "b1to6")
 
-
-
+    # Reset program
     # def reset_program(self):
     #     self.master.destroy()  # Destroy the current Tkinter root
     #     python = sys.executable  # Get the Python executable path
@@ -740,6 +653,8 @@ class GridApplication:
             graph[b].append(a)
 
         return {node: len(neighbors) for node, neighbors in graph.items()}
+
+    # Find Paths to Base Node ___________________________________________________________
 
     def find_paths_to_base(self, edges):
         # Step 1: Extract all nodes and find the base node
@@ -823,6 +738,8 @@ class GridApplication:
         paths.update(key_map)
         return paths
 
+    # Calculate DC Matrix ___________________________________________________________
+
     def calculate_dci(self, paths):
         node_table = PrettyTable()
         node_table.field_names = ["Nd",
@@ -901,6 +818,8 @@ class GridApplication:
                                                  initialfile="DCI_Matrix.csv",)
         if file_path:
             df.to_csv(file_path, index=False)
+
+    # Calculate PC Matrix ___________________________________________________________
 
     def calculate_pci(self, circles, edges):
 
@@ -1092,7 +1011,6 @@ def main():
     root = tk.Tk()
     app = GridApplication(root)
     root.mainloop()
-
 
 if __name__ == "__main__":
     main()
