@@ -63,6 +63,12 @@ class GridApplication:
         self.master = master
         self.master.title("GlycoAssessor")
 
+        # Create column_0 to hold the Canvas
+        column_0 = tk.Frame(self.master)
+        column_0.pack(side="left", padx=20, pady=10, anchor="n")
+
+        # Other columns ___________________________________________________________
+
         # Create frames for the three columns
         #   Column 1 has buttons for nodes and edges
         column_1 = tk.Frame(self.master)
@@ -84,16 +90,267 @@ class GridApplication:
         # column_4 = tk.Frame(self.master)
         # column_4.pack(side="left", padx=200, pady=10, anchor="n")
 
+        # Buttons for mode selection
+        # FIXME: Edit "Circle" Button to account for up to 6 different Node types
+        # Initialize row 1 in column 1
+        button_r0_c0 = tk.Frame(column_0)
+        button_r0_c0.pack(pady=1, anchor="w")  # Aligns row to the left
 
-        # Create column_0 to hold the Canvas
-        column_0 = tk.Frame(self.master)
-        column_0.pack(side="left", padx=20, pady=10, anchor="n")
+        # Add "Sugar Menu" text to row 1
+        tk.Label(button_r0_c0, text="Sugar Menu", font=("Arial", 12, "bold"), bg='lightgray').pack()
+
+    # Sugar buttons ______________________________________________________________
+
+        # Add buttons to row 2
+
+        button_r1_c0 = tk.Frame(column_0)
+        button_r1_c0.pack(pady=1, anchor="w")  # Aligns row to the left
+
+        # Blue square - #24A5A2 - GlcNAc
+
+        self.glcnac_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/GlcNAc.png").resize((50, 50))
+        self.glcnac_button_image = ImageTk.PhotoImage(self.glcnac_img)
+
+        self.add_glcnac_button = tk.Button(button_r1_c0, image=self.glcnac_button_image, borderwidth=0,
+                                           highlightthickness=0, command=self.select_add_glcnac_mode)
+        self.add_glcnac_button.pack(side="left", padx=5)
+
+        # Initialize row 2 in column 1
+        button_r2_c1 = tk.Frame(column_1)
+        button_r2_c1.pack(pady=1, anchor="w")
+
+        # Add buttons to row 3
+
+        # Initialize Row 3 in column 1
+        button_r3_c1 = tk.Frame(column_1)
+        button_r3_c1.pack(pady=1, anchor="w")
+
+        # Man
+        # Green circle - #7BB23C
+        self.man_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Man.png").resize((50, 50))
+        self.man_button_image = ImageTk.PhotoImage(self.man_img)
+
+        self.add_man_button = tk.Button(button_r1_c0,
+                                        image=self.man_button_image,
+                                        borderwidth=0, highlightthickness=0,
+                                        command=self.select_add_man_mode)
+        self.add_man_button.pack(side="left", padx=5)
+
+        # Add buttons to row 4
+
+        # Initialize row 4 in column 1
+        button_r4_c1 = tk.Frame(column_1)
+        button_r4_c1.pack(pady=1, anchor="w")
+
+        # Gal
+        self.gal_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Gal.png").resize((50, 50))
+        self.gal_button_image = ImageTk.PhotoImage(self.gal_img)
+
+        #  Yellow - #8B741A
+        self.add_gal_button = tk.Button(button_r1_c0,
+                                        image=self.gal_button_image,
+                                        borderwidth=0, highlightthickness=0,
+                                        command=self.select_add_gal_mode)
+        self.add_gal_button.pack(side="left", padx=5)
+
+        # Fuc
+        # Add buttons to row 5
+        button_r5_c1 = tk.Frame(column_1)
+        button_r5_c1.pack(pady=1, anchor="w")
+        # Red triangle - #AA4926
+        # (treat as a circle; specific for Fucose/fucosylation)
+        self.fuc_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Fuc.png").resize((50, 50))
+        self.fuc_button_image = ImageTk.PhotoImage(self.fuc_img)
+
+        self.add_fuc_button = tk.Button(button_r1_c0,
+                                        image=self.fuc_button_image,
+                                        borderwidth=0, highlightthickness=0,
+                                        command=self.select_add_fuc_mode)
+        self.add_fuc_button.pack(side="left", padx=5)
+
+        # Neu5Ac
+        # Add buttons to row 6
+        button_r6_c1 = tk.Frame(column_1)
+        button_r6_c1.pack(pady=1, anchor="w")
+
+        self.neu5ac_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Neu5Ac.png").resize((50, 50))
+        self.neu5ac_button_image = ImageTk.PhotoImage(self.neu5ac_img)
+
+        # Purple diamond - #92548A
+        self.add_neu5ac_button = tk.Button(button_r1_c0,
+                                           image=self.neu5ac_button_image,
+                                           borderwidth=0, highlightthickness=0,
+                                           command=self.select_add_neu5ac_mode)
+        self.add_neu5ac_button.pack(side="left", padx=5)
+
+        # TalNAc
+        # Add buttons to row 7
+        button_r7_c1 = tk.Frame(column_1)
+        button_r7_c1.pack(pady=1, anchor="w")
+
+        self.talnac_img = Image.open(
+            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/TalNAc.png").resize((50, 50))
+        self.talnac_button_image = ImageTk.PhotoImage(self.talnac_img)
+
+        # Skyblue circle - #CB8B6B
+        self.add_talnac_button = tk.Button(button_r1_c0,
+                                           image=self.talnac_button_image,
+                                           borderwidth=0, highlightthickness=0,
+                                           command=self.select_add_talnac_mode)
+        self.add_talnac_button.pack(side="left", padx=5)
+
+
+    # Linkage buttons ____________________________________________________________
+
+        # Create Linkage Menu on Column 3
+        # Initialize row 1 in column 2
+        button_r2_0_c0 = tk.Frame(column_0)
+        button_r2_0_c0.pack(pady=1, anchor="w")
+
+        # Add buttons to row 1, column 2
+        tk.Label(button_r2_0_c0, text="Linkage Menu", font=("Arial", 12, "bold"), bg='lightgray').pack()
+
+        # Add buttons to row 2, column 2
+        # Initialize row 2 in column 2
+        button_r2_1_c0 = tk.Frame(column_0)
+        button_r2_1_c0.pack(pady=1, anchor="w")
+        self.add_a1to2_button = tk.Button(button_r2_1_c0, text="Add α1,2", command=self.select_add_a1to2_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.add_a1to2_button.pack(side="left", padx=5)
+
+        # FIXME: Add buttons for various types of inter-layer linkage edges
+        #  (e.g., α1,2, α1,3, α1,4, α1,6, ß1,2, ß1,4)
+        button_r3_c2 = tk.Frame(column_2)
+        button_r3_c2.pack(pady=1, anchor="w")
+
+        self.add_a1to3_button = tk.Button(button_r2_1_c0, text="Add α1,3", command=self.select_add_a1to3_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.add_a1to3_button.pack(side="left", padx=5)
+
+        button_r4_c2 = tk.Frame(column_2)
+        button_r4_c2.pack(pady=1, anchor="w")
+
+        self.add_a1to4_button = tk.Button(button_r2_1_c0, text="Add α1,4", command=self.select_add_a1to4_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.add_a1to4_button.pack(side="left", padx=5)
+
+        button_r5_c2 = tk.Frame(column_2)
+        button_r5_c2.pack(pady=1, anchor="w")
+
+        self.add_a1to6_button = tk.Button(button_r2_1_c0, text="Add α1,6", command=self.select_add_a1to6_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.add_a1to6_button.pack(side="left", padx=5)
+
+        button_r6_c2 = tk.Frame(column_2)
+        button_r6_c2.pack(pady=1, anchor="w")
+
+        # FIXME: add ß1,2, ß1,3, ß1,4, ß1,6
+        self.add_b1to2_button = tk.Button(button_r2_1_c0, text="Add ß1,2", command=self.select_add_b1to2_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.add_b1to2_button.pack(side="left", padx=5)
+
+        button_r7_c2 = tk.Frame(column_2)
+        button_r7_c2.pack(pady=1, anchor="w")
+
+        self.add_b1to3_button = tk.Button(button_r2_1_c0, text="Add ß1,3", command=self.select_add_b1to3_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.add_b1to3_button.pack(side="left", padx=5)
+
+        button_r8_c2 = tk.Frame(column_2)
+        button_r8_c2.pack(pady=1, anchor="w")
+
+        self.add_b1to4_button = tk.Button(button_r2_1_c0, text="Add ß1,4", command=self.select_add_b1to4_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.add_b1to4_button.pack(side="left", padx=5)
+
+        button_r9_c2 = tk.Frame(column_2)
+        button_r9_c2.pack(pady=1, anchor="w")
+
+        self.add_b1to6_button = tk.Button(button_r2_1_c0, text="Add ß1,6", command=self.select_add_b1to6_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.add_b1to6_button.pack(side="left", padx=5)
+
+        button_r10_c2 = tk.Frame(column_2)
+        button_r10_c2.pack(pady=1, anchor="w")
+
+        self.rm_edge_button = tk.Button(button_r2_1_c0, text="Remove Edge", command=self.select_rm_edge_mode,
+                                        background="#2B2D30", foreground="#DFE1E5")
+        self.rm_edge_button.pack(side="left", padx=5)
+
+        button_r11_c2 = tk.Frame(column_2)
+        button_r11_c2.pack(pady=1, anchor="w")
+
+        self.rm_edge_text_button = tk.Button(button_r2_1_c0, text="Remove Edge Text",
+                                             command=self.select_rm_edge_text_mode,
+                                             background="#2B2D30", foreground="#DFE1E5")
+        self.rm_edge_text_button.pack(side="left", padx=5)
+
+        # Initialize column 3
+        # Initialize row 1, column 3
+
+
+
+    # Analysis buttons ___________________________________________________________
+        # empty_space = tk.Frame(column_0)
+        # empty_space.pack(pady=15, anchor="w")
+
+        button_r3_1_c0 = tk.Frame(column_0)
+        button_r3_1_c0.pack(pady=1, anchor="w")
+
+        tk.Label(button_r3_1_c0, text="Analysis Tools", font=("Arial", 12, "bold"), bg='lightgray').pack()
+
+
+        button_r3_c0 = tk.Frame(column_0)
+        button_r3_c0.pack(pady=1, anchor="w")
+
+        self.rm_circle_button = tk.Button(button_r3_c0, text="Remove Node", command=self.select_rm_circle_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.rm_circle_button.pack(side="left", padx=5)
+
+
+
+        # TODO: Fix the button names. I've added a quick fix to adjust the placement,
+        #  but the row and column numbers in the button names are off.
+
+
+
+        button_r2_c3 = tk.Frame(column_2)
+        button_r2_c3.pack(pady=1, anchor="w")
+        # Export image
+        self.dci_calc_button = tk.Button(button_r3_c0, text="Export Image", command=self.select_export_image_mode,
+                                         background="#2B2D30", foreground="#DFE1E5")
+        self.dci_calc_button.pack(side="left", padx=5)
+
+        button_r3_c3 = tk.Frame(column_2)
+        button_r3_c3.pack(pady=1, anchor="w")
+
+        # Button to calculate DCI
+        self.dci_calc_button = tk.Button(button_r3_c0, text="Calculate DCI", command=self.select_calc_dci_mode,
+                                         background="#639F52", foreground="#1E1F22")
+        self.dci_calc_button.pack(side="left", padx=5)
+
+        button_r4_c3 = tk.Frame(column_2)
+        button_r4_c3.pack(pady=1, anchor="w")
+
+        # Button to calculate PCI
+        self.pci_calc_button = tk.Button(button_r3_c0, text="Calculate PCI", command=self.select_calc_pci_mode,
+                                         background="#639F52", foreground="#1E1F22")
+        self.pci_calc_button.pack(side="left", padx=5)
+
+    # Canvas _____________________________________________________________________
 
         # # Original Canvas widget
-        self.canvas = tk.Canvas(column_0, width=1300, height=1080, bg='#2B2D30') # Uncomment for large UI
+        button_r4_c0 = tk.Frame(column_0)
+        button_r4_c0.pack(pady=1, anchor="w")
+
+
+        self.canvas = tk.Canvas(button_r4_c0, width=1920, height=1080, bg='#2B2D30')  # Uncomment for large UI
         self.canvas.pack()
-
-
 
         # Grid size
         self.grid_size = 20
@@ -102,8 +359,7 @@ class GridApplication:
         # Dictionaries to store edges and circles
         self.edges = {}  # List to store edges
         self.circles = {}  # Dictionary to store circle items
-        self.edge_text = {} # Dict to store edge text (linkage type labels)
-
+        self.edge_text = {}  # Dict to store edge text (linkage type labels)
 
         # Flag to track if the first circle has been placed
         self.first_circle_placed = False
@@ -121,264 +377,36 @@ class GridApplication:
 
 
 
-        # Buttons for mode selection
-        # FIXME: Edit "Circle" Button to account for up to 6 different Node types
-        # Initialize row 1 in column 1
-        button_r1_c1 = tk.Frame(column_1)
-        button_r1_c1.pack(pady=1, anchor="w")  # Aligns row to the left
-
-        # Add "Sugar Menu" text to row 1
-        tk.Label(button_r1_c1, text="Sugar Menu", font=("Arial", 12, "bold"), bg='lightgray').pack()
 
-        # Add buttons to row 2
-
-        button_r0_c1 = tk.Frame(column_1)
-        button_r0_c1.pack(pady=1, anchor="w")  # Aligns row to the left
-        # Blue square - #24A5A2 - GlcNAc
-
-        self.glcnac_img = Image.open("C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/GlcNAc.png").resize((50, 50))
-        self.glcnac_button_image = ImageTk.PhotoImage(self.glcnac_img)
-
-        self.add_glcnac_button = tk.Button(button_r0_c1, image=self.glcnac_button_image, borderwidth=0, highlightthickness=0,command=self.select_add_glcnac_mode)
-        self.add_glcnac_button.pack(side="left", padx=5)
-
-        # Initialize row 2 in column 1
-        button_r2_c1 = tk.Frame(column_1)
-        button_r2_c1.pack(pady=1, anchor="w")
-
-
-
-        # Add buttons to row 3
-
-        # Initialize Row 3 in column 1
-        button_r3_c1 = tk.Frame(column_1)
-        button_r3_c1.pack(pady=1, anchor="w")
-
-        # Man
-        # Green circle - #7BB23C
-        self.man_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Man.png").resize((50, 50))
-        self.man_button_image = ImageTk.PhotoImage(self.man_img)
-
-        self.add_man_button = tk.Button(button_r3_c1,
-                                                 image=self.man_button_image,
-                                                 borderwidth=0, highlightthickness=0,
-                                                 command=self.select_add_man_mode)
-        self.add_man_button.pack(side="left", padx=5)
-
-
-        # Add buttons to row 4
-
-        # Initialize row 4 in column 1
-        button_r4_c1 = tk.Frame(column_1)
-        button_r4_c1.pack(pady=1, anchor="w")
-
-        # Gal
-        self.gal_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Gal.png").resize((50, 50))
-        self.gal_button_image = ImageTk.PhotoImage(self.gal_img)
-
-
-        #  Yellow - #8B741A
-        self.add_gal_button = tk.Button(button_r4_c1,
-                                                  image=self.gal_button_image,
-                                                  borderwidth=0, highlightthickness=0,
-                                                  command=self.select_add_gal_mode)
-        self.add_gal_button.pack(side="left", padx=5)
-
-        # Fuc
-        # Add buttons to row 5
-        button_r5_c1 = tk.Frame(column_1)
-        button_r5_c1.pack(pady=1, anchor="w")
-        # Red triangle - #AA4926
-        # (treat as a circle; specific for Fucose/fucosylation)
-        self.fuc_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Fuc.png").resize((50, 50))
-        self.fuc_button_image = ImageTk.PhotoImage(self.fuc_img)
-
-
-        self.add_fuc_button = tk.Button(button_r5_c1,
-                                               image=self.fuc_button_image,
-                                               borderwidth=0, highlightthickness=0,
-                                               command=self.select_add_fuc_mode)
-        self.add_fuc_button.pack(side="left", padx=5)
-
-        # Neu5Ac
-        # Add buttons to row 6
-        button_r6_c1 = tk.Frame(column_1)
-        button_r6_c1.pack(pady=1, anchor="w")
-
-        self.neu5ac_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Neu5Ac.png").resize((50, 50))
-        self.neu5ac_button_image = ImageTk.PhotoImage(self.neu5ac_img)
-
-        # Purple diamond - #92548A
-        self.add_neu5ac_button = tk.Button(button_r6_c1,
-                                                  image=self.neu5ac_button_image,
-                                                  borderwidth=0, highlightthickness=0,
-                                                  command=self.select_add_neu5ac_mode)
-        self.add_neu5ac_button.pack(side="left", padx=5)
-
-        # TalNAc
-        # Add buttons to row 7
-        button_r7_c1 = tk.Frame(column_1)
-        button_r7_c1.pack(pady=1, anchor="w")
-
-        self.talnac_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/TalNAc.png").resize((50, 50))
-        self.talnac_button_image = ImageTk.PhotoImage(self.talnac_img)
 
-        # Skyblue circle - #CB8B6B
-        self.add_talnac_button = tk.Button(button_r7_c1,
-                                                   image=self.talnac_button_image,
-                                                   borderwidth=0, highlightthickness=0,
-                                                  command=self.select_add_talnac_mode)
-        self.add_talnac_button.pack(side="left", padx=5)
 
-        button_r8_c1 = tk.Frame(column_1)
-        button_r8_c1.pack(pady=1, anchor="w")
 
-        self.rm_circle_button = tk.Button(button_r8_c1, text="Remove Node", command=self.select_rm_circle_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.rm_circle_button.pack(side="left", padx=5)
 
-        # Example buttons to fill space and show how many buttons I can add on the left
-        for i in range(1, 21):
-            button_r9_c1 = tk.Frame(column_1)
-            button_r9_c1.pack(pady=1, anchor="w")
-            self.add_example_button = tk.Button(button_r9_c1, text=f"Example Button {i}", background="#2B2D30", foreground="#DFE1E5")
-            self.add_example_button.pack(side="left", padx=5)
 
-        # Example buttons to populate column 2 of sugar menu
-        for i in range(1, 29):
-            button_r_c1_5 = tk.Frame(column_1_5)
-            button_r_c1_5.pack(pady=1, anchor="w")
-            self.add_example_button = tk.Button(button_r_c1_5, text=f"Ex {i}", background="#2B2D30", foreground="#DFE1E5").pack(side="left", padx=5)
 
 
-        # Create Linkage Menu on Column 3
-        # Initialize row 1 in column 2
-        button_r1_c2 = tk.Frame(column_2)
-        button_r1_c2.pack(pady=1, anchor="w")
 
-        # Add buttons to row 1, column 2
-        tk.Label(button_r1_c2, text="Linkage Menu", font=("Arial", 12, "bold"), bg='lightgray').pack()
 
-        # Add buttons to row 2, column 2
-        # Initialize row 2 in column 2
-        button_r2_c2 = tk.Frame(column_2)
-        button_r2_c2.pack(pady=1, anchor="w")
-        self.add_a1to2_button = tk.Button(button_r2_c2, text="Add α1,2", command=self.select_add_a1to2_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.add_a1to2_button.pack(side="left", padx=5)
 
-        # FIXME: Add buttons for various types of inter-layer linkage edges
-        #  (e.g., α1,2, α1,3, α1,4, α1,6, ß1,2, ß1,4)
-        button_r3_c2 = tk.Frame(column_2)
-        button_r3_c2.pack(pady=1, anchor="w")
 
-        self.add_a1to3_button = tk.Button(button_r3_c2, text="Add α1,3", command=self.select_add_a1to3_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.add_a1to3_button.pack(side="left", padx=5)
 
-        button_r4_c2 = tk.Frame(column_2)
-        button_r4_c2.pack(pady=1, anchor="w")
 
-        self.add_a1to4_button = tk.Button(button_r4_c2, text="Add α1,4", command=self.select_add_a1to4_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.add_a1to4_button.pack(side="left", padx=5)
 
-        button_r5_c2 = tk.Frame(column_2)
-        button_r5_c2.pack(pady=1, anchor="w")
+        # # Example buttons to fill space and show how many buttons I can add on the left
+        # for i in range(1, 21):
+        #     button_r9_c1 = tk.Frame(column_1)
+        #     button_r9_c1.pack(pady=1, anchor="w")
+        #     self.add_example_button = tk.Button(button_r9_c1, text=f"Example Button {i}", background="#2B2D30", foreground="#DFE1E5")
+        #     self.add_example_button.pack(side="left", padx=5)
+        #
+        # # Example buttons to populate column 2 of sugar menu
+        # for i in range(1, 29):
+        #     button_r_c1_5 = tk.Frame(column_1_5)
+        #     button_r_c1_5.pack(pady=1, anchor="w")
+        #     self.add_example_button = tk.Button(button_r_c1_5, text=f"Ex {i}", background="#2B2D30", foreground="#DFE1E5").pack(side="left", padx=5)
+        #
 
-        self.add_a1to6_button = tk.Button(button_r5_c2, text="Add α1,6", command=self.select_add_a1to6_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.add_a1to6_button.pack(side="left", padx=5)
-
-        button_r6_c2 = tk.Frame(column_2)
-        button_r6_c2.pack(pady=1, anchor="w")
-
-        # FIXME: add ß1,2, ß1,3, ß1,4, ß1,6
-        self.add_b1to2_button = tk.Button(button_r6_c2, text="Add ß1,2", command=self.select_add_b1to2_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.add_b1to2_button.pack(side="left", padx=5)
-
-        button_r7_c2 = tk.Frame(column_2)
-        button_r7_c2.pack(pady=1, anchor="w")
-
-        self.add_b1to3_button = tk.Button(button_r7_c2, text="Add ß1,3", command=self.select_add_b1to3_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.add_b1to3_button.pack(side="left", padx=5)
-
-        button_r8_c2 = tk.Frame(column_2)
-        button_r8_c2.pack(pady=1, anchor="w")
-
-
-        self.add_b1to4_button = tk.Button(button_r8_c2, text="Add ß1,4", command=self.select_add_b1to4_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.add_b1to4_button.pack(side="left", padx=5)
-
-        button_r9_c2 = tk.Frame(column_2)
-        button_r9_c2.pack(pady=1, anchor="w")
-
-        self.add_b1to6_button = tk.Button(button_r9_c2, text="Add ß1,6", command=self.select_add_b1to6_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.add_b1to6_button.pack(side="left", padx=5)
-
-
-
-        button_r10_c2 = tk.Frame(column_2)
-        button_r10_c2.pack(pady=1, anchor="w")
-
-        self.rm_edge_button = tk.Button(button_r10_c2, text="Remove Edge", command=self.select_rm_edge_mode,
-                                        background="#2B2D30", foreground="#DFE1E5")
-        self.rm_edge_button.pack(side="left", padx=5)
-
-        button_r11_c2 = tk.Frame(column_2)
-        button_r11_c2.pack(pady=1, anchor="w")
-
-        self.rm_edge_text_button = tk.Button(button_r11_c2, text="Remove Edge Text",
-                                             command=self.select_rm_edge_text_mode,
-                                             background="#2B2D30", foreground="#DFE1E5")
-        self.rm_edge_text_button.pack(side="left", padx=5)
-
-
-        # Initialize column 3
-        # Initialize row 1, column 3
-
-        # TODO: Fix the button names. I've added a quick fix to adjust the placement,
-        #  but the row and column numbers in the button names are off.
-
-        empty_space = tk.Frame(column_2)
-        empty_space.pack(pady=15, anchor="w")
-
-        button_r1_c3 = tk.Frame(column_2)
-        button_r1_c3.pack(pady=1, anchor="w")
-
-        tk.Label(button_r1_c3, text="Analysis Tools", font=("Arial", 12, "bold"), bg='lightgray').pack()
-
-        button_r2_c3 = tk.Frame(column_2)
-        button_r2_c3.pack(pady=1, anchor="w")
-        # Export image
-        self.dci_calc_button = tk.Button(button_r2_c3, text="Export Image", command=self.select_export_image_mode,
-                                         background="#2B2D30", foreground="#DFE1E5")
-        self.dci_calc_button.pack(side="left", padx=5)
-
-        button_r3_c3 = tk.Frame(column_2)
-        button_r3_c3.pack(pady=1, anchor="w")
-
-        # Button to calculate DCI
-        self.dci_calc_button = tk.Button(button_r3_c3, text="Calculate DCI", command=self.select_calc_dci_mode,
-                                         background="#639F52", foreground="#1E1F22")
-        self.dci_calc_button.pack(side="left", padx=5)
-
-        button_r4_c3 = tk.Frame(column_2)
-        button_r4_c3.pack(pady=1, anchor="w")
-
-        # Button to calculate PCI
-        self.pci_calc_button = tk.Button(button_r4_c3, text="Calculate PCI", command=self.select_calc_pci_mode,
-                                         background="#639F52", foreground="#1E1F22")
-        self.pci_calc_button.pack(side="left", padx=5)
+    # Instructions and Log
 
         # button_r5_c3 = tk.Frame(column_3)
         # button_r5_c3.pack(pady=1, anchor="w")
@@ -388,20 +416,20 @@ class GridApplication:
 
         # TODO: Fix the button names. I've added a quick fix to adjust the placement,
         #  but the row and column numbers in the button names are off.
-
-        empty_space2 = tk.Frame(column_2)
-        empty_space2.pack(pady=15, anchor="w")
+        #
+        # empty_space2 = tk.Frame(column_2)
+        # empty_space2.pack(pady=15, anchor="w")
 
         # Initialize row 1 in column 4
         button_r1_c4 = tk.Frame(column_2)
         button_r1_c4.pack(pady=1, anchor="w")
-        tk.Label(button_r1_c4, text="Instructions and Log", font=("Arial", 12, "bold"), bg='lightgray').pack()
+        tk.Label(button_r3_c0, text="Instructions and Log", font=("Arial", 12, "bold"), bg='lightgray').pack()
 
         button_r2_c4 = tk.Frame(column_2)
         button_r2_c4.pack(pady=1, anchor="w")
 
         # Create a Text widget for printing output
-        self.text_area = tk.Text(button_r2_c4, height=100, width=45)
+        self.text_area = tk.Text(button_r3_c0, height=5, width=200)
         self.text_area.pack(side="left",padx=5)
 
 
