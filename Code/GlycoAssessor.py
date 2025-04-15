@@ -15,13 +15,10 @@ from Code.Shapes.Vertex import add_vertex
 from Code.Shapes.Polygon import add_polygon_shape
 
 
-# TODO: Move sugar and linkage menu to the left side
-# TODO: Expand the canvas on the right side
 # TODO: Make the canvas zoomable
-# TODO: Highlight the points where it's possible to add a sugar
 # TODO: Add descriptive comments throughout
 
-# 1. Change the sugar symbols to be the correct shape and color.
+# *****COMPLETE***** 1. Change the sugar symbols to be the correct shape and color.
 #       I mean that the buttons themselves should be shapes and colors instead of
 #       colored rectangles containing text inside. See the second column in this image
 #       for all the symbol patterns that you will need. The columns after Column 2
@@ -39,8 +36,9 @@ from Code.Shapes.Polygon import add_polygon_shape
 # 4. Is there a way to extend the canvas to the right, up, and down? Sole glycans are very
 #       long and will need more space than is on the default canvas size. We need to
 #       accommodate this.
-# 5. Change the canvas to have colors or something to let people know where they can place
+# *****COMPLETE***** 5. Change the canvas to have colors or something to let people know where they can place
 #       a shape.
+# TODO
 # 6. For people who accidentally place a fucose on the base node that is on the wrong level,
 #       the software should give some sort of warning.
 
@@ -412,7 +410,12 @@ class GridApplication:
             add_vertex(self, x, y, self.add_gal_node)
 
         elif self.mode == "Add Fuc Node":
-            add_vertex(self, x, y, self.add_fuc_node)
+            # if user attempts to add a Fuc node to the first level AND the first sugar has already been placed,
+            if x in range (60, 91) and self.first_circle_placed == True:
+                # then print a message and do not add a fuc node
+                print("Base node Fucosylations MUST be placed at the 2nd level explicitly!")
+            else:
+                add_vertex(self, x, y, self.add_fuc_node)
 
         # Check for linkage modes
         elif self.mode == "Add A1to2":
@@ -631,12 +634,12 @@ class GridApplication:
 
     def calculate_dci(self, paths):
         node_table = PrettyTable()
-        node_table.field_names = ["Nd",
-                                  "Stp",
-                                  "2nd",
-                                  "3rd",
-                                  "4th",
-                                  "Scr"]
+        node_table.field_names = ["Node",
+                                  "Steps to Base Node",
+                                  "2ndDeg Nodes\u2E4B * 2",
+                                  "3rdDeg Nodes\u2E4B * 3",
+                                  "4thDeg Nodes\u2E4B * 4",
+                                  "Node Score"]
 
         # Extract information from paths dictionary and append that into the node_table_rows list
         #   Keep track of dci_score
@@ -834,7 +837,7 @@ class GridApplication:
         pci_score = 0
 
         table = PrettyTable()
-        table.field_names = ["L", "NMT", "TNU", "NEL", "NLT", "NCDSPL", "Scr"]
+        table.field_names = ["Layer", "NMT", "TNU", "NEL", "NLT", "NCDSPL", "Layer Score"]
 
         # Populate table rows
         for layer, values in sorted(results.items()):  # Ensure sorted layer order
