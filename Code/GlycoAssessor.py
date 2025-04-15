@@ -38,8 +38,7 @@ from Code.Shapes.Polygon import add_polygon_shape
 #       accommodate this.
 # *****COMPLETE***** 5. Change the canvas to have colors or something to let people know where they can place
 #       a shape.
-# TODO
-# 6. For people who accidentally place a fucose on the base node that is on the wrong level,
+# *****COMPLETE***** # 6. For people who accidentally place a fucose on the base node that is on the wrong level,
 #       the software should give some sort of warning.
 
 
@@ -202,6 +201,11 @@ class GridApplication:
         self.rm_edge_text_button.pack(side="left", padx=5)
 
 
+        self.rm_circle_button = tk.Button(button_r2_1_c0, text="Remove Node", command=self.select_rm_circle_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.rm_circle_button.pack(side="left", padx=5)
+
+
     # Analysis buttons ___________________________________________________________
 
         button_r3_1_c0 = tk.Frame(column_0)
@@ -212,26 +216,28 @@ class GridApplication:
         button_r3_c0 = tk.Frame(column_0)
         button_r3_c0.pack(pady=1, anchor="w")
 
-        self.rm_circle_button = tk.Button(button_r3_c0, text="Remove Node", command=self.select_rm_circle_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.rm_circle_button.pack(side="left", padx=5)
 
         # Export image
         self.dci_calc_button = tk.Button(button_r3_c0, text="Export Image", command=self.select_export_image_mode,
-                                         background="#2B2D30", foreground="#DFE1E5")
+                                         background="#2B2D30", foreground="#DFE1E5", height = 3)
         self.dci_calc_button.pack(side="left", padx=5)
 
         # Button to calculate DCI
         self.dci_calc_button = tk.Button(button_r3_c0, text="Calculate DCI", command=self.select_calc_dci_mode,
-                                         background="#639F52", foreground="#1E1F22")
+                                         background="#639F52", foreground="#1E1F22", height = 3)
         self.dci_calc_button.pack(side="left", padx=5)
 
         # Button to calculate PCI
         self.pci_calc_button = tk.Button(button_r3_c0, text="Calculate PCI", command=self.select_calc_pci_mode,
-                                         background="#639F52", foreground="#1E1F22")
+                                         background="#639F52", foreground="#1E1F22", height = 3)
         self.pci_calc_button.pack(side="left", padx=5)
 
-    # Canvas _____________________________________________________________________
+        # Button to reset the program
+        self.reset_button = tk.Button(button_r3_c0, text="Reset", command=self.reset_app,
+                                         background="#EC1B25", foreground="black", height = 3)
+        self.reset_button.pack(side="left", padx=25)
+
+   # Canvas _____________________________________________________________________
 
         # # Original Canvas widget
         button_r4_c0 = tk.Frame(column_0)
@@ -292,6 +298,29 @@ class GridApplication:
 
         # Bind mouse events to canvas
         self.canvas.bind("<Button-1>", self.handle_click)  # Left click to place vertices or start edge
+
+
+
+    def reset_app(self):
+        self.canvas.delete("all")  # Clear canvas
+        self.draw_grid()  # Redraw grid
+        self.vertices = []  # List to store the centers of circles
+
+        # Dictionaries to store edges and circles
+        self.edges = {}  # List to store edges
+        self.circles = {}  # Dictionary to store circle items
+        self.edge_text = {}  # Dict to store edge text (linkage type labels)
+
+        # Flag to track if the first circle has been placed
+        self.first_circle_placed = False
+        self.first_vertex = None  # Track the first selected vertex for edges
+
+        # Mode tracking
+        self.mode = None  # Default mode is Circle
+        self.start_x = None
+        self.start_y = None
+        self.current_line = None  # To track the current line being drawn
+
 
     def draw_grid(self):
         """Draw the grid lines on the canvas."""
@@ -526,11 +555,6 @@ class GridApplication:
     def add_b1to6(self, vertex1, vertex2):
         add_linkage_type(self, vertex1, vertex2, "ß1,6", "b1to6")
 
-    # Reset program
-    # def reset_program(self):
-    #     self.master.destroy()  # Destroy the current Tkinter root
-    #     python = sys.executable  # Get the Python executable path
-    #     os.execl(sys.executable, sys.executable, *sys.argv)
 
     def find_node_degrees(self, edges):
         """Computes the degree of each node in the graph."""
@@ -885,7 +909,6 @@ class GridApplication:
         self.mode = "Calculate PCI"
         self.calculate_pci(self.circles, self.edges)
 
-    # FIXME: Export image not working properly
     def select_export_image_mode(self):
         """Switch to Export Image mode."""
         self.mode = "Export Image"
@@ -893,7 +916,9 @@ class GridApplication:
         y = self.master.winfo_rooty() + self.canvas.winfo_y()
         x1 = x + self.canvas.winfo_width()
         y1 = y + self.canvas.winfo_height()
-        image = ImageGrab.grab(bbox=(x, y, x1, y1))
+        # image = ImageGrab.grab(bbox=(x, y, x1, y1))
+        image = ImageGrab.grab(bbox=(40, 420, 1880, 1080))
+
         file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
         if file_path:
             image.save(file_path)
