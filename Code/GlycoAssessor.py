@@ -310,8 +310,17 @@ class GridApplication:
                 for y in range(0, 1600, circle_spacing):
                     self.canvas.create_oval(
                         x - radius, y - radius, x + radius, y + radius,
-                        fill="#9fa1a3", outline="", tags="grid_dot"
+                        fill="#545557", outline="", tags="grid_dot"
                     )
+            start_radius = 20
+            # Add start indicator circle
+            self.canvas.create_oval(
+                80 - start_radius, 240 - start_radius, 80 + start_radius, 240 + start_radius,
+                fill="black", outline="", tags="grid_dot"
+            )
+
+            self.canvas.create_text(
+                80, 240, text="START", fill="white")
 
     # Modes to add circles
     def select_add_glcnac_mode(self):
