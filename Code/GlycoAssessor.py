@@ -149,6 +149,9 @@ class GridApplication:
                                            command=self.select_add_talnac_mode)
         self.add_talnac_button.pack(side="left", padx=5)
 
+        # TODO: Add several more sugars here
+
+
 
     # Linkage buttons ____________________________________________________________
 
@@ -294,9 +297,21 @@ class GridApplication:
 
     def draw_grid(self):
         """Draw the grid lines on the canvas."""
+        radius = 5 # Radius for the small intersection circles
         for i in range(0, 1800, self.grid_size):
             self.canvas.create_line(i, 0, i, 1800, fill="#545557", tags="grid")
             self.canvas.create_line(0, i, 1800, i, fill="#545557", tags="grid")
+
+            # Circle gap
+            circle_spacing = 80
+
+            # Add small circles at intersection points
+            for x in range(0, 1600, circle_spacing):
+                for y in range(0, 1600, circle_spacing):
+                    self.canvas.create_oval(
+                        x - radius, y - radius, x + radius, y + radius,
+                        fill="#9fa1a3", outline="", tags="grid_dot"
+                    )
 
     # Modes to add circles
     def select_add_glcnac_mode(self):
