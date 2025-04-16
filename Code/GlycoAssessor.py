@@ -13,6 +13,7 @@ from Code.Shapes.Edge import add_edge
 from Code.Shapes.Linkage import add_linkage_type
 from Code.Shapes.Vertex import add_vertex
 from Code.Shapes.Polygon import add_polygon_shape
+# from Code.Buttons.SugarButton import sugar_module
 
 
 # TODO: Make the canvas zoomable
@@ -29,7 +30,7 @@ from Code.Shapes.Polygon import add_polygon_shape
 # 2. Keep in mind that the window that contains the shapes  should be able to accommodate
 #       about 30 more distinct shapes later on. We started with a handful because they are
 #       the common ones in vertebrates, but there are dozens more of them.
-# 3. If the user places the first sugar too near the top, can they move everything down to
+# *****COMPLETE***** 3. If the user places the first sugar too near the top, can they move everything down to
 #       make room for a branch that moves toward the top of the drawing canvas? If not, we
 #       need to build in regulations about where the first sugar must be placed to allow
 #       for adequate branching space up or down.
@@ -69,6 +70,7 @@ class GridApplication:
 
 
     # Sugar buttons ______________________________________________________________
+        self.sugar_buttons_dict = {}
 
         # Add "Sugar Menu" text to row 1
         tk.Label(button_r0_c0, text="Sugar Menu", font=("Arial", 12, "bold"), bg='lightgray').pack()
@@ -76,74 +78,47 @@ class GridApplication:
         button_r1_c0 = tk.Frame(column_0)
         button_r1_c0.pack(pady=1, anchor="w")  # Aligns row to the left
 
-        # Blue square - #24A5A2 - GlcNAc
-
-        self.glcnac_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/GlcNAc.png").resize((50, 50))
+        # GlcNAc - Blue square
+        self.glcnac_img = Image.open("../Assets/Sugars/GlcNAc.png").resize((50,50))
         self.glcnac_button_image = ImageTk.PhotoImage(self.glcnac_img)
-
         self.add_glcnac_button = tk.Button(button_r1_c0, image=self.glcnac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_glcnac_mode)
         self.add_glcnac_button.pack(side="left", padx=5)
 
-        # Man
-        # Green circle - #7BB23C
-        self.man_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Man.png").resize((50, 50))
-        self.man_button_image = ImageTk.PhotoImage(self.man_img)
 
-        self.add_man_button = tk.Button(button_r1_c0,
-                                        image=self.man_button_image,
-                                        borderwidth=0, highlightthickness=0,
-                                        command=self.select_add_man_mode)
+        # Man - Green circle
+        self.man_img = Image.open("../Assets/Sugars/Man.png").resize((50, 50))
+        self.man_button_image = ImageTk.PhotoImage(self.man_img)
+        self.add_man_button = tk.Button(button_r1_c0, image=self.man_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_man_mode)
         self.add_man_button.pack(side="left", padx=5)
 
-        # Gal
-        self.gal_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Gal.png").resize((50, 50))
+        # Gal - Yellow circle
+        self.gal_img = Image.open("../Assets/Sugars/Gal.png").resize((50, 50))
         self.gal_button_image = ImageTk.PhotoImage(self.gal_img)
-
-        #  Yellow - #8B741A
-        self.add_gal_button = tk.Button(button_r1_c0,
-                                        image=self.gal_button_image,
-                                        borderwidth=0, highlightthickness=0,
-                                        command=self.select_add_gal_mode)
+        self.add_gal_button = tk.Button(button_r1_c0, image=self.gal_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_gal_mode)
         self.add_gal_button.pack(side="left", padx=5)
 
-        # Fuc
-        # Red triangle - #AA4926
-        self.fuc_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Fuc.png").resize((50, 50))
+        # Fuc - Red triangle
+        self.fuc_img = Image.open("../Assets/Sugars/Fuc.png").resize((50, 50))
         self.fuc_button_image = ImageTk.PhotoImage(self.fuc_img)
-
-        self.add_fuc_button = tk.Button(button_r1_c0,
-                                        image=self.fuc_button_image,
-                                        borderwidth=0, highlightthickness=0,
-                                        command=self.select_add_fuc_mode)
+        self.add_fuc_button = tk.Button(button_r1_c0, image=self.fuc_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_fuc_mode)
         self.add_fuc_button.pack(side="left", padx=5)
 
-        # Neu5Ac
-        self.neu5ac_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/Neu5Ac.png").resize((50, 50))
+        # Neu5Ac - Purple diamond
+        self.neu5ac_img = Image.open("../Assets/Sugars/Neu5Ac.png").resize((50, 50))
         self.neu5ac_button_image = ImageTk.PhotoImage(self.neu5ac_img)
-
-        # Purple diamond - #92548A
-        self.add_neu5ac_button = tk.Button(button_r1_c0,
-                                           image=self.neu5ac_button_image,
-                                           borderwidth=0, highlightthickness=0,
-                                           command=self.select_add_neu5ac_mode)
+        self.add_neu5ac_button = tk.Button(button_r1_c0, image=self.neu5ac_button_image,
+                                           borderwidth=0, highlightthickness=0, command=self.select_add_neu5ac_mode)
         self.add_neu5ac_button.pack(side="left", padx=5)
 
-        # TalNAc
-        self.talnac_img = Image.open(
-            "C:/Users/danie/Documents/TSG_Lab/GlycoAssessor_GH/Assets/Sugars/TalNAc.png").resize((50, 50))
+        # TalNAc - Skyblue square
+        self.talnac_img = Image.open("../Assets/Sugars/TalNAc.png").resize((50, 50))
         self.talnac_button_image = ImageTk.PhotoImage(self.talnac_img)
-
-        # Skyblue circle - #CB8B6B
-        self.add_talnac_button = tk.Button(button_r1_c0,
-                                           image=self.talnac_button_image,
-                                           borderwidth=0, highlightthickness=0,
-                                           command=self.select_add_talnac_mode)
+        self.add_talnac_button = tk.Button(button_r1_c0, image=self.talnac_button_image,
+                                           borderwidth=0, highlightthickness=0, command=self.select_add_talnac_mode)
         self.add_talnac_button.pack(side="left", padx=5)
 
         # TODO: Add several more sugars here
@@ -191,19 +166,19 @@ class GridApplication:
                                           background="#2B2D30", foreground="#DFE1E5")
         self.add_b1to6_button.pack(side="left", padx=5)
 
-        self.rm_edge_button = tk.Button(button_r2_1_c0, text="Remove Edge", command=self.select_rm_edge_mode,
-                                        background="#2B2D30", foreground="#DFE1E5")
-        self.rm_edge_button.pack(side="left", padx=5)
-
-        self.rm_edge_text_button = tk.Button(button_r2_1_c0, text="Remove Edge Text",
-                                             command=self.select_rm_edge_text_mode,
-                                             background="#2B2D30", foreground="#DFE1E5")
-        self.rm_edge_text_button.pack(side="left", padx=5)
-
-
-        self.rm_circle_button = tk.Button(button_r2_1_c0, text="Remove Node", command=self.select_rm_circle_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.rm_circle_button.pack(side="left", padx=5)
+        # self.rm_edge_button = tk.Button(button_r2_1_c0, text="Remove Edge", command=self.select_rm_edge_mode,
+        #                                 background="#2B2D30", foreground="#DFE1E5")
+        # self.rm_edge_button.pack(side="left", padx=5)
+        #
+        # self.rm_edge_text_button = tk.Button(button_r2_1_c0, text="Remove Edge Text",
+        #                                      command=self.select_rm_edge_text_mode,
+        #                                      background="#2B2D30", foreground="#DFE1E5")
+        # self.rm_edge_text_button.pack(side="left", padx=5)
+        #
+        #
+        # self.rm_circle_button = tk.Button(button_r2_1_c0, text="Remove Node", command=self.select_rm_circle_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.rm_circle_button.pack(side="left", padx=5)
 
 
     # Analysis buttons ___________________________________________________________
