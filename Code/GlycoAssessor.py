@@ -9,6 +9,7 @@ from tkinter import filedialog
 import pandas as pd
 from sympy.codegen.ast import continue_
 
+
 from Code.Shapes.Edge import add_edge
 from Code.Shapes.Linkage import add_linkage_type
 from Code.Shapes.Vertex import add_vertex
@@ -78,13 +79,30 @@ class GridApplication:
         button_r1_c0 = tk.Frame(column_0)
         button_r1_c0.pack(pady=1, anchor="w")  # Aligns row to the left
 
+
+        # Add individual sugars in this order:      --------NOTE: About 20 buttons fit horizontally --------
+        # Glc - Blue circle
+
         # GlcNAc - Blue square
-        self.glcnac_img = Image.open("../Assets/Sugars/GlcNAc.png").resize((50,50))
+        self.glcnac_img = Image.open("../Assets/Sugars/GlcNAc.png").resize((50, 50))
         self.glcnac_button_image = ImageTk.PhotoImage(self.glcnac_img)
         self.add_glcnac_button = tk.Button(button_r1_c0, image=self.glcnac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_glcnac_mode)
         self.add_glcnac_button.pack(side="left", padx=5)
 
+        # GlcN - Blue crossed square
+
+        # GlcA - Blue divided diamond
+
+        # Qui - Blue triangle
+
+        # QuiNAc - Blue divided triangle
+
+        # Oli - Blue rectangle
+
+        # Bac - Blue hexagon
+
+        # Api - Blue pentagon
 
         # Man - Green circle
         self.man_img = Image.open("../Assets/Sugars/Man.png").resize((50, 50))
@@ -93,6 +111,28 @@ class GridApplication:
                                         borderwidth=0, highlightthickness=0, command=self.select_add_man_mode)
         self.add_man_button.pack(side="left", padx=5)
 
+        # ManNAc - Green square
+
+        # ManN - Green crossed square
+
+        # ManA - Green divided diamond
+
+        # Rha - Green triangle
+
+        # RhaNAc - Green divided triangle
+
+        # Tyv - Green rectangle
+
+        # Ara - Green star
+
+        # Kdn - Green diamond
+
+        # Pse - Green flat diamond
+
+        # LDManHep - Green hexagon
+
+        # Fruc - Green pentagon
+
         # Gal - Yellow circle
         self.gal_img = Image.open("../Assets/Sugars/Gal.png").resize((50, 50))
         self.gal_button_image = ImageTk.PhotoImage(self.gal_img)
@@ -100,12 +140,69 @@ class GridApplication:
                                         borderwidth=0, highlightthickness=0, command=self.select_add_gal_mode)
         self.add_gal_button.pack(side="left", padx=5)
 
-        # Fuc - Red triangle
-        self.fuc_img = Image.open("../Assets/Sugars/Fuc.png").resize((50, 50))
-        self.fuc_button_image = ImageTk.PhotoImage(self.fuc_img)
-        self.add_fuc_button = tk.Button(button_r1_c0, image=self.fuc_button_image,
-                                        borderwidth=0, highlightthickness=0, command=self.select_add_fuc_mode)
-        self.add_fuc_button.pack(side="left", padx=5)
+        # GalNAc - Yellow square
+
+        # GalN - Yellow crossed square
+
+        # GalA - Yellow divided diamond
+
+        # Lyx - Yellow star
+
+        # Leg - Yellow flat diamond
+
+        # Kdo - Yellow hexagon
+
+        # Tag - Yellow pentagon
+
+        # Gul - Orange circle
+
+        # GulNAc - Orange square
+
+        # GulN - Orange crossed square
+
+        # GulA - Orange divided diamond
+
+        # 6dGul - Orange triangle
+
+        # Abe - Orange rectangle
+
+        # Xyl - Orange star
+
+        # Dha - Orange hexagon
+
+        # Sor - Orange pentagon
+
+        # Alt - Pink circle
+
+        # AltNAc - Pink square
+
+        # AltN - Pink crossed square
+
+        # AltA - Pink divided diamond
+
+        # 6dAlt - Pink triangle
+
+        # 6dAltNAc - Pink divided triangle
+
+        # Par - Pink rectangle
+
+        # Rib - Pink star
+
+        # Aci - Pink flat diamond
+
+        # DDManHep - Pink hexagon
+
+        # Psi - Pink pentagon
+
+        # All - Purple circle
+
+        # AllNAc - Purple square
+
+        # AllN - Purple crossed square
+
+        # AllA - Purple divided diamond
+
+        # Dig - Purple rectangle
 
         # Neu5Ac - Purple diamond
         self.neu5ac_img = Image.open("../Assets/Sugars/Neu5Ac.png").resize((50, 50))
@@ -114,14 +211,55 @@ class GridApplication:
                                            borderwidth=0, highlightthickness=0, command=self.select_add_neu5ac_mode)
         self.add_neu5ac_button.pack(side="left", padx=5)
 
-        # TalNAc - Skyblue square
+        # MurNAc - Purple hexagon
+
+        # Tal - Light Blue circle
+
+        # TalNAc - Light Blue square
         self.talnac_img = Image.open("../Assets/Sugars/TalNAc.png").resize((50, 50))
         self.talnac_button_image = ImageTk.PhotoImage(self.talnac_img)
         self.add_talnac_button = tk.Button(button_r1_c0, image=self.talnac_button_image,
                                            borderwidth=0, highlightthickness=0, command=self.select_add_talnac_mode)
         self.add_talnac_button.pack(side="left", padx=5)
 
-        # TODO: Add several more sugars here
+        # TalN - Light Blue crossed square
+
+        # TalA - Light Blue divided diamond
+
+        # 6dTal - Light Blue triangle
+
+        # 6dTalNAc - Light Blue diided triangle
+
+        # Col - Light Blue rectangle
+
+        # Neu5Gc - Light Blue diamond
+
+        # 4eLeg - Light Blue flat diamond
+
+        # MurNGc - Light Blue hexagon
+
+        # Ido - Brown circle
+
+        # IdoNAc - Brown square
+
+        # IdoN - Brown crossed square
+
+        # IdoA - Brown divided diamond
+
+        # Neu - Brown diamond
+
+        # Mur - Brown hexagon
+
+        # Fuc - Red triangle
+        self.fuc_img = Image.open("../Assets/Sugars/Fuc.png").resize((50, 50))
+        self.fuc_button_image = ImageTk.PhotoImage(self.fuc_img)
+        self.add_fuc_button = tk.Button(button_r1_c0, image=self.fuc_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_fuc_mode)
+        self.add_fuc_button.pack(side="left", padx=5)
+
+        # FucNAc - Red divided triangle
+
+        # Sia - Red diamond
 
 
 
@@ -324,30 +462,309 @@ class GridApplication:
             self.canvas.create_text(
                 80, 240, text="START", fill="white")
 
-    # Modes to add circles
+# Modes to add circles
+
+    # Glc - Blue circle
+    def select_add_glc_mode(self):
+        self.mode = "Add Glc Node"
+
+    # GlcNAc - Blue square
     def select_add_glcnac_mode(self):
-        """Switch to Add Blue Node mode."""
         self.mode = "Add GlcNAc Node"
 
+    # GlcN - Blue crossed square
+    def select_add_glcn_mode(self):
+        self.mode = "Add GlcN Node"
+
+    # GlcA - Blue divided diamond
+    def select_add_glca_mode(self):
+        self.mode = "Add GlcA Node"
+
+    # Qui - Blue triangle
+    def select_add_qui_mode(self):
+        self.mode = "Add Qui Node"
+
+    # QuiNAc - Blue divided triangle
+    def select_add_quinac_mode(self):
+        self.mode = "Add QuiNAc Node"
+
+    # Oli - Blue rectangle
+    def select_add_oli_mode(self):
+        self.mode = "Add Oli Node"
+
+    # Bac - Blue hexagon
+    def select_add_bac_mode(self):
+        self.mode = "Add Bac Node"
+
+    # Api - Blue pentagon
+    def select_add_api_mode(self):
+        self.mode = "Add Api Node"
+
+    # Man - Green circle
     def select_add_man_mode(self):
-        """Switch to Add Man Node mode."""
         self.mode = "Add Man Node"
 
-    def select_add_neu5ac_mode(self):
-        """Switch to Add Neu5Ac Node mode."""
-        self.mode = "Add Neu5Ac Node"
+    # ManNAc - Green square
+    def select_add_mannac_mode(self):
+        self.mode = "Add ManNAc Node"
 
-    def select_add_talnac_mode(self):
-        """Switch to Add TalNAc Node mode."""
-        self.mode = "Add TalNAc Node"
+    # ManN - Green crossed square
+    def select_add_mann_mode(self):
+        self.mode = "Add ManN Node"
 
+    # ManA - Green divided diamond
+    def select_add_mana_mode(self):
+        self.mode = "Add ManA Node"
+
+    # Rha - Green triangle
+    def select_add_rha_mode(self):
+        self.mode = "Add Rha Node"
+
+    # RhaNAc - Green divided triangle
+    def select_add_rhanac_mode(self):
+        self.mode = "Add RhaNAc Node"
+
+    # Tyv - Green rectangle
+    def select_add_tyv_mode(self):
+        self.mode = "Add Tyv Node"
+
+    # Ara - Green star
+    def select_add_ara_mode(self):
+        self.mode = "Add Ara Node"
+
+    # Kdn - Green diamond
+    def select_add_kdn_mode(self):
+        self.mode = "Add Kdn Node"
+
+    # Pse - Green flat diamond
+    def select_add_pse_mode(self):
+        self.mode = "Add Pse Node"
+
+    # LDManHep - Green hexagon
+    def select_add_ldmanhep_mode(self):
+        self.mode = "Add LDManHep Node"
+
+    # Fruc - Green pentagon
+    def select_add_fruc_mode(self):
+        self.mode = "Add Fruc Node"
+
+    # Gal - Yellow circle
     def select_add_gal_mode(self):
-        """Switch to Add Gal Node mode."""
         self.mode = "Add Gal Node"
 
+    # GalNAc - Yellow square
+    def select_add_galnac_mode(self):
+        self.mode = "Add GalNAc Node"
+
+    # GalN - Yellow crossed square
+    def select_add_galn_mode(self):
+        self.mode = "Add GalN Node"
+
+    # GalA - Yellow divided diamond
+    def select_add_gala_mode(self):
+        self.mode = "Add GalA Node"
+
+    # Lyx - Yellow star
+    def select_add_lyx_mode(self):
+        self.mode = "Add Lyx Node"
+
+    # Leg - Yellow flat diamond
+    def select_add_leg_mode(self):
+        self.mode = "Add Leg Node"
+
+    # Kdo - Yellow hexagon
+    def select_add_kdo_mode(self):
+        self.mode = "Add Kdo Node"
+
+    # Tag - Yellow pentagon
+    def select_add_tag_mode(self):
+        self.mode = "Add Tag Node"
+
+    # Gul - Orange circle
+    def select_add_gul_mode(self):
+        self.mode = "Add Gul Node"
+
+    # GulNAc - Orange square
+    def select_add_gulnac_mode(self):
+        self.mode = "Add GulNAc Node"
+
+    # GulN - Orange crossed square
+    def select_add_guln_mode(self):
+        self.mode = "Add GulN Node"
+
+    # GulA - Orange divided diamond
+    def select_add_gula_mode(self):
+        self.mode = "Add GulA Node"
+
+    # 6dGul - Orange triangle
+    def select_add_6dgul_mode(self):
+        self.mode = "Add 6dGul Node"
+
+    # Abe - Orange rectangle
+    def select_add_abe_mode(self):
+        self.mode = "Add Abe Node"
+
+    # Xyl - Orange star
+    def select_add_xyl_mode(self):
+        self.mode = "Add Xyl Node"
+
+    # Dha - Orange hexagon
+    def select_add_dha_mode(self):
+        self.mode = "Add Dha Node"
+
+    # Sor - Orange pentagon
+    def select_add_sor_mode(self):
+        self.mode = "Add Sor Node"
+
+    # Alt - Pink circle
+    def select_add_alt_mode(self):
+        self.mode = "Add Alt Node"
+
+    # AltNAc - Pink square
+    def select_add_altnac_mode(self):
+        self.mode = "Add AltNAc Node"
+
+    # AltN - Pink crossed square
+    def select_add_altn_mode(self):
+        self.mode = "Add AltN Node"
+
+    # AltA - Pink divided diamond
+    def select_add_alta_mode(self):
+        self.mode = "Add AltA Node"
+
+    # 6dAlt - Pink triangle
+    def select_add_6dalt_mode(self):
+        self.mode = "Add 6dAlt Node"
+
+    # 6dAltNAc - Pink divided triangle
+    def select_add_6dAltNac_mode(self):
+        self.mode = "Add 6dAltNac Node"
+
+    # Par - Pink rectangle
+    def select_add_par_mode(self):
+        self.mode = "Add Par Node"
+
+    # Rib - Pink star
+    def select_add_rib_mode(self):
+        self.mode = "Add Rib Node"
+
+    # Aci - Pink flat diamond
+    def select_add_aci_mode(self):
+        self.mode = "Add Aci Node"
+
+    # DDManHep - Pink hexagon
+    def select_add_ddmanhep_mode(self):
+        self.mode = "Add DDManHep Node"
+
+    # Psi - Pink pentagon
+    def select_add_psi_mode(self):
+        self.mode = "Add Psi Node"
+
+    # All - Purple circle
+    def select_add_all_mode(self):
+        self.mode = "Add All Node"
+
+    # AllNAc - Purple square
+    def select_add_allnac_mode(self):
+        self.mode = "Add AllNAc Node"
+
+    # AllN - Purple crossed square
+    def select_add_alln_mode(self):
+        self.mode = "Add AllN Node"
+
+    # AllA - Purple divided diamond
+    def select_add_alla_mode(self):
+        self.mode = "Add AllA Node"
+
+    # Dig - Purple rectangle
+    def select_add_dig_mode(self):
+        self.mode = "Add Dig Node"
+
+    # Neu5Ac - Purple diamond
+    def select_add_neu5ac_mode(self):
+        self.mode = "Add Neu5Ac Node"
+
+    # MurNAc - Purple hexagon
+    def select_add_murnac_mode(self):
+        self.mode = "Add MurNAc Node"
+
+    # Tal - Light Blue circle
+    def select_add_tal_mode(self):
+        self.mode = "Add Tal Node"
+
+    # TalNAc - Light Blue square
+    def select_add_talnac_mode(self):
+        self.mode = "Add TalNAc Node"
+
+    # TalN - Light Blue crossed square
+    def select_add_taln_mode(self):
+        self.mode = "Add TalN Node"
+
+    # TalA - Light Blue divided diamond
+    def select_add_tala_mode(self):
+        self.mode = "Add TalA Node"
+
+    # 6dTal - Light Blue triangle
+    def select_add_6dtal_mode(self):
+        self.mode = "Add 6dTal Node"
+
+    # 6dTalNAc - Light Blue diided triangle
+    def select_add_6dtalnac_mode(self):
+        self.mode = "Add 6dTalNAc Node"
+
+    # Col - Light Blue rectangle
+    def select_add_col_mode(self):
+        self.mode = "Add Col Node"
+
+    # Neu5Gc - Light Blue diamond
+    def select_add_neu5gc_mode(self):
+        self.mode = "Add Neu5Gc Node"
+
+    # 4eLeg - Light Blue flat diamond
+    def select_add_4eleg_mode(self):
+        self.mode = "Add 4eLeg Node"
+
+    # MurNGc - Light Blue hexagon
+    def select_add_murngc_mode(self):
+        self.mode = "Add MurNGc Node"
+
+    # Ido - Brown circle
+    def select_add_ido_mode(self):
+        self.mode = "Add Ido Node"
+
+    # IdoNAc - Brown square
+    def select_add_idonac_mode(self):
+        self.mode = "Add IdoNAc Node"
+
+    # IdoN - Brown crossed square
+    def select_add_idon_mode(self):
+        self.mode = "Add IdoN Node"
+
+    # IdoA - Brown divided diamond
+    def select_add_idoa_mode(self):
+        self.mode = "Add IdoA Node"
+
+    # Neu - Brown diamond
+    def select_add_neu_mode(self):
+        self.mode = "Add Neu Node"
+
+    # Mur - Brown hexagon
+    def select_add_mur_mode(self):
+        self.mode = "Add Mur Node"
+
+    # Fuc - Red triangle
     def select_add_fuc_mode(self):
-        """Switch to Add Fuc Node mode."""
         self.mode = "Add Fuc Node"
+
+    # FucNAc - Red divided triangle
+    def select_add_fucnac_mode(self):
+        self.mode = "Add FucNAc Node"
+
+    # Sia - Red diamond
+    def select_add_sia_mode(self):
+        self.mode = "Add Sia Node"
+
+    # Remove and edge mode selection
 
     def select_rm_circle_mode(self):
         """Switch to Remove Circle mode."""
@@ -421,6 +838,160 @@ class GridApplication:
             else:
                 add_vertex(self, x, y, self.add_fuc_node)
 
+
+        # TODO: Add all other nodes
+        # Glc - Blue circle
+
+        # GlcNAc - Blue square
+
+        # GlcN - Blue crossed square
+
+        # GlcA - Blue divided diamond
+
+        # Qui - Blue triangle
+
+        # QuiNAc - Blue divided triangle
+
+        # Oli - Blue rectangle
+
+        # Bac - Blue hexagon
+
+        # Api - Blue pentagon
+
+        # Man - Green circle
+
+        # ManNAc - Green square
+
+        # ManN - Green crossed square
+
+        # ManA - Green divided diamond
+
+        # Rha - Green triangle
+
+        # RhaNAc - Green divided triangle
+
+        # Tyv - Green rectangle
+
+        # Ara - Green star
+
+        # Kdn - Green diamond
+
+        # Pse - Green flat diamond
+
+        # LDManHep - Green hexagon
+
+        # Fruc - Green pentagon
+
+        # Gal - Yellow circle
+
+        # GalNAc - Yellow square
+
+        # GalN - Yellow crossed square
+
+        # GalA - Yellow divided diamond
+
+        # Lyx - Yellow star
+
+        # Leg - Yellow flat diamond
+
+        # Kdo - Yellow hexagon
+
+        # Tag - Yellow pentagon
+
+        # Gul - Orange circle
+
+        # GulNAc - Orange square
+
+        # GulN - Orange crossed square
+
+        # GulA - Orange divided diamond
+
+        # 6dGul - Orange triangle
+
+        # Abe - Orange rectangle
+
+        # Xyl - Orange star
+
+        # Dha - Orange hexagon
+
+        # Sor - Orange pentagon
+
+        # Alt - Pink circle
+
+        # AltNAc - Pink square
+
+        # AltN - Pink crossed square
+
+        # AltA - Pink divided diamond
+
+        # 6dAlt - Pink triangle
+
+        # 6dAltNAc - Pink divided triangle
+
+        # Par - Pink rectangle
+
+        # Rib - Pink star
+
+        # Aci - Pink flat diamond
+
+        # DDManHep - Pink hexagon
+
+        # Psi - Pink pentagon
+
+        # All - Purple circle
+
+        # AllNAc - Purple square
+
+        # AllN - Purple crossed square
+
+        # AllA - Purple divided diamond
+
+        # Dig - Purple rectangle
+
+        # Neu5Ac - Purple diamond
+
+        # MurNAc - Purple hexagon
+
+        # Tal - Light Blue circle
+
+        # TalNAc - Light Blue square
+
+        # TalN - Light Blue crossed square
+
+        # TalA - Light Blue divided diamond
+
+        # 6dTal - Light Blue triangle
+
+        # 6dTalNAc - Light Blue diided triangle
+
+        # Col - Light Blue rectangle
+
+        # Neu5Gc - Light Blue diamond
+
+        # 4eLeg - Light Blue flat diamond
+
+        # MurNGc - Light Blue hexagon
+
+        # Ido - Brown circle
+
+        # IdoNAc - Brown square
+
+        # IdoN - Brown crossed square
+
+        # IdoA - Brown divided diamond
+
+        # Neu - Brown diamond
+
+        # Mur - Brown hexagon
+
+        # Fuc - Red triangle
+
+        # FucNAc - Red divided triangle
+
+        # Sia - Red diamond
+
+
+
         # Check for linkage modes
         elif self.mode == "Add A1to2":
             add_edge(self, x, y, self.add_a1to2)
@@ -471,6 +1042,157 @@ class GridApplication:
                 del self.edge_text[item]
 
     # Sugars _______________________________________________________________
+
+    # TODO: Define all other sugar add node functions
+    # Glc - Blue circle
+
+    # GlcNAc - Blue square
+
+    # GlcN - Blue crossed square
+
+    # GlcA - Blue divided diamond
+
+    # Qui - Blue triangle
+
+    # QuiNAc - Blue divided triangle
+
+    # Oli - Blue rectangle
+
+    # Bac - Blue hexagon
+
+    # Api - Blue pentagon
+
+    # Man - Green circle
+
+    # ManNAc - Green square
+
+    # ManN - Green crossed square
+
+    # ManA - Green divided diamond
+
+    # Rha - Green triangle
+
+    # RhaNAc - Green divided triangle
+
+    # Tyv - Green rectangle
+
+    # Ara - Green star
+
+    # Kdn - Green diamond
+
+    # Pse - Green flat diamond
+
+    # LDManHep - Green hexagon
+
+    # Fruc - Green pentagon
+
+    # Gal - Yellow circle
+
+    # GalNAc - Yellow square
+
+    # GalN - Yellow crossed square
+
+    # GalA - Yellow divided diamond
+
+    # Lyx - Yellow star
+
+    # Leg - Yellow flat diamond
+
+    # Kdo - Yellow hexagon
+
+    # Tag - Yellow pentagon
+
+    # Gul - Orange circle
+
+    # GulNAc - Orange square
+
+    # GulN - Orange crossed square
+
+    # GulA - Orange divided diamond
+
+    # 6dGul - Orange triangle
+
+    # Abe - Orange rectangle
+
+    # Xyl - Orange star
+
+    # Dha - Orange hexagon
+
+    # Sor - Orange pentagon
+
+    # Alt - Pink circle
+
+    # AltNAc - Pink square
+
+    # AltN - Pink crossed square
+
+    # AltA - Pink divided diamond
+
+    # 6dAlt - Pink triangle
+
+    # 6dAltNAc - Pink divided triangle
+
+    # Par - Pink rectangle
+
+    # Rib - Pink star
+
+    # Aci - Pink flat diamond
+
+    # DDManHep - Pink hexagon
+
+    # Psi - Pink pentagon
+
+    # All - Purple circle
+
+    # AllNAc - Purple square
+
+    # AllN - Purple crossed square
+
+    # AllA - Purple divided diamond
+
+    # Dig - Purple rectangle
+
+    # Neu5Ac - Purple diamond
+
+    # MurNAc - Purple hexagon
+
+    # Tal - Light Blue circle
+
+    # TalNAc - Light Blue square
+
+    # TalN - Light Blue crossed square
+
+    # TalA - Light Blue divided diamond
+
+    # 6dTal - Light Blue triangle
+
+    # 6dTalNAc - Light Blue diided triangle
+
+    # Col - Light Blue rectangle
+
+    # Neu5Gc - Light Blue diamond
+
+    # 4eLeg - Light Blue flat diamond
+
+    # MurNGc - Light Blue hexagon
+
+    # Ido - Brown circle
+
+    # IdoNAc - Brown square
+
+    # IdoN - Brown crossed square
+
+    # IdoA - Brown divided diamond
+
+    # Neu - Brown diamond
+
+    # Mur - Brown hexagon
+
+    # Fuc - Red triangle
+
+    # FucNAc - Red divided triangle
+
+    # Sia - Red diamond
 
     # GlcNAc
     def add_glcnac_node(self, x, y):

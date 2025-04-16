@@ -1,0 +1,75 @@
+Glc - Blue circle
+GlcNAc - Blue square
+GlcN - Blue crossed square
+GlcA - Blue divided diamond
+Qui - Blue triangle
+QuiNAc - Blue divided triangle
+Oli - Blue rectangle
+Bac - Blue hexagon
+Api - Blue pentagon
+Man - Green circle
+ManNAc - Green square
+ManN - Green crossed square
+ManA - Green divided diamond
+Rha - Green triangle
+RhaNAc - Green divided triangle
+Tyv - Green rectangle
+Ara - Green star
+Kdn - Green diamond
+Pse - Green flat diamond
+LDManHep - Green hexagon
+Fruc - Green pentagon
+Gal - Yellow circle
+GalNAc - Yellow square
+GalN - Yellow crossed square
+GalA - Yellow divided diamond
+Lyx - Yellow star
+Leg - Yellow flat diamond
+Kdo - Yellow hexagon
+Tag - Yellow pentagon
+Gul - Orange circle
+GulNAc - Orange square
+GulN - Orange crossed square
+GulA - Orange divided diamond
+6dGul - Orange triangle
+Abe - Orange rectangle
+Xyl - Orange star
+Dha - Orange hexagon
+Sor - Orange pentagon
+Alt - Pink circle
+AltNAc - Pink square
+AltN - Pink crossed square
+AltA - Pink divided diamond
+6dAlt - Pink triangle
+6dAltNAc - Pink divided triangle
+Par - Pink rectangle
+Rib - Pink star
+Aci - Pink flat diamond
+DDManHep - Pink hexagon
+Psi - Pink pentagon
+All - Purple circle
+AllNAc - Purple square
+AllN - Purple crossed square
+AllA - Purple divided diamond
+Dig - Purple rectangle
+Neu5Ac - Purple diamond
+MurNAc - Purple hexagon
+Tal - Light Blue circle
+TalNAc - Light Blue square
+TalN - Light Blue crossed square
+TalA - Light Blue divided diamond
+6dTal - Light Blue triangle
+6dTalNAc - Light Blue diided triangle
+Col - Light Blue rectangle
+Neu5Gc - Light Blue diamond
+4eLeg - Light Blue flat diamond
+MurNGc - Light Blue hexagon
+Ido - Brown circle
+IdoNAc - Brown square
+IdoN - Brown crossed square
+IdoA - Brown divided diamond
+Neu - Brown diamond
+Mur - Brown hexagon
+Fuc - Red triangle
+FucNAc - Red divided triangle
+Sia - Red diamond
