@@ -757,7 +757,8 @@ class GridApplication:
               "\n\nSelect a linkage type. Click on two sugar nodes to connect them with the linkage."
               "\n\nOrient the N-glycan with the base node at the left and the furthest node on the right.")
 
-        print("\n\nSee video tutorial at this link: https://youtu.be/TVWvqSvYwtQ")
+        print("\nGitHub repo: https://github.com/danielegos/GlycoAssessor")
+        print("\n\nSee video tutorial at this link: https://youtu.be/4d3WOO03Q34")
 
         print("\nAssumptions:"
               "\n1) The leftmost node you add is the base node of the N-glycan. "
