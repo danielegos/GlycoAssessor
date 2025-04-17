@@ -12,4 +12,6 @@ def sugar_module(self, sugar_name, button, sugar_selection_command):
                                     borderwidth=0, highlightthickness=0,
                                     command=sugar_selection_command)
 
-    return self.sugar_button # Returns a button. Pack the button after returning
+    self.sugar_button.pack(side="left", padx=5)
+
+    return  # Returns a button
