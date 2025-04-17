@@ -815,11 +815,315 @@ class GridApplication:
         x, y = event.x, event.y
 
         # Check for sugar modes
-        if self.mode == "Add GlcNAc Node":
+
+        # TODO: Add all other nodes
+        # Glc - Blue circle
+        if self.mode == "Add Glc Node":
+            add_vertex(self, x, y, self.add_glc_node)
+
+        # GlcNAc - Blue square
+        elif self.mode == "Add GlcNAc Node":
             add_vertex(self, x, y, self.add_glcnac_node)
 
+        # GlcN - Blue crossed square
+        elif self.mode == "Add GlcN Node":
+            add_vertex(self, x, y, self.add_glcn_node)
+
+        # GlcA - Blue divided diamond
+        elif self.mode == "Add GlcA Node":
+            add_vertex(self, x, y, self.add_glca_node)
+
+        # Qui - Blue triangle
+        elif self.mode == "Add Qui Node":
+            add_vertex(self, x, y, self.add_qui_node)
+
+        # QuiNAc - Blue divided triangle
+        elif self.mode == "Add QuiNAc Node":
+            add_vertex(self, x, y, self.add_quinac_node)
+
+        # Oli - Blue rectangle
+        elif self.mode == "Add Oli Node":
+            add_vertex(self, x, y, self.add_oli_node)
+
+        # Bac - Blue hexagon
+        elif self.mode == "Add Bac Node":
+            add_vertex(self, x, y, self.add_bac_node)
+
+        # Api - Blue pentagon
+        elif self.mode == "Add Api Node":
+            add_vertex(self, x, y, self.add_api_node)
+
+        # Man - Green circle
         elif self.mode == "Add Man Node":
             add_vertex(self, x, y, self.add_man_node)
+
+        # ManNAc - Green square
+        elif self.mode == "Add ManNAc Node":
+            add_vertex(self, x, y, self.add_mannac_node)
+
+        # ManN - Green crossed square
+        elif self.mode == "Add ManN Node":
+            add_vertex(self, x, y, self.add_mann_node)
+
+        # ManA - Green divided diamond
+        elif self.mode == "Add ManA Node":
+            add_vertex(self, x, y, self.add_mana_node)
+
+        # Rha - Green triangle
+        elif self.mode == "Add Rha Node":
+            add_vertex(self, x, y, self.add_rha_node)
+
+        # RhaNAc - Green divided triangle
+        elif self.mode == "Add RhaNAc Node":
+            add_vertex(self, x, y, self.add_rhanac_node)
+
+        # Tyv - Green rectangle
+        elif self.mode == "Add Tyv Node":
+            add_vertex(self, x, y, self.add_tyv_node)
+
+        # Ara - Green star
+        elif self.mode == "Add Ara Node":
+            add_vertex(self, x, y, self.add_ara_node)
+
+        # Kdn - Green diamond
+        elif self.mode == "Add Kdn Node":
+            add_vertex(self, x, y, self.add_kdn_node)
+
+        # Pse - Green flat diamond
+        elif self.mode == "Add Pse Node":
+            add_vertex(self, x, y, self.add_pse_node)
+
+        # LDManHep - Green hexagon
+        elif self.mode == "Add LDManHep Node":
+            add_vertex(self, x, y, self.add_ldmanhep_node)
+
+        # Fruc - Green pentagon
+        elif self.mode == "Add Fruc Node":
+            add_vertex(self, x, y, self.add_fruc_node)
+
+        # Gal - Yellow circle
+        elif self.mode == "Add Gal Node":
+            add_vertex(self, x, y, self.add_gal_node)
+
+        # GalNAc - Yellow square
+        elif self.mode == "Add GalNAc Node":
+            add_vertex(self, x, y, self.add_galnac_node)
+
+        # GalN - Yellow crossed square
+        elif self.mode == "Add GalN Node":
+            add_vertex(self, x, y, self.add_galn_node)
+
+        # GalA - Yellow divided diamond
+        elif self.mode == "Add GalA Node":
+            add_vertex(self, x, y, self.add_gala_node)
+
+        # Lyx - Yellow star
+        elif self.mode == "Add Lyx Node":
+            add_vertex(self, x, y, self.add_lyx_node)
+
+        # Leg - Yellow flat diamond
+        elif self.mode == "Add Leg Node":
+            add_vertex(self, x, y, self.add_leg_node)
+
+        # Kdo - Yellow hexagon
+        elif self.mode == "Add Kdo Node":
+            add_vertex(self, x, y, self.add_kdo_node)
+
+        # Tag - Yellow pentagon
+        elif self.mode == "Add Tag Node":
+            add_vertex(self, x, y, self.add_tag_node)
+
+        # Gul - Orange circle
+        elif self.mode == "Add Gul Node":
+            add_vertex(self, x, y, self.add_gul_node)
+
+        # GulNAc - Orange square
+        elif self.mode == "Add GulNAc Node":
+            add_vertex(self, x, y, self.add_gulnac_node)
+
+        # GulN - Orange crossed square
+        elif self.mode == "Add GulN Node":
+            add_vertex(self, x, y, self.add_guln_node)
+
+        # GulA - Orange divided diamond
+        elif self.mode == "Add GulA Node":
+            add_vertex(self, x, y, self.add_gula_node)
+
+        # 6dGul - Orange triangle
+        elif self.mode == "Add 6dGul Node":
+            add_vertex(self, x, y, self.add_6dgul_node)
+
+        # Abe - Orange rectangle
+        elif self.mode == "Add Abe Node":
+            add_vertex(self, x, y, self.add_abe_node)
+
+        # Xyl - Orange star
+        elif self.mode == "Add Xyl Node":
+            add_vertex(self, x, y, self.add_xyl_node)
+
+        # Dha - Orange hexagon
+        elif self.mode == "Add Dha Node":
+            add_vertex(self, x, y, self.add_dha_node)
+
+        # Sor - Orange pentagon
+        elif self.mode == "Add Sor Node":
+            add_vertex(self, x, y, self.add_sor_node)
+
+        # Alt - Pink circle
+        elif self.mode == "Add Alt Node":
+            add_vertex(self, x, y, self.add_alt_node)
+
+        # AltNAc - Pink square
+        elif self.mode == "Add AltNAc Node":
+            add_vertex(self, x, y, self.add_altnac_node)
+
+        # AltN - Pink crossed square
+        elif self.mode == "Add AltN Node":
+            add_vertex(self, x, y, self.add_altn_node)
+
+        # AltA - Pink divided diamond
+        elif self.mode == "Add AltA Node":
+            add_vertex(self, x, y, self.add_alta_node)
+
+        # 6dAlt - Pink triangle
+        elif self.mode == "Add 6dAlt Node":
+            add_vertex(self, x, y, self.add_6dalt_node)
+
+        # 6dAltNAc - Pink divided triangle
+        elif self.mode == "Add 6dAltNAc Node":
+            add_vertex(self, x, y, self.add_6dAltNAc_node)
+
+        # Par - Pink rectangle
+        elif self.mode == "Add Par Node":
+            add_vertex(self, x, y, self.add_par_node)
+
+        # Rib - Pink star
+        elif self.mode == "Add Rib Node":
+            add_vertex(self, x, y, self.add_rib_node)
+
+        # Aci - Pink flat diamond
+        elif self.mode == "Add Aci Node":
+            add_vertex(self, x, y, self.add_aci_node)
+
+        # DDManHep - Pink hexagon
+        elif self.mode == "Add DDManHep Node":
+            add_vertex(self, x, y, self.add_ddmanhep_node)
+
+        # Psi - Pink pentagon
+        elif self.mode == "Add Psi Node":
+            add_vertex(self, x, y, self.add_psi_node)
+
+        # All - Purple circle
+        elif self.mode == "Add All Node":
+            add_vertex(self, x, y, self.add_all_node)
+
+        # AllNAc - Purple square
+        elif self.mode == "Add AllNAc Node":
+            add_vertex(self, x, y, self.add_allnac_node)
+
+        # AllN - Purple crossed square
+        elif self.mode == "Add AllN Node":
+            add_vertex(self, x, y, self.add_alln_node)
+
+        # AllA - Purple divided diamond
+        elif self.mode == "Add AllA Node":
+            add_vertex(self, x, y, self.add_alla_node)
+
+        # Dig - Purple rectangle
+        elif self.mode == "Add Dig Node":
+            add_vertex(self, x, y, self.add_dig_node)
+
+        # Neu5Ac - Purple diamond
+        elif self.mode == "Add Neu5Ac Node":
+            add_vertex(self, x, y, self.add_neu5ac_node)
+
+        # MurNAc - Purple hexagon
+        elif self.mode == "Add MurNAc Node":
+            add_vertex(self, x, y, self.add_murnac_node)
+
+        # Tal - Light Blue circle
+        elif self.mode == "Add Tal Node":
+            add_vertex(self, x, y, self.add_tal_node)
+
+        # TalNAc - Light Blue square
+        elif self.mode == "Add TalNAc Node":
+            add_vertex(self, x, y, self.add_talnac_node)
+
+        # TalN - Light Blue crossed square
+        elif self.mode == "Add TalN Node":
+            add_vertex(self, x, y, self.add_taln_node)
+
+        # TalA - Light Blue divided diamond
+        elif self.mode == "Add TalA Node":
+            add_vertex(self, x, y, self.add_tala_node)
+
+        # 6dTal - Light Blue triangle
+        elif self.mode == "Add 6dTal Node":
+            add_vertex(self, x, y, self.add_6dtal_node)
+
+        # 6dTalNAc - Light Blue divided triangle
+        elif self.mode == "Add 6dTalNAc Node":
+            add_vertex(self, x, y, self.add_6dtalnac_node)
+
+        # Col - Light Blue rectangle
+        elif self.mode == "Add Col Node":
+            add_vertex(self, x, y, self.add_col_node)
+
+        # Neu5Gc - Light Blue diamond
+        elif self.mode == "Add Neu5Gc Node":
+            add_vertex(self, x, y, self.add_neu5gc_node)
+
+        # 4eLeg - Light Blue flat diamond
+        elif self.mode == "Add 4eLeg Node":
+            add_vertex(self, x, y, self.add_4eleg_node)
+
+        # MurNGc - Light Blue hexagon
+        elif self.mode == "Add MurNGc Node":
+            add_vertex(self, x, y, self.add_murngc_node)
+
+        # Ido - Brown circle
+        elif self.mode == "Add Ido Node":
+            add_vertex(self, x, y, self.add_ido_node)
+
+        # IdoNAc - Brown square
+        elif self.mode == "Add IdoNAc Node":
+            add_vertex(self, x, y, self.add_idonac_node)
+
+        # IdoN - Brown crossed square
+        elif self.mode == "Add IdoN Node":
+            add_vertex(self, x, y, self.add_idon_node)
+
+        # IdoA - Brown divided diamond
+        elif self.mode == "Add IdoA Node":
+            add_vertex(self, x, y, self.add_idoa_node)
+
+        # Neu - Brown diamond
+        elif self.mode == "Add Neu Node":
+            add_vertex(self, x, y, self.add_neu_node)
+
+        # Mur - Brown hexagon
+        elif self.mode == "Add Mur Node":
+            add_vertex(self, x, y, self.add_mur_node)
+
+        # Fuc - Red triangle
+        elif self.mode == "Add Fuc Node":
+            # if user attempts to add a Fuc node to the first level AND the first sugar has already been placed,
+            if x in range (60, 91) and self.first_circle_placed == True:
+                # then print a message and do not add a fuc node
+                print("Base node Fucosylations MUST be placed at the 2nd level explicitly!")
+            else:
+                add_vertex(self, x, y, self.add_fuc_node)
+
+        # FucNAc - Red divided triangle
+        elif self.mode == "Add FucNAc Node":
+            add_vertex(self, x, y, self.add_fucnac_node)
+
+        # Sia - Red diamond
+        elif self.mode == "Add Sia Node":
+            add_vertex(self, x, y, self.add_sia_node)
+
+
+
 
         elif self.mode == "Add Neu5Ac Node":
             add_vertex(self, x, y, self.add_neu5ac_node)
@@ -830,169 +1134,10 @@ class GridApplication:
         elif self.mode == "Add Gal Node":
             add_vertex(self, x, y, self.add_gal_node)
 
-        elif self.mode == "Add Fuc Node":
-            # if user attempts to add a Fuc node to the first level AND the first sugar has already been placed,
-            if x in range (60, 91) and self.first_circle_placed == True:
-                # then print a message and do not add a fuc node
-                print("Base node Fucosylations MUST be placed at the 2nd level explicitly!")
-            else:
-                add_vertex(self, x, y, self.add_fuc_node)
 
 
-        # TODO: Add all other nodes
-        # Glc - Blue circle
 
-        # GlcNAc - Blue square
-
-        # GlcN - Blue crossed square
-
-        # GlcA - Blue divided diamond
-
-        # Qui - Blue triangle
-
-        # QuiNAc - Blue divided triangle
-
-        # Oli - Blue rectangle
-
-        # Bac - Blue hexagon
-
-        # Api - Blue pentagon
-
-        # Man - Green circle
-
-        # ManNAc - Green square
-
-        # ManN - Green crossed square
-
-        # ManA - Green divided diamond
-
-        # Rha - Green triangle
-
-        # RhaNAc - Green divided triangle
-
-        # Tyv - Green rectangle
-
-        # Ara - Green star
-
-        # Kdn - Green diamond
-
-        # Pse - Green flat diamond
-
-        # LDManHep - Green hexagon
-
-        # Fruc - Green pentagon
-
-        # Gal - Yellow circle
-
-        # GalNAc - Yellow square
-
-        # GalN - Yellow crossed square
-
-        # GalA - Yellow divided diamond
-
-        # Lyx - Yellow star
-
-        # Leg - Yellow flat diamond
-
-        # Kdo - Yellow hexagon
-
-        # Tag - Yellow pentagon
-
-        # Gul - Orange circle
-
-        # GulNAc - Orange square
-
-        # GulN - Orange crossed square
-
-        # GulA - Orange divided diamond
-
-        # 6dGul - Orange triangle
-
-        # Abe - Orange rectangle
-
-        # Xyl - Orange star
-
-        # Dha - Orange hexagon
-
-        # Sor - Orange pentagon
-
-        # Alt - Pink circle
-
-        # AltNAc - Pink square
-
-        # AltN - Pink crossed square
-
-        # AltA - Pink divided diamond
-
-        # 6dAlt - Pink triangle
-
-        # 6dAltNAc - Pink divided triangle
-
-        # Par - Pink rectangle
-
-        # Rib - Pink star
-
-        # Aci - Pink flat diamond
-
-        # DDManHep - Pink hexagon
-
-        # Psi - Pink pentagon
-
-        # All - Purple circle
-
-        # AllNAc - Purple square
-
-        # AllN - Purple crossed square
-
-        # AllA - Purple divided diamond
-
-        # Dig - Purple rectangle
-
-        # Neu5Ac - Purple diamond
-
-        # MurNAc - Purple hexagon
-
-        # Tal - Light Blue circle
-
-        # TalNAc - Light Blue square
-
-        # TalN - Light Blue crossed square
-
-        # TalA - Light Blue divided diamond
-
-        # 6dTal - Light Blue triangle
-
-        # 6dTalNAc - Light Blue diided triangle
-
-        # Col - Light Blue rectangle
-
-        # Neu5Gc - Light Blue diamond
-
-        # 4eLeg - Light Blue flat diamond
-
-        # MurNGc - Light Blue hexagon
-
-        # Ido - Brown circle
-
-        # IdoNAc - Brown square
-
-        # IdoN - Brown crossed square
-
-        # IdoA - Brown divided diamond
-
-        # Neu - Brown diamond
-
-        # Mur - Brown hexagon
-
-        # Fuc - Red triangle
-
-        # FucNAc - Red divided triangle
-
-        # Sia - Red diamond
-
-
-
-        # Check for linkage modes
+    # Check for linkage modes
         elif self.mode == "Add A1to2":
             add_edge(self, x, y, self.add_a1to2)
 
@@ -1045,14 +1190,20 @@ class GridApplication:
 
     # TODO: Define all other sugar add node functions
     # Glc - Blue circle
+    def add_glc_node(self, x, y):
+        add_polygon_shape(self, x, y, 'circle', 'blue', 'Glc')
 
     # GlcNAc - Blue square
+    def add_glcnac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'square', 'blue', 'GlcNAc')
 
     # GlcN - Blue crossed square
 
     # GlcA - Blue divided diamond
 
     # Qui - Blue triangle
+    def add_qui_node(self, x, y):
+        add_polygon_shape(self, x, y, 'triangle', 'blue', 'Qui')
 
     # QuiNAc - Blue divided triangle
 
@@ -1063,14 +1214,20 @@ class GridApplication:
     # Api - Blue pentagon
 
     # Man - Green circle
+    def add_man_node(self, x, y):
+        add_polygon_shape(self, x, y, 'circle', 'green', 'Man')
 
     # ManNAc - Green square
+    def add_mannac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'square', 'green', 'ManNAc')
 
     # ManN - Green crossed square
 
     # ManA - Green divided diamond
 
     # Rha - Green triangle
+    def add_rha_node(self, x, y):
+        add_polygon_shape(self, x, y, 'triangle', 'green', 'Rha')
 
     # RhaNAc - Green divided triangle
 
@@ -1079,6 +1236,8 @@ class GridApplication:
     # Ara - Green star
 
     # Kdn - Green diamond
+    def add_kdn_node(self, x, y):
+        add_polygon_shape(self, x, y, 'diamond', 'green', 'Kdn')
 
     # Pse - Green flat diamond
 
@@ -1087,8 +1246,12 @@ class GridApplication:
     # Fruc - Green pentagon
 
     # Gal - Yellow circle
+    def add_gal_node(self, x, y):
+        add_polygon_shape(self, x, y, 'circle', 'yellow', 'Gal')
 
     # GalNAc - Yellow square
+    def add_galnac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'square', 'yellow', 'GalNAc')
 
     # GalN - Yellow crossed square
 
@@ -1103,14 +1266,20 @@ class GridApplication:
     # Tag - Yellow pentagon
 
     # Gul - Orange circle
+    def add_gul_node(self, x, y):
+        add_polygon_shape(self, x, y, 'circle', 'orange', 'Gul')
 
     # GulNAc - Orange square
+    def add_gulnac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'square', 'orange', 'GulNAc')
 
     # GulN - Orange crossed square
 
     # GulA - Orange divided diamond
 
     # 6dGul - Orange triangle
+    def add_6dgul_node(self, x, y):
+        add_polygon_shape(self, x, y, 'triangle', 'orange', '6dGul')
 
     # Abe - Orange rectangle
 
@@ -1121,14 +1290,20 @@ class GridApplication:
     # Sor - Orange pentagon
 
     # Alt - Pink circle
+    def add_alt_node(self, x, y):
+        add_polygon_shape(self, x, y, 'circle', 'pink', 'Alt')
 
     # AltNAc - Pink square
+    def add_altnac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'square', 'pink', 'AltNAc')
 
     # AltN - Pink crossed square
 
     # AltA - Pink divided diamond
 
     # 6dAlt - Pink triangle
+    def add_6dalt_node(self, x, y):
+        add_polygon_shape(self, x, y, 'triangle', 'pink', '6dAlt')
 
     # 6dAltNAc - Pink divided triangle
 
@@ -1143,8 +1318,12 @@ class GridApplication:
     # Psi - Pink pentagon
 
     # All - Purple circle
+    def add_all_node(self, x, y):
+        add_polygon_shape(self, x, y, 'circle', 'purple', 'All')
 
     # AllNAc - Purple square
+    def add_allnac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'square', 'purple', 'AllNAc')
 
     # AllN - Purple crossed square
 
@@ -1153,70 +1332,69 @@ class GridApplication:
     # Dig - Purple rectangle
 
     # Neu5Ac - Purple diamond
+    def add_neu5ac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'diamond', 'purple', 'Neu5Ac')
 
     # MurNAc - Purple hexagon
 
     # Tal - Light Blue circle
+    def add_tal_node(self, x, y):
+        add_polygon_shape(self, x, y, 'circle', 'skyblue', 'Tal')
 
     # TalNAc - Light Blue square
+    def add_talnac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'square', 'skyblue', 'TalNAc')
 
     # TalN - Light Blue crossed square
 
     # TalA - Light Blue divided diamond
 
     # 6dTal - Light Blue triangle
+    def add_6dtal_node(self, x, y):
+        add_polygon_shape(self, x, y, 'triangle', 'skyblue', '6dTal')
 
-    # 6dTalNAc - Light Blue diided triangle
+    # 6dTalNAc - Light Blue divided triangle
 
     # Col - Light Blue rectangle
 
     # Neu5Gc - Light Blue diamond
+    def add_neu5gc_node(self, x, y):
+        add_polygon_shape(self, x, y, 'diamond', 'skyblue', 'Neu5Gc')
 
     # 4eLeg - Light Blue flat diamond
 
     # MurNGc - Light Blue hexagon
 
     # Ido - Brown circle
+    def add_ido_node(self, x, y):
+        add_polygon_shape(self, x, y, 'circle', 'brown', 'Ido')
 
     # IdoNAc - Brown square
+    def add_idonac_node(self, x, y):
+        add_polygon_shape(self, x, y, 'square', 'brown', 'IdoNAc')
 
     # IdoN - Brown crossed square
 
     # IdoA - Brown divided diamond
 
     # Neu - Brown diamond
+    def add_neu_node(self, x, y):
+        add_polygon_shape(self, x, y, 'diamond', 'brown', 'Neu')
 
     # Mur - Brown hexagon
 
     # Fuc - Red triangle
+    def add_fuc_node(self, x, y):
+        add_polygon_shape(self, x, y, 'triangle', 'red', 'Fuc')
 
     # FucNAc - Red divided triangle
 
     # Sia - Red diamond
+    def add_sia_node(self, x, y):
+        add_polygon_shape(self, x, y, 'diamond', 'red', 'Sia')
 
-    # GlcNAc
-    def add_glcnac_node(self, x, y):
-        add_polygon_shape(self, x, y, 'square', 'blue', 'GlcNAc')
 
-    # Man
-    def add_man_node(self, x, y):
-        add_polygon_shape(self, x, y, 'circle', 'green', 'Man')
 
-    # Neu5Ac
-    def add_neu5ac_node(self, x, y):
-        add_polygon_shape(self, x, y, 'diamond', 'purple', 'Neu5Ac')
-
-    # Fuc
-    def add_fuc_node(self, x, y):
-        add_polygon_shape(self, x, y, 'triangle', 'red', 'Fuc')
-
-    # TalNAc
-    def add_talnac_node(self, x, y):
-        add_polygon_shape(self, x, y, 'square', 'skyblue', 'TalNAc')
-
-    # Gal
-    def add_gal_node(self, x, y):
-        add_polygon_shape(self, x, y, 'circle', 'yellow', 'Gal')
 
     # Linkages _______________________________________________________________
 
