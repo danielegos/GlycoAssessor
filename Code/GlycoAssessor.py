@@ -14,7 +14,7 @@ from Code.Shapes.Edge import add_edge
 from Code.Shapes.Linkage import add_linkage_type
 from Code.Shapes.Vertex import add_vertex
 from Code.Shapes.Polygon import add_polygon_shape
-# from Code.Buttons.SugarButton import sugar_module
+from Code.Buttons.SugarButton import sugar_module
 
 
 # TODO: Make the canvas zoomable
@@ -81,16 +81,29 @@ class GridApplication:
 
 
         # Add individual sugars in this order:      --------NOTE: About 20 buttons fit horizontally --------
+        sugar_button_x = 50
+        sugar_button_y = 50
+
         # Glc - Blue circle
+        self.glc_img = Image.open("../Assets/Sugars/Glc.png").resize((sugar_button_x, sugar_button_y))
+        self.glc_button_image = ImageTk.PhotoImage(self.glc_img)
+        self.add_glc_button = tk.Button(button_r1_c0, image=self.glc_button_image, borderwidth=0,
+                                           highlightthickness=0, command=self.select_add_glc_mode)
+        self.add_glc_button.pack(side="left", padx=5)
 
         # GlcNAc - Blue square
-        self.glcnac_img = Image.open("../Assets/Sugars/GlcNAc.png").resize((50, 50))
+        self.glcnac_img = Image.open("../Assets/Sugars/GlcNAc.png").resize((sugar_button_x, sugar_button_y))
         self.glcnac_button_image = ImageTk.PhotoImage(self.glcnac_img)
         self.add_glcnac_button = tk.Button(button_r1_c0, image=self.glcnac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_glcnac_mode)
         self.add_glcnac_button.pack(side="left", padx=5)
 
         # GlcN - Blue crossed square
+        self.glcn_img = Image.open("../Assets/Sugars/GlcN.png").resize((sugar_button_x, sugar_button_y))
+        self.glcn_button_image = ImageTk.PhotoImage(self.glcn_img)
+        self.add_glcn_button = tk.Button(button_r1_c0, image=self.glcn_button_image, borderwidth=0,
+                                           highlightthickness=0, command=self.select_add_glcn_mode)
+        self.add_glcn_button.pack(side="left", padx=5)
 
         # GlcA - Blue divided diamond
 
@@ -105,7 +118,7 @@ class GridApplication:
         # Api - Blue pentagon
 
         # Man - Green circle
-        self.man_img = Image.open("../Assets/Sugars/Man.png").resize((50, 50))
+        self.man_img = Image.open("../Assets/Sugars/Man.png").resize((sugar_button_x, sugar_button_y))
         self.man_button_image = ImageTk.PhotoImage(self.man_img)
         self.add_man_button = tk.Button(button_r1_c0, image=self.man_button_image,
                                         borderwidth=0, highlightthickness=0, command=self.select_add_man_mode)
@@ -134,7 +147,7 @@ class GridApplication:
         # Fruc - Green pentagon
 
         # Gal - Yellow circle
-        self.gal_img = Image.open("../Assets/Sugars/Gal.png").resize((50, 50))
+        self.gal_img = Image.open("../Assets/Sugars/Gal.png").resize((sugar_button_x, sugar_button_y))
         self.gal_button_image = ImageTk.PhotoImage(self.gal_img)
         self.add_gal_button = tk.Button(button_r1_c0, image=self.gal_button_image,
                                         borderwidth=0, highlightthickness=0, command=self.select_add_gal_mode)
@@ -205,7 +218,7 @@ class GridApplication:
         # Dig - Purple rectangle
 
         # Neu5Ac - Purple diamond
-        self.neu5ac_img = Image.open("../Assets/Sugars/Neu5Ac.png").resize((50, 50))
+        self.neu5ac_img = Image.open("../Assets/Sugars/Neu5Ac.png").resize((sugar_button_x, sugar_button_y))
         self.neu5ac_button_image = ImageTk.PhotoImage(self.neu5ac_img)
         self.add_neu5ac_button = tk.Button(button_r1_c0, image=self.neu5ac_button_image,
                                            borderwidth=0, highlightthickness=0, command=self.select_add_neu5ac_mode)
@@ -216,7 +229,7 @@ class GridApplication:
         # Tal - Light Blue circle
 
         # TalNAc - Light Blue square
-        self.talnac_img = Image.open("../Assets/Sugars/TalNAc.png").resize((50, 50))
+        self.talnac_img = Image.open("../Assets/Sugars/TalNAc.png").resize((sugar_button_x, sugar_button_y))
         self.talnac_button_image = ImageTk.PhotoImage(self.talnac_img)
         self.add_talnac_button = tk.Button(button_r1_c0, image=self.talnac_button_image,
                                            borderwidth=0, highlightthickness=0, command=self.select_add_talnac_mode)
@@ -251,7 +264,7 @@ class GridApplication:
         # Mur - Brown hexagon
 
         # Fuc - Red triangle
-        self.fuc_img = Image.open("../Assets/Sugars/Fuc.png").resize((50, 50))
+        self.fuc_img = Image.open("../Assets/Sugars/Fuc.png").resize((sugar_button_x, sugar_button_y))
         self.fuc_button_image = ImageTk.PhotoImage(self.fuc_img)
         self.add_fuc_button = tk.Button(button_r1_c0, image=self.fuc_button_image,
                                         borderwidth=0, highlightthickness=0, command=self.select_add_fuc_mode)
@@ -1121,21 +1134,6 @@ class GridApplication:
         # Sia - Red diamond
         elif self.mode == "Add Sia Node":
             add_vertex(self, x, y, self.add_sia_node)
-
-
-
-
-        elif self.mode == "Add Neu5Ac Node":
-            add_vertex(self, x, y, self.add_neu5ac_node)
-
-        elif self.mode == "Add TalNAc Node":
-            add_vertex(self, x, y, self.add_talnac_node)
-
-        elif self.mode == "Add Gal Node":
-            add_vertex(self, x, y, self.add_gal_node)
-
-
-
 
     # Check for linkage modes
         elif self.mode == "Add A1to2":
