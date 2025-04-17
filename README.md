@@ -3,10 +3,9 @@
 GlycoAssessor is a Python application designed to calculate and visualize Distance & Connectivity Index (DCI) and Position & Composition Index (PCI) scores for N-glycan structures. The tool helps users assess the spatial and structural properties of glycan molecules by analyzing the relationships between monosaccharide nodes and their glycosidic linkages.
 
 ---
-
-
-https://github.com/user-attachments/assets/d894501c-46f7-4274-91c9-511ae13a6dac
-
+## **Tutorial**
+[![GlycoAssessor-Beta-Tutorial](https://github.com/user-attachments/assets/2e34a430-2cce-42d5-998a-148710bea42d)](https://www.youtube.com/watch?v=4d3WOO03Q34)
+The image above links to a YouTube tutorial (https://www.youtube.com/watch?v=4d3WOO03Q34).
 
 
 ---
