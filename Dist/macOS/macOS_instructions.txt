@@ -1,0 +1,1 @@
+It is recommended to use the .dmg installer to use this version of GlycoAssessor on macOS. The .app file is available to use as well.
