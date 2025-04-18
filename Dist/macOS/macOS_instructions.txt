@@ -1,1 +1,3 @@
 It is recommended to use the .dmg installer to use this version of GlycoAssessor on macOS. The .app file is available to use as well.
+
+Most likely, it will not want to open for security reasons. To force it to open, Right Click then click Open.
