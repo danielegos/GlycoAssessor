@@ -42,11 +42,14 @@ from Code.Shapes.Polygon import add_polygon_shape
 
 
 def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and PyInstaller .exe """
+    """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except AttributeError:
-        base_path = os.path.abspath(".")
+        # Fallback to the script directory
+        base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
     return os.path.join(base_path, relative_path)
 
 
@@ -94,175 +97,175 @@ class GridApplication:
         # Glc - Blue circle
 
         # Try using resource_path
-        self.glc_img = Image.open(resource_path("../Assets/Sugars/Glc.png")).resize((sugar_button_x, sugar_button_y))
+        self.glc_img = Image.open(resource_path("Assets/Sugars/Glc.png")).resize((sugar_button_x, sugar_button_y))
         self.glc_button_image = ImageTk.PhotoImage(self.glc_img)
         self.add_glc_button = tk.Button(button_r1_c0, image=self.glc_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_glc_mode)
         self.add_glc_button.pack(side="left", padx=5)
 
         # GlcNAc - Blue square
-        self.glcnac_img = Image.open(resource_path("../Assets/Sugars/GlcNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.glcnac_img = Image.open(resource_path("Assets/Sugars/GlcNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.glcnac_button_image = ImageTk.PhotoImage(self.glcnac_img)
         self.add_glcnac_button = tk.Button(button_r1_c0, image=self.glcnac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_glcnac_mode)
         self.add_glcnac_button.pack(side="left", padx=5)
 
         # GlcN - Blue crossed square
-        self.glcn_img = Image.open(resource_path("../Assets/Sugars/GlcN.png")).resize((sugar_button_x, sugar_button_y))
+        self.glcn_img = Image.open(resource_path("Assets/Sugars/GlcN.png")).resize((sugar_button_x, sugar_button_y))
         self.glcn_button_image = ImageTk.PhotoImage(self.glcn_img)
         self.add_glcn_button = tk.Button(button_r1_c0, image=self.glcn_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_glcn_mode)
         self.add_glcn_button.pack(side="left", padx=5)
 
         # GlcA - Blue divided diamond
-        self.glca_img = Image.open(resource_path("../Assets/Sugars/GlcA.png")).resize((sugar_button_x, sugar_button_y))
+        self.glca_img = Image.open(resource_path("Assets/Sugars/GlcA.png")).resize((sugar_button_x, sugar_button_y))
         self.glca_button_image = ImageTk.PhotoImage(self.glca_img)
         self.add_glca_button = tk.Button(button_r1_c0, image=self.glca_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_glca_mode)
         self.add_glca_button.pack(side="left", padx=5)
 
         # Qui - Blue triangle
-        self.qui_img = Image.open(resource_path("../Assets/Sugars/Qui.png")).resize((sugar_button_x, sugar_button_y))
+        self.qui_img = Image.open(resource_path("Assets/Sugars/Qui.png")).resize((sugar_button_x, sugar_button_y))
         self.qui_button_image = ImageTk.PhotoImage(self.qui_img)
         self.add_qui_button = tk.Button(button_r1_c0, image=self.qui_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_qui_mode)
         self.add_qui_button.pack(side="left", padx=5)
 
         # QuiNAc - Blue divided triangle
-        self.quinac_img = Image.open(resource_path("../Assets/Sugars/QuiNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.quinac_img = Image.open(resource_path("Assets/Sugars/QuiNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.quinac_button_image = ImageTk.PhotoImage(self.quinac_img)
         self.add_quinac_button = tk.Button(button_r1_c0, image=self.quinac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_quinac_mode)
         self.add_quinac_button.pack(side="left", padx=5)
 
         # Oli - Blue rectangle
-        self.oli_img = Image.open(resource_path("../Assets/Sugars/Oli.png")).resize((sugar_button_x, sugar_button_y))
+        self.oli_img = Image.open(resource_path("Assets/Sugars/Oli.png")).resize((sugar_button_x, sugar_button_y))
         self.oli_button_image = ImageTk.PhotoImage(self.oli_img)
         self.add_oli_button = tk.Button(button_r1_c0, image=self.oli_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_oli_mode)
         self.add_oli_button.pack(side="left", padx=5)
 
         # Bac - Blue hexagon
-        self.bac_img = Image.open(resource_path("../Assets/Sugars/Bac.png")).resize((sugar_button_x, sugar_button_y))
+        self.bac_img = Image.open(resource_path("Assets/Sugars/Bac.png")).resize((sugar_button_x, sugar_button_y))
         self.bac_button_image = ImageTk.PhotoImage(self.bac_img)
         self.add_bac_button = tk.Button(button_r1_c0, image=self.bac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_bac_mode)
         self.add_bac_button.pack(side="left", padx=5)
 
         # Api - Blue pentagon
-        self.api_img = Image.open(resource_path("../Assets/Sugars/Api.png")).resize((sugar_button_x, sugar_button_y))
+        self.api_img = Image.open(resource_path("Assets/Sugars/Api.png")).resize((sugar_button_x, sugar_button_y))
         self.api_button_image = ImageTk.PhotoImage(self.api_img)
         self.add_api_button = tk.Button(button_r1_c0, image=self.api_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_api_mode)
         self.add_api_button.pack(side="left", padx=5)
 
         # Man - Green circle
-        self.man_img = Image.open(resource_path("../Assets/Sugars/Man.png")).resize((sugar_button_x, sugar_button_y))
+        self.man_img = Image.open(resource_path("Assets/Sugars/Man.png")).resize((sugar_button_x, sugar_button_y))
         self.man_button_image = ImageTk.PhotoImage(self.man_img)
         self.add_man_button = tk.Button(button_r1_c0, image=self.man_button_image,
                                         borderwidth=0, highlightthickness=0, command=self.select_add_man_mode)
         self.add_man_button.pack(side="left", padx=5)
 
         # ManNAc - Green square
-        self.mannac_img = Image.open(resource_path("../Assets/Sugars/ManNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.mannac_img = Image.open(resource_path("Assets/Sugars/ManNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.mannac_button_image = ImageTk.PhotoImage(self.mannac_img)
         self.add_mannac_button = tk.Button(button_r1_c0, image=self.mannac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_mannac_mode)
         self.add_mannac_button.pack(side="left", padx=5)
 
         # ManN - Green crossed square
-        self.mann_img = Image.open(resource_path("../Assets/Sugars/ManN.png")).resize((sugar_button_x, sugar_button_y))
+        self.mann_img = Image.open(resource_path("Assets/Sugars/ManN.png")).resize((sugar_button_x, sugar_button_y))
         self.mann_button_image = ImageTk.PhotoImage(self.mann_img)
         self.add_mann_button = tk.Button(button_r1_c0, image=self.mann_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_mann_mode)
         self.add_mann_button.pack(side="left", padx=5)
 
         # ManA - Green divided diamond
-        self.mana_img = Image.open(resource_path("../Assets/Sugars/ManA.png")).resize((sugar_button_x, sugar_button_y))
+        self.mana_img = Image.open(resource_path("Assets/Sugars/ManA.png")).resize((sugar_button_x, sugar_button_y))
         self.mana_button_image = ImageTk.PhotoImage(self.mana_img)
         self.add_mana_button = tk.Button(button_r1_c0, image=self.mana_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_mana_mode)
         self.add_mana_button.pack(side="left", padx=5)
 
         # Rha - Green triangle
-        self.rha_img = Image.open(resource_path("../Assets/Sugars/Rha.png")).resize((sugar_button_x, sugar_button_y))
+        self.rha_img = Image.open(resource_path("Assets/Sugars/Rha.png")).resize((sugar_button_x, sugar_button_y))
         self.rha_button_image = ImageTk.PhotoImage(self.rha_img)
         self.add_rha_button = tk.Button(button_r1_c0, image=self.rha_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_rha_mode)
         self.add_rha_button.pack(side="left", padx=5)
 
         # RhaNAc - Green divided triangle
-        self.rhanac_img = Image.open(resource_path("../Assets/Sugars/RhaNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.rhanac_img = Image.open(resource_path("Assets/Sugars/RhaNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.rhanac_button_image = ImageTk.PhotoImage(self.rhanac_img)
         self.add_rhanac_button = tk.Button(button_r1_c0, image=self.rhanac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_rhanac_mode)
         self.add_rhanac_button.pack(side="left", padx=5)
 
         # Tyv - Green rectangle
-        self.tyv_img = Image.open(resource_path("../Assets/Sugars/Tyv.png")).resize((sugar_button_x, sugar_button_y))
+        self.tyv_img = Image.open(resource_path("Assets/Sugars/Tyv.png")).resize((sugar_button_x, sugar_button_y))
         self.tyv_button_image = ImageTk.PhotoImage(self.tyv_img)
         self.add_tyv_button = tk.Button(button_r1_c0, image=self.tyv_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_tyv_mode)
         self.add_tyv_button.pack(side="left", padx=5)
 
         # Ara - Green star
-        self.ara_img = Image.open(resource_path("../Assets/Sugars/Ara.png")).resize((sugar_button_x, sugar_button_y))
+        self.ara_img = Image.open(resource_path("Assets/Sugars/Ara.png")).resize((sugar_button_x, sugar_button_y))
         self.ara_button_image = ImageTk.PhotoImage(self.ara_img)
         self.add_ara_button = tk.Button(button_r1_c0, image=self.ara_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_ara_mode)
         self.add_ara_button.pack(side="left", padx=5)
 
         # Kdn - Green diamond
-        self.kdn_img = Image.open(resource_path("../Assets/Sugars/Kdn.png")).resize((sugar_button_x, sugar_button_y))
+        self.kdn_img = Image.open(resource_path("Assets/Sugars/Kdn.png")).resize((sugar_button_x, sugar_button_y))
         self.kdn_button_image = ImageTk.PhotoImage(self.kdn_img)
         self.add_kdn_button = tk.Button(button_r1_c0, image=self.kdn_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_kdn_mode)
         self.add_kdn_button.pack(side="left", padx=5)
 
         # Pse - Green flat diamond
-        self.pse_img = Image.open(resource_path("../Assets/Sugars/Pse.png")).resize((sugar_button_x, sugar_button_y))
+        self.pse_img = Image.open(resource_path("Assets/Sugars/Pse.png")).resize((sugar_button_x, sugar_button_y))
         self.pse_button_image = ImageTk.PhotoImage(self.pse_img)
         self.add_pse_button = tk.Button(button_r1_c0, image=self.pse_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_pse_mode)
         self.add_pse_button.pack(side="left", padx=5)
 
         # LDManHep - Green hexagon
-        self.ldmanhep_img = Image.open(resource_path("../Assets/Sugars/LDManHep.png")).resize((sugar_button_x, sugar_button_y))
+        self.ldmanhep_img = Image.open(resource_path("Assets/Sugars/LDManHep.png")).resize((sugar_button_x, sugar_button_y))
         self.ldmanhep_button_image = ImageTk.PhotoImage(self.ldmanhep_img)
         self.add_ldmanhep_button = tk.Button(button_r1_c0, image=self.ldmanhep_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_ldmanhep_mode)
         self.add_ldmanhep_button.pack(side="left", padx=5)
 
         # Fruc - Green pentagon
-        self.fruc_img = Image.open(resource_path("../Assets/Sugars/Fruc.png")).resize((sugar_button_x, sugar_button_y))
+        self.fruc_img = Image.open(resource_path("Assets/Sugars/Fruc.png")).resize((sugar_button_x, sugar_button_y))
         self.fruc_button_image = ImageTk.PhotoImage(self.fruc_img)
         self.add_fruc_button = tk.Button(button_r1_c0, image=self.fruc_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_fruc_mode)
         self.add_fruc_button.pack(side="left", padx=5)
 
         # Gal - Yellow circle
-        self.gal_img = Image.open(resource_path("../Assets/Sugars/Gal.png")).resize((sugar_button_x, sugar_button_y))
+        self.gal_img = Image.open(resource_path("Assets/Sugars/Gal.png")).resize((sugar_button_x, sugar_button_y))
         self.gal_button_image = ImageTk.PhotoImage(self.gal_img)
         self.add_gal_button = tk.Button(button_r1_c0, image=self.gal_button_image,
                                         borderwidth=0, highlightthickness=0, command=self.select_add_gal_mode)
         self.add_gal_button.pack(side="left", padx=5)
 
         # GalNAc - Yellow square
-        self.galnac_img = Image.open(resource_path("../Assets/Sugars/GalNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.galnac_img = Image.open(resource_path("Assets/Sugars/GalNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.galnac_button_image = ImageTk.PhotoImage(self.galnac_img)
         self.add_galnac_button = tk.Button(button_r1_c0, image=self.galnac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_galnac_mode)
         self.add_galnac_button.pack(side="left", padx=5)
 
         # GalN - Yellow crossed square
-        self.galn_img = Image.open(resource_path("../Assets/Sugars/GalN.png")).resize((sugar_button_x, sugar_button_y))
+        self.galn_img = Image.open(resource_path("Assets/Sugars/GalN.png")).resize((sugar_button_x, sugar_button_y))
         self.galn_button_image = ImageTk.PhotoImage(self.galn_img)
         self.add_galn_button = tk.Button(button_r1_c0, image=self.galn_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_galn_mode)
         self.add_galn_button.pack(side="left", padx=5)
 
         # GalA - Yellow divided diamond
-        self.gala_img = Image.open(resource_path("../Assets/Sugars/GalA.png")).resize((sugar_button_x, sugar_button_y))
+        self.gala_img = Image.open(resource_path("Assets/Sugars/GalA.png")).resize((sugar_button_x, sugar_button_y))
         self.gala_button_image = ImageTk.PhotoImage(self.gala_img)
         self.add_gala_button = tk.Button(button_r1_c0, image=self.gala_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_gala_mode)
@@ -273,175 +276,175 @@ class GridApplication:
         button_r2_c0.pack(pady=5, anchor="w")  # Aligns row to the left
 
         # Lyx - Yellow star
-        self.lyx_img = Image.open(resource_path("../Assets/Sugars/Lyx.png")).resize((sugar_button_x, sugar_button_y))
+        self.lyx_img = Image.open(resource_path("Assets/Sugars/Lyx.png")).resize((sugar_button_x, sugar_button_y))
         self.lyx_button_image = ImageTk.PhotoImage(self.lyx_img)
         self.add_lyx_button = tk.Button(button_r2_c0, image=self.lyx_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_lyx_mode)
         self.add_lyx_button.pack(side="left", padx=5)
 
         # Leg - Yellow flat diamond
-        self.leg_img = Image.open(resource_path("../Assets/Sugars/Leg.png")).resize((sugar_button_x, sugar_button_y))
+        self.leg_img = Image.open(resource_path("Assets/Sugars/Leg.png")).resize((sugar_button_x, sugar_button_y))
         self.leg_button_image = ImageTk.PhotoImage(self.leg_img)
         self.add_leg_button = tk.Button(button_r2_c0, image=self.leg_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_leg_mode)
         self.add_leg_button.pack(side="left", padx=5)
 
         # Kdo - Yellow hexagon
-        self.kdo_img = Image.open(resource_path("../Assets/Sugars/Kdo.png")).resize((sugar_button_x, sugar_button_y))
+        self.kdo_img = Image.open(resource_path("Assets/Sugars/Kdo.png")).resize((sugar_button_x, sugar_button_y))
         self.kdo_button_image = ImageTk.PhotoImage(self.kdo_img)
         self.add_kdo_button = tk.Button(button_r2_c0, image=self.kdo_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_kdo_mode)
         self.add_kdo_button.pack(side="left", padx=5)
 
         # Tag - Yellow pentagon
-        self.tag_img = Image.open(resource_path("../Assets/Sugars/Tag.png")).resize((sugar_button_x, sugar_button_y))
+        self.tag_img = Image.open(resource_path("Assets/Sugars/Tag.png")).resize((sugar_button_x, sugar_button_y))
         self.tag_button_image = ImageTk.PhotoImage(self.tag_img)
         self.add_tag_button = tk.Button(button_r2_c0, image=self.tag_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_tag_mode)
         self.add_tag_button.pack(side="left", padx=5)
 
         # Gul - Orange circle
-        self.gul_img = Image.open(resource_path("../Assets/Sugars/Gul.png")).resize((sugar_button_x, sugar_button_y))
+        self.gul_img = Image.open(resource_path("Assets/Sugars/Gul.png")).resize((sugar_button_x, sugar_button_y))
         self.gul_button_image = ImageTk.PhotoImage(self.gul_img)
         self.add_gul_button = tk.Button(button_r2_c0, image=self.gul_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_gul_mode)
         self.add_gul_button.pack(side="left", padx=5)
 
         # GulNAc - Orange square
-        self.gulnac_img = Image.open(resource_path("../Assets/Sugars/GulNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.gulnac_img = Image.open(resource_path("Assets/Sugars/GulNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.gulnac_button_image = ImageTk.PhotoImage(self.gulnac_img)
         self.add_gulnac_button = tk.Button(button_r2_c0, image=self.gulnac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_gulnac_mode)
         self.add_gulnac_button.pack(side="left", padx=5)
 
         # GulN - Orange crossed square
-        self.guln_img = Image.open(resource_path("../Assets/Sugars/GulN.png")).resize((sugar_button_x, sugar_button_y))
+        self.guln_img = Image.open(resource_path("Assets/Sugars/GulN.png")).resize((sugar_button_x, sugar_button_y))
         self.guln_button_image = ImageTk.PhotoImage(self.guln_img)
         self.add_guln_button = tk.Button(button_r2_c0, image=self.guln_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_guln_mode)
         self.add_guln_button.pack(side="left", padx=5)
 
         # GulA - Orange divided diamond
-        self.gula_img = Image.open(resource_path("../Assets/Sugars/GulA.png")).resize((sugar_button_x, sugar_button_y))
+        self.gula_img = Image.open(resource_path("Assets/Sugars/GulA.png")).resize((sugar_button_x, sugar_button_y))
         self.gula_button_image = ImageTk.PhotoImage(self.gula_img)
         self.add_gula_button = tk.Button(button_r2_c0, image=self.gula_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_gula_mode)
         self.add_gula_button.pack(side="left", padx=5)
 
         # 6dGul - Orange triangle
-        self._6dgul_img = Image.open(resource_path("../Assets/Sugars/6dGul.png")).resize((sugar_button_x, sugar_button_y))
+        self._6dgul_img = Image.open(resource_path("Assets/Sugars/6dGul.png")).resize((sugar_button_x, sugar_button_y))
         self._6dgul_button_image = ImageTk.PhotoImage(self._6dgul_img)
         self.add_6dgul_button = tk.Button(button_r2_c0, image=self._6dgul_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_6dgul_mode)
         self.add_6dgul_button.pack(side="left", padx=5)
 
         # Abe - Orange rectangle
-        self.abe_img = Image.open(resource_path("../Assets/Sugars/Abe.png")).resize((sugar_button_x, sugar_button_y))
+        self.abe_img = Image.open(resource_path("Assets/Sugars/Abe.png")).resize((sugar_button_x, sugar_button_y))
         self.abe_button_image = ImageTk.PhotoImage(self.abe_img)
         self.add_abe_button = tk.Button(button_r2_c0, image=self.abe_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_abe_mode)
         self.add_abe_button.pack(side="left", padx=5)
 
         # Xyl - Orange star
-        self.xyl_img = Image.open(resource_path("../Assets/Sugars/Xyl.png")).resize((sugar_button_x, sugar_button_y))
+        self.xyl_img = Image.open(resource_path("Assets/Sugars/Xyl.png")).resize((sugar_button_x, sugar_button_y))
         self.xyl_button_image = ImageTk.PhotoImage(self.xyl_img)
         self.add_xyl_button = tk.Button(button_r2_c0, image=self.xyl_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_xyl_mode)
         self.add_xyl_button.pack(side="left", padx=5)
 
         # Dha - Orange hexagon
-        self.dha_img = Image.open(resource_path("../Assets/Sugars/Dha.png")).resize((sugar_button_x, sugar_button_y))
+        self.dha_img = Image.open(resource_path("Assets/Sugars/Dha.png")).resize((sugar_button_x, sugar_button_y))
         self.dha_button_image = ImageTk.PhotoImage(self.dha_img)
         self.add_dha_button = tk.Button(button_r2_c0, image=self.dha_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_dha_mode)
         self.add_dha_button.pack(side="left", padx=5)
 
         # Sor - Orange pentagon
-        self.sor_img = Image.open(resource_path("../Assets/Sugars/Sor.png")).resize((sugar_button_x, sugar_button_y))
+        self.sor_img = Image.open(resource_path("Assets/Sugars/Sor.png")).resize((sugar_button_x, sugar_button_y))
         self.sor_button_image = ImageTk.PhotoImage(self.sor_img)
         self.add_sor_button = tk.Button(button_r2_c0, image=self.sor_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_sor_mode)
         self.add_sor_button.pack(side="left", padx=5)
 
         # Alt - Pink circle
-        self.alt_img = Image.open(resource_path("../Assets/Sugars/Alt.png")).resize((sugar_button_x, sugar_button_y))
+        self.alt_img = Image.open(resource_path("Assets/Sugars/Alt.png")).resize((sugar_button_x, sugar_button_y))
         self.alt_button_image = ImageTk.PhotoImage(self.alt_img)
         self.add_alt_button = tk.Button(button_r2_c0, image=self.alt_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_alt_mode)
         self.add_alt_button.pack(side="left", padx=5)
 
         # AltNAc - Pink square
-        self.altnac_img = Image.open(resource_path("../Assets/Sugars/AltNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.altnac_img = Image.open(resource_path("Assets/Sugars/AltNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.altnac_button_image = ImageTk.PhotoImage(self.altnac_img)
         self.add_altnac_button = tk.Button(button_r2_c0, image=self.altnac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_altnac_mode)
         self.add_altnac_button.pack(side="left", padx=5)
 
         # AltN - Pink crossed square
-        self.altn_img = Image.open(resource_path("../Assets/Sugars/AltN.png")).resize((sugar_button_x, sugar_button_y))
+        self.altn_img = Image.open(resource_path("Assets/Sugars/AltN.png")).resize((sugar_button_x, sugar_button_y))
         self.altn_button_image = ImageTk.PhotoImage(self.altn_img)
         self.add_altn_button = tk.Button(button_r2_c0, image=self.altn_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_altn_mode)
         self.add_altn_button.pack(side="left", padx=5)
 
         # AltA - Pink divided diamond
-        self.alta_img = Image.open(resource_path("../Assets/Sugars/AltA.png")).resize((sugar_button_x, sugar_button_y))
+        self.alta_img = Image.open(resource_path("Assets/Sugars/AltA.png")).resize((sugar_button_x, sugar_button_y))
         self.alta_button_image = ImageTk.PhotoImage(self.alta_img)
         self.add_alta_button = tk.Button(button_r2_c0, image=self.alta_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_alta_mode)
         self.add_alta_button.pack(side="left", padx=5)
 
         # 6dAlt - Pink triangle
-        self._6dalt_img = Image.open(resource_path("../Assets/Sugars/6dAlt.png")).resize((sugar_button_x, sugar_button_y))
+        self._6dalt_img = Image.open(resource_path("Assets/Sugars/6dAlt.png")).resize((sugar_button_x, sugar_button_y))
         self._6dalt_button_image = ImageTk.PhotoImage(self._6dalt_img)
         self.add_6dalt_button = tk.Button(button_r2_c0, image=self._6dalt_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_6dalt_mode)
         self.add_6dalt_button.pack(side="left", padx=5)
 
         # 6dAltNAc - Pink divided triangle
-        self._6daltnac_img = Image.open(resource_path("../Assets/Sugars/6dAltNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self._6daltnac_img = Image.open(resource_path("Assets/Sugars/6dAltNAc.png")).resize((sugar_button_x, sugar_button_y))
         self._6daltnac_button_image = ImageTk.PhotoImage(self._6daltnac_img)
         self.add_6daltnac_button = tk.Button(button_r2_c0, image=self._6daltnac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_6daltnac_mode)
         self.add_6daltnac_button.pack(side="left", padx=5)
 
         # Par - Pink rectangle
-        self.par_img = Image.open(resource_path("../Assets/Sugars/Par.png")).resize((sugar_button_x, sugar_button_y))
+        self.par_img = Image.open(resource_path("Assets/Sugars/Par.png")).resize((sugar_button_x, sugar_button_y))
         self.par_button_image = ImageTk.PhotoImage(self.par_img)
         self.add_par_button = tk.Button(button_r2_c0, image=self.par_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_par_mode)
         self.add_par_button.pack(side="left", padx=5)
 
         # Rib - Pink star
-        self.rib_img = Image.open(resource_path("../Assets/Sugars/Rib.png")).resize((sugar_button_x, sugar_button_y))
+        self.rib_img = Image.open(resource_path("Assets/Sugars/Rib.png")).resize((sugar_button_x, sugar_button_y))
         self.rib_button_image = ImageTk.PhotoImage(self.rib_img)
         self.add_rib_button = tk.Button(button_r2_c0, image=self.rib_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_rib_mode)
         self.add_rib_button.pack(side="left", padx=5)
 
         # Aci - Pink flat diamond
-        self.aci_img = Image.open(resource_path("../Assets/Sugars/Aci.png")).resize((sugar_button_x, sugar_button_y))
+        self.aci_img = Image.open(resource_path("Assets/Sugars/Aci.png")).resize((sugar_button_x, sugar_button_y))
         self.aci_button_image = ImageTk.PhotoImage(self.aci_img)
         self.add_aci_button = tk.Button(button_r2_c0, image=self.aci_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_aci_mode)
         self.add_aci_button.pack(side="left", padx=5)
 
         # DDManHep - Pink hexagon
-        self.ddmanhep_img = Image.open(resource_path("../Assets/Sugars/DDManHep.png")).resize((sugar_button_x, sugar_button_y))
+        self.ddmanhep_img = Image.open(resource_path("Assets/Sugars/DDManHep.png")).resize((sugar_button_x, sugar_button_y))
         self.ddmanhep_button_image = ImageTk.PhotoImage(self.ddmanhep_img)
         self.add_ddmanhep_button = tk.Button(button_r2_c0, image=self.ddmanhep_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_ddmanhep_mode)
         self.add_ddmanhep_button.pack(side="left", padx=5)
 
         # Psi - Pink pentagon
-        self.psi_img = Image.open(resource_path("../Assets/Sugars/Psi.png")).resize((sugar_button_x, sugar_button_y))
+        self.psi_img = Image.open(resource_path("Assets/Sugars/Psi.png")).resize((sugar_button_x, sugar_button_y))
         self.psi_button_image = ImageTk.PhotoImage(self.psi_img)
         self.add_psi_button = tk.Button(button_r2_c0, image=self.psi_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_psi_mode)
         self.add_psi_button.pack(side="left", padx=5)
 
         # All - Purple circle
-        self.all_img = Image.open(resource_path("../Assets/Sugars/All.png")).resize((sugar_button_x, sugar_button_y))
+        self.all_img = Image.open(resource_path("Assets/Sugars/All.png")).resize((sugar_button_x, sugar_button_y))
         self.all_button_image = ImageTk.PhotoImage(self.all_img)
         self.add_all_button = tk.Button(button_r2_c0, image=self.all_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_all_mode)
@@ -452,175 +455,175 @@ class GridApplication:
         button_r3_c0.pack(pady=5, anchor="w")  # Aligns row to the left
 
         # AllNAc - Purple square
-        self.allnac_img = Image.open(resource_path("../Assets/Sugars/AllNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.allnac_img = Image.open(resource_path("Assets/Sugars/AllNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.allnac_button_image = ImageTk.PhotoImage(self.allnac_img)
         self.add_allnac_button = tk.Button(button_r3_c0, image=self.allnac_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_allnac_mode)
         self.add_allnac_button.pack(side="left", padx=5)
 
         # AllN - Purple crossed square
-        self.alln_img = Image.open(resource_path("../Assets/Sugars/AllN.png")).resize((sugar_button_x, sugar_button_y))
+        self.alln_img = Image.open(resource_path("Assets/Sugars/AllN.png")).resize((sugar_button_x, sugar_button_y))
         self.alln_button_image = ImageTk.PhotoImage(self.alln_img)
         self.add_alln_button = tk.Button(button_r3_c0, image=self.alln_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_add_alln_mode)
         self.add_alln_button.pack(side="left", padx=5)
 
         # AllA - Purple divided diamond
-        self.alla_img = Image.open(resource_path("../Assets/Sugars/AllA.png")).resize((sugar_button_x, sugar_button_y))
+        self.alla_img = Image.open(resource_path("Assets/Sugars/AllA.png")).resize((sugar_button_x, sugar_button_y))
         self.alla_button_image = ImageTk.PhotoImage(self.alla_img)
         self.add_alla_button = tk.Button(button_r3_c0, image=self.alla_button_image, borderwidth=0,
                                          highlightthickness=0, command=self.select_add_alla_mode)
         self.add_alla_button.pack(side="left", padx=5)
 
         # Dig - Purple rectangle
-        self.dig_img = Image.open(resource_path("../Assets/Sugars/Dig.png")).resize((sugar_button_x, sugar_button_y))
+        self.dig_img = Image.open(resource_path("Assets/Sugars/Dig.png")).resize((sugar_button_x, sugar_button_y))
         self.dig_button_image = ImageTk.PhotoImage(self.dig_img)
         self.add_dig_button = tk.Button(button_r3_c0, image=self.dig_button_image, borderwidth=0,
                                          highlightthickness=0, command=self.select_add_dig_mode)
         self.add_dig_button.pack(side="left", padx=5)
 
         # Neu5Ac - Purple diamond
-        self.neu5ac_img = Image.open(resource_path("../Assets/Sugars/Neu5Ac.png")).resize((sugar_button_x, sugar_button_y))
+        self.neu5ac_img = Image.open(resource_path("Assets/Sugars/Neu5Ac.png")).resize((sugar_button_x, sugar_button_y))
         self.neu5ac_button_image = ImageTk.PhotoImage(self.neu5ac_img)
         self.add_neu5ac_button = tk.Button(button_r3_c0, image=self.neu5ac_button_image,
                                            borderwidth=0, highlightthickness=0, command=self.select_add_neu5ac_mode)
         self.add_neu5ac_button.pack(side="left", padx=5)
 
         # MurNAc - Purple hexagon
-        self.murnac_img = Image.open(resource_path("../Assets/Sugars/MurNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.murnac_img = Image.open(resource_path("Assets/Sugars/MurNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.murnac_button_image = ImageTk.PhotoImage(self.murnac_img)
         self.add_murnac_button = tk.Button(button_r3_c0, image=self.murnac_button_image, borderwidth=0,
                                          highlightthickness=0, command=self.select_add_murnac_mode)
         self.add_murnac_button.pack(side="left", padx=5)
 
         # Tal - Light Blue circle
-        self.tal_img = Image.open(resource_path("../Assets/Sugars/Tal.png")).resize((sugar_button_x, sugar_button_y))
+        self.tal_img = Image.open(resource_path("Assets/Sugars/Tal.png")).resize((sugar_button_x, sugar_button_y))
         self.tal_button_image = ImageTk.PhotoImage(self.tal_img)
         self.add_tal_button = tk.Button(button_r3_c0, image=self.tal_button_image,
                                            borderwidth=0, highlightthickness=0, command=self.select_add_tal_mode)
         self.add_tal_button.pack(side="left", padx=5)
 
         # TalNAc - Light Blue square
-        self.talnac_img = Image.open(resource_path("../Assets/Sugars/TalNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.talnac_img = Image.open(resource_path("Assets/Sugars/TalNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.talnac_button_image = ImageTk.PhotoImage(self.talnac_img)
         self.add_talnac_button = tk.Button(button_r3_c0, image=self.talnac_button_image,
                                            borderwidth=0, highlightthickness=0, command=self.select_add_talnac_mode)
         self.add_talnac_button.pack(side="left", padx=5)
 
         # TalN - Light Blue crossed square
-        self.taln_img = Image.open(resource_path("../Assets/Sugars/TalN.png")).resize((sugar_button_x, sugar_button_y))
+        self.taln_img = Image.open(resource_path("Assets/Sugars/TalN.png")).resize((sugar_button_x, sugar_button_y))
         self.taln_button_image = ImageTk.PhotoImage(self.taln_img)
         self.add_taln_button = tk.Button(button_r3_c0, image=self.taln_button_image,
                                            borderwidth=0, highlightthickness=0, command=self.select_add_taln_mode)
         self.add_taln_button.pack(side="left", padx=5)
 
         # TalA - Light Blue divided diamond
-        self.tala_img = Image.open(resource_path("../Assets/Sugars/TalA.png")).resize((sugar_button_x, sugar_button_y))
+        self.tala_img = Image.open(resource_path("Assets/Sugars/TalA.png")).resize((sugar_button_x, sugar_button_y))
         self.tala_button_image = ImageTk.PhotoImage(self.tala_img)
         self.add_tala_button = tk.Button(button_r3_c0, image=self.tala_button_image,
                                            borderwidth=0, highlightthickness=0, command=self.select_add_tala_mode)
         self.add_tala_button.pack(side="left", padx=5)
 
         # 6dTal - Light Blue triangle
-        self._6dtal_img = Image.open(resource_path("../Assets/Sugars/6dTal.png")).resize((sugar_button_x, sugar_button_y))
+        self._6dtal_img = Image.open(resource_path("Assets/Sugars/6dTal.png")).resize((sugar_button_x, sugar_button_y))
         self._6dtal_button_image = ImageTk.PhotoImage(self._6dtal_img)
         self.add_6dtal_button = tk.Button(button_r3_c0, image=self._6dtal_button_image,
                                            borderwidth=0, highlightthickness=0, command=self.select_add_6dtal_mode)
         self.add_6dtal_button.pack(side="left", padx=5)
 
         # 6dTalNAc - Light Blue diided triangle
-        self._6dtalnac_img = Image.open(resource_path("../Assets/Sugars/6dTalNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self._6dtalnac_img = Image.open(resource_path("Assets/Sugars/6dTalNAc.png")).resize((sugar_button_x, sugar_button_y))
         self._6dtalnac_button_image = ImageTk.PhotoImage(self._6dtalnac_img)
         self.add_6dtalnac_button = tk.Button(button_r3_c0, image=self._6dtalnac_button_image,
                                           borderwidth=0, highlightthickness=0, command=self.select_add_6dtalnac_mode)
         self.add_6dtalnac_button.pack(side="left", padx=5)
 
         # Col - Light Blue rectangle
-        self.col_img = Image.open(resource_path("../Assets/Sugars/Col.png")).resize((sugar_button_x, sugar_button_y))
+        self.col_img = Image.open(resource_path("Assets/Sugars/Col.png")).resize((sugar_button_x, sugar_button_y))
         self.col_button_image = ImageTk.PhotoImage(self.col_img)
         self.add_col_button = tk.Button(button_r3_c0, image=self.col_button_image,
                                          borderwidth=0, highlightthickness=0, command=self.select_add_col_mode)
         self.add_col_button.pack(side="left", padx=5)
 
         # Neu5Gc - Light Blue diamond
-        self.neu5gc_img = Image.open(resource_path("../Assets/Sugars/Neu5Gc.png")).resize((sugar_button_x, sugar_button_y))
+        self.neu5gc_img = Image.open(resource_path("Assets/Sugars/Neu5Gc.png")).resize((sugar_button_x, sugar_button_y))
         self.neu5gc_button_image = ImageTk.PhotoImage(self.neu5gc_img)
         self.add_neu5gc_button = tk.Button(button_r3_c0, image=self.neu5gc_button_image,
                                          borderwidth=0, highlightthickness=0, command=self.select_add_neu5gc_mode)
         self.add_neu5gc_button.pack(side="left", padx=5)
 
         # 4eLeg - Light Blue flat diamond
-        self._4eleg_img = Image.open(resource_path("../Assets/Sugars/4eLeg.png")).resize((sugar_button_x, sugar_button_y))
+        self._4eleg_img = Image.open(resource_path("Assets/Sugars/4eLeg.png")).resize((sugar_button_x, sugar_button_y))
         self._4eleg_button_image = ImageTk.PhotoImage(self._4eleg_img)
         self.add_4eleg_button = tk.Button(button_r3_c0, image=self._4eleg_button_image,
                                          borderwidth=0, highlightthickness=0, command=self.select_add_4eleg_mode)
         self.add_4eleg_button.pack(side="left", padx=5)
 
         # MurNGc - Light Blue hexagon
-        self._murngc_img = Image.open(resource_path("../Assets/Sugars/MurNGc.png")).resize((sugar_button_x, sugar_button_y))
+        self._murngc_img = Image.open(resource_path("Assets/Sugars/MurNGc.png")).resize((sugar_button_x, sugar_button_y))
         self._murngc_button_image = ImageTk.PhotoImage(self._murngc_img)
         self.add_murngc_button = tk.Button(button_r3_c0, image=self._murngc_button_image,
                                          borderwidth=0, highlightthickness=0, command=self.select_add_murngc_mode)
         self.add_murngc_button.pack(side="left", padx=5)
 
         # Ido - Brown circle
-        self._ido_img = Image.open(resource_path("../Assets/Sugars/Ido.png")).resize((sugar_button_x, sugar_button_y))
+        self._ido_img = Image.open(resource_path("Assets/Sugars/Ido.png")).resize((sugar_button_x, sugar_button_y))
         self._ido_button_image = ImageTk.PhotoImage(self._ido_img)
         self.add_ido_button = tk.Button(button_r3_c0, image=self._ido_button_image,
                                          borderwidth=0, highlightthickness=0, command=self.select_add_ido_mode)
         self.add_ido_button.pack(side="left", padx=5)
 
         # IdoNAc - Brown square
-        self._idonac_img = Image.open(resource_path("../Assets/Sugars/IdoNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self._idonac_img = Image.open(resource_path("Assets/Sugars/IdoNAc.png")).resize((sugar_button_x, sugar_button_y))
         self._idonac_button_image = ImageTk.PhotoImage(self._idonac_img)
         self.add_idonac_button = tk.Button(button_r3_c0, image=self._idonac_button_image,
                                          borderwidth=0, highlightthickness=0, command=self.select_add_idonac_mode)
         self.add_idonac_button.pack(side="left", padx=5)
 
         # IdoN - Brown crossed square
-        self._idon_img = Image.open(resource_path("../Assets/Sugars/IdoN.png")).resize((sugar_button_x, sugar_button_y))
+        self._idon_img = Image.open(resource_path("Assets/Sugars/IdoN.png")).resize((sugar_button_x, sugar_button_y))
         self._idon_button_image = ImageTk.PhotoImage(self._idon_img)
         self.add_idon_button = tk.Button(button_r3_c0, image=self._idon_button_image,
                                          borderwidth=0, highlightthickness=0, command=self.select_add_idon_mode)
         self.add_idon_button.pack(side="left", padx=5)
 
         # IdoA - Brown divided diamond
-        self._idoa_img = Image.open(resource_path("../Assets/Sugars/IdoA.png")).resize((sugar_button_x, sugar_button_y))
+        self._idoa_img = Image.open(resource_path("Assets/Sugars/IdoA.png")).resize((sugar_button_x, sugar_button_y))
         self._idoa_button_image = ImageTk.PhotoImage(self._idoa_img)
         self.add_idoa_button = tk.Button(button_r3_c0, image=self._idoa_button_image,
                                          borderwidth=0, highlightthickness=0, command=self.select_add_idoa_mode)
         self.add_idoa_button.pack(side="left", padx=5)
 
         # Neu - Brown diamond
-        self._neu_img = Image.open(resource_path("../Assets/Sugars/Neu.png")).resize((sugar_button_x, sugar_button_y))
+        self._neu_img = Image.open(resource_path("Assets/Sugars/Neu.png")).resize((sugar_button_x, sugar_button_y))
         self._neu_button_image = ImageTk.PhotoImage(self._neu_img)
         self.add_neu_button = tk.Button(button_r3_c0, image=self._neu_button_image,
                                          borderwidth=0, highlightthickness=0, command=self.select_add_neu_mode)
         self.add_neu_button.pack(side="left", padx=5)
 
         # Mur - Brown hexagon
-        self._mur_img = Image.open(resource_path("../Assets/Sugars/Mur.png")).resize((sugar_button_x, sugar_button_y))
+        self._mur_img = Image.open(resource_path("Assets/Sugars/Mur.png")).resize((sugar_button_x, sugar_button_y))
         self._mur_button_image = ImageTk.PhotoImage(self._mur_img)
         self.add_mur_button = tk.Button(button_r3_c0, image=self._mur_button_image,
                                          borderwidth=0, highlightthickness=0, command=self.select_add_mur_mode)
         self.add_mur_button.pack(side="left", padx=5)
 
         # Fuc - Red triangle
-        self.fuc_img = Image.open(resource_path("../Assets/Sugars/Fuc.png")).resize((sugar_button_x, sugar_button_y))
+        self.fuc_img = Image.open(resource_path("Assets/Sugars/Fuc.png")).resize((sugar_button_x, sugar_button_y))
         self.fuc_button_image = ImageTk.PhotoImage(self.fuc_img)
         self.add_fuc_button = tk.Button(button_r3_c0, image=self.fuc_button_image,
                                         borderwidth=0, highlightthickness=0, command=self.select_add_fuc_mode)
         self.add_fuc_button.pack(side="left", padx=5)
 
         # FucNAc - Red divided triangle
-        self.fucnac_img = Image.open(resource_path("../Assets/Sugars/FucNAc.png")).resize((sugar_button_x, sugar_button_y))
+        self.fucnac_img = Image.open(resource_path("Assets/Sugars/FucNAc.png")).resize((sugar_button_x, sugar_button_y))
         self.fucnac_button_image = ImageTk.PhotoImage(self.fucnac_img)
         self.add_fucnac_button = tk.Button(button_r3_c0, image=self.fucnac_button_image,
                                         borderwidth=0, highlightthickness=0, command=self.select_add_fucnac_mode)
         self.add_fucnac_button.pack(side="left", padx=5)
 
         # Sia - Red diamond
-        self.sia_img = Image.open(resource_path("../Assets/Sugars/Sia.png")).resize((sugar_button_x, sugar_button_y))
+        self.sia_img = Image.open(resource_path("Assets/Sugars/Sia.png")).resize((sugar_button_x, sugar_button_y))
         self.sia_button_image = ImageTk.PhotoImage(self.sia_img)
         self.add_sia_button = tk.Button(button_r3_c0, image=self.sia_button_image,
                                         borderwidth=0, highlightthickness=0, command=self.select_add_sia_mode)
@@ -772,7 +775,8 @@ class GridApplication:
               "\n1) The leftmost node you add is the base node of the N-glycan. "
               "\n2) You will not attempt to duplicate edges."
               "\n3) You will only draw edges between two adjacent nodes."
-              "\n4) You must place base-node Fucosylations at the 2nd level explicitly.\n")
+              "\n4) You must place base-node Fucosylations at the 2nd level explicitly."
+              "\n5) Glycans must be drawn from left to right.\n")
 
 
         # Bind mouse events to canvas
@@ -2041,7 +2045,7 @@ class GridApplication:
 
         # Print completed, pretty table
         # print("Printing df after concat: ", df)
-        print("\nPrinting Weighted Matrix for Structure:")
+        print("\nPrinting Distance & Connectivity Matrix for Structure:")
         print(node_table,
               "\n\u2E4BExcluding the degree of the node in question. Weights equal node degree.")
 
@@ -2204,8 +2208,12 @@ class GridApplication:
 
 
 
-        print("\n\nPrinting PCI Matrix for Structure:")
+        print("\n\nPrinting Position & Composition Matrix for Structure:")
         print(table)
+
+        print("NMT: Number of Monosaccharide Types; TNU: Total Number of Units; "
+              "NEL: Number of Inter-layer Linkages; NLT: Number of Linkage Types (NLT); "
+              "NCDSPL: Number of Monomers Connected to a Different Species in the Previous Layer")
 
         print("\nPosition & Composition Index "
               "\n(PCI Score): ", pci_score)
