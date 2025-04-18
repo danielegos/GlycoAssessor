@@ -2249,7 +2249,7 @@ class GridApplication:
         x1 = x + self.canvas.winfo_width()
         y1 = y + self.canvas.winfo_height()
         # image = ImageGrab.grab(bbox=(x, y, x1, y1))
-        image = ImageGrab.grab(bbox=(40, 420, 1880, 1080))
+        image = ImageGrab.grab(bbox=(40, 500, 1880, 1080))
 
         file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
         if file_path:

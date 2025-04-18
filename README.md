@@ -11,11 +11,11 @@ The image above links to a YouTube tutorial (https://www.youtube.com/watch?v=4d3
 ---
 ## **Features**
 
-- **Distance & Connectivity Index (DCI)**: 
+- **Distance & Connectivity Matrix / Index (DCI)**: 
   - Computes scores for each node based on the number of second, third, and fourth-degree connections.
   - Displays results in a weighted matrix and exports data as a CSV file.
 
-- **Position & Composition Index (PCI)**:
+- **Position & Composition Matrix / Index (PCI)**:
   - Computes layer-based scores based on node colors, layer size, and inter-layer connectivity.
   - Displays results in a detailed matrix and exports data as a CSV file.
 
@@ -60,7 +60,7 @@ The image above links to a YouTube tutorial (https://www.youtube.com/watch?v=4d3
 1. **Launch the Application:**
    To run the application, use the following command:
    ```bash
-   python main.py
+   python GlycoAssessor.py
    ```
 
 2. **Modes:**
@@ -74,19 +74,19 @@ The image above links to a YouTube tutorial (https://www.youtube.com/watch?v=4d3
 
 The application requires the following data input:
 
-- **Monosaccharide Nodes (Circles)**: A dictionary where each node is represented by its ID, position (x, y), and color.
+- **Monosaccharide Nodes (Circles)**: A dictionary where each node is represented by its ID, position (x, y), and unique sugar code (e.g., Glu for Glucose).
 - **Glycosidic Linkages (Edges)**: A dictionary where each edge connects two nodes and has an associated edge type.
 
 Example:
 ```python
 circles = {
-    'A': (0, 0, 'red'),
-    'B': (1, 0, 'blue'),
-    'C': (2, 1, 'green')
+    'A': (0, 0, 'Glu'),
+    'B': (1, 0, 'Gal'),
+    'C': (2, 1, 'Fuc')
 }
 edges = {
-    1: ((0, 0), (1, 0), 'alpha'),
-    2: ((1, 0), (2, 1), 'beta')
+    1: ((0, 0), (1, 0), 'α1,3'),
+    2: ((1, 0), (2, 1), 'ß1,6')
 }
 ```
 
@@ -123,5 +123,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Special thanks to contributors at the Tissue Spatial Geometrics Lab (https://www.tsg-lab.org/) and users for testing and providing feedback.
 
 ---
-
-Feel free to edit this README based on any additional details specific to your app.
