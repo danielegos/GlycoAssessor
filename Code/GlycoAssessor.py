@@ -91,8 +91,8 @@ class GridApplication:
 
 
         # Add individual sugars in this order:      --------NOTE: About 20 buttons fit horizontally --------
-        sugar_button_x = 50
-        sugar_button_y = 50
+        sugar_button_x = 42
+        sugar_button_y = 42
 
         # Glc - Blue circle
 
@@ -640,6 +640,8 @@ class GridApplication:
 
         button_r2_1_c0 = tk.Frame(column_0)
         button_r2_1_c0.pack(pady=1, anchor="w")
+
+        #TODO: Make these different colors for alpha and beta
         self.add_a1to2_button = tk.Button(button_r2_1_c0, text="Add α1,2", command=self.select_add_a1to2_mode,
                                           background="#2B2D30", foreground="#DFE1E5")
         self.add_a1to2_button.pack(side="left", padx=5)
@@ -697,11 +699,19 @@ class GridApplication:
         button_r3_c0 = tk.Frame(column_0)
         button_r3_c0.pack(pady=1, anchor="w")
 
+        # Calculate DCI
+
+        self.dci_img = Image.open(resource_path("Assets/Button_imgs/dci_img.png")).resize((100, 50))
+        self.dci_button_image = ImageTk.PhotoImage(self.dci_img)
+        self.add_dci_button = tk.Button(button_r3_c0, image=self.dci_button_image, borderwidth=0,
+                                           highlightthickness=0, command=self.select_calc_dci_mode)
+        self.add_dci_button.pack(side="left", padx=5)
 
         # Export image
-        self.dci_calc_button = tk.Button(button_r3_c0, text="Export Image", command=self.select_export_image_mode,
+
+        self.export_button = tk.Button(button_r3_c0, text="Export Image", command=self.select_export_image_mode,
                                          background="#2B2D30", foreground="#DFE1E5", height = 3)
-        self.dci_calc_button.pack(side="left", padx=5)
+        self.export_button.pack(side="left", padx=5)
 
         # Button to calculate DCI
         self.dci_calc_button = tk.Button(button_r3_c0, text="Calculate DCI", command=self.select_calc_dci_mode,
