@@ -674,19 +674,21 @@ class GridApplication:
                                           background="#2B2D30", foreground="#DFE1E5")
         self.add_b1to6_button.pack(side="left", padx=5)
 
-        # self.rm_edge_button = tk.Button(button_r2_1_c0, text="Remove Edge", command=self.select_rm_edge_mode,
-        #                                 background="#2B2D30", foreground="#DFE1E5")
-        # self.rm_edge_button.pack(side="left", padx=5)
-        #
-        # self.rm_edge_text_button = tk.Button(button_r2_1_c0, text="Remove Edge Text",
-        #                                      command=self.select_rm_edge_text_mode,
-        #                                      background="#2B2D30", foreground="#DFE1E5")
-        # self.rm_edge_text_button.pack(side="left", padx=5)
-        #
-        #
-        # self.rm_circle_button = tk.Button(button_r2_1_c0, text="Remove Node", command=self.select_rm_circle_mode,
-        #                                   background="#2B2D30", foreground="#DFE1E5")
-        # self.rm_circle_button.pack(side="left", padx=5)
+        #TODO: Fix the delete buttons!
+
+        self.rm_edge_button = tk.Button(button_r2_1_c0, text="Remove Edge", command=self.select_rm_edge_mode,
+                                        background="#2B2D30", foreground="#DFE1E5")
+        self.rm_edge_button.pack(side="left", padx=5)
+
+        self.rm_edge_text_button = tk.Button(button_r2_1_c0, text="Remove Edge Text",
+                                             command=self.select_rm_edge_text_mode,
+                                             background="#2B2D30", foreground="#DFE1E5")
+        self.rm_edge_text_button.pack(side="left", padx=5)
+
+
+        self.rm_circle_button = tk.Button(button_r2_1_c0, text="Remove Node", command=self.select_rm_circle_mode,
+                                          background="#2B2D30", foreground="#DFE1E5")
+        self.rm_circle_button.pack(side="left", padx=5)
 
 
     # Analysis buttons ___________________________________________________________
@@ -1552,6 +1554,8 @@ class GridApplication:
             if item in self.edge_text:
                 self.canvas.delete(item)
                 del self.edge_text[item]
+
+
 
     # Sugars _______________________________________________________________
 
