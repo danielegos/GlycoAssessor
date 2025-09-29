@@ -1,0 +1,28 @@
+# 2) clone the repo
+git clone https://github.com/danielegos/GlycoAssessor.git
+cd GlycoAssessor
+
+# 3) create & activate a fresh venv
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 4) upgrade build tooling
+python -m pip install --upgrade pip wheel setuptools
+
+# 5) install project deps
+# If the repo has requirements.txt:
+if [ -f requirements.txt ]; then
+  pip install -r requirements.txt
+else
+  # minimal stack inferred from your packaged app
+  pip install numpy pandas pillow
+fi
+
+# 6) sanity-check that Tk is 8.6 (critical on macOS)
+python - <<'PY'
+import _tkinter; print("TK_VERSION:", _tkinter.TK_VERSION)
+PY
+# expect: TK_VERSION: 8.6
+
+# 7) run the app
+python Code/GlycoAssessor.py
