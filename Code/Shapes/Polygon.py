@@ -14,6 +14,7 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
         )
         print(x, y, sugar_code)
         self.circles[circle] = (x, y, sugar_code)
+        self.undo_stack.append(circle)
 
     elif shape == 'triangle':
         triangle = self.canvas.create_polygon(
@@ -22,6 +23,7 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
         )
         print(x, y, sugar_code)
         self.circles[triangle] = (x, y, sugar_code)
+        self.undo_stack.append(triangle)
 
     elif shape == 'diamond':
         diamond = self.canvas.create_polygon(
@@ -30,6 +32,7 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
         )
         print(x, y, sugar_code)
         self.circles[diamond] = (x, y, sugar_code)
+        self.undo_stack.append(diamond)
 
     elif shape == 'square':
         square = self.canvas.create_rectangle(
@@ -39,6 +42,7 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
         )
         print(x, y, sugar_code)
         self.circles[square] = (x, y, sugar_code)
+        self.undo_stack.append(square)
 
     # Add crossed square
     elif shape == 'crossed square':
@@ -48,13 +52,16 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
             x - half, y - half, x + half, y + half,
             fill=color, outline="black", width=5, tags=sugar_code
         )
-        self.canvas.create_line(x - half, y - half, x + half, y + half, fill="black", width=5, tags=sugar_code)
-        self.canvas.create_polygon(
+        cross = self.canvas.create_line(x - half, y - half, x + half, y + half, fill="black", width=5, tags=sugar_code)
+        crossed = self.canvas.create_polygon(
             x - 2 * radius, y + 2 * radius, x - 2 * radius, y - 2 * radius, x + 2 * radius, y + 2 * radius,
             fill='white', outline="black", width=5, tags=sugar_code  # , width=10
         )
         print(x, y, sugar_code)
         self.circles[crossed_square] = (x, y, sugar_code)
+        self.undo_stack.append(crossed_square)
+        self.undo_stack.append(cross)
+        self.undo_stack.append(crossed)
 
     # Add divided diamond
     elif shape == 'divided diamond':
@@ -63,19 +70,22 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
         self.canvas.create_line(x - 2 * radius, y, x + 2 * radius, y, fill="black", width=5, tags=sugar_code)
 
         # if AltA or IdoA, place white triangle on top
+        div_2 = None
         if sugar_code == 'AltA' or sugar_code == 'IdoA':
-            self.canvas.create_polygon(
+            div2 = self.canvas.create_polygon(
                 x - 2 * radius, y, x, y - 2 * radius, x + 2 * radius, y,
                 fill='white', outline="black", width=5, tags=sugar_code  # , width=10
             )
         # else, place it on bottom
         else:
-            self.canvas.create_polygon(
+            div2 = self.canvas.create_polygon(
                 x - 2 * radius, y, x, y + 2 * radius, x + 2 * radius, y,
                 fill='white', outline="black", width=5, tags=sugar_code  # , width=10
             )
         print(x, y, sugar_code)
         self.circles[div_diamond] = (x, y, sugar_code)
+        self.undo_stack.append(div_diamond)
+        self.undo_stack.append(div2)
 
     # Add divided triangle
     elif shape == 'divided triangle':
@@ -83,12 +93,15 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
             x - 2 * radius, y + 2 * radius, x, y - 2 * radius, x + 2 * radius, y + 2 * radius,
             fill=color, outline="black", width=5, tags=sugar_code  # , width=10
         )
-        self.canvas.create_polygon(
+        tri2 = self.canvas.create_polygon(
             x, y + 2 * radius, x, y - 2 * radius, x - 2 * radius, y + 2 * radius,
             fill='white', outline="black", width=5, tags=sugar_code  # , width=10
         )
         print(x, y, sugar_code)
         self.circles[triangle] = (x, y, sugar_code)
+
+        self.undo_stack.append(triangle)
+        self.undo_stack.append(tri2)
 
     # Add rectangle
     elif shape == 'rectangle':
@@ -96,6 +109,7 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
                                 fill=color, outline="black", width=5, tags=sugar_code )
         print(x, y, sugar_code)
         self.circles[rectangle] = (x, y, sugar_code)
+        self.undo_stack.append(rectangle)
 
     # Add star
     elif shape == 'star':
@@ -110,6 +124,7 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
         star = self.canvas.create_polygon(points, fill=color, outline="black", width=5, tags=sugar_code)
         print(x, y, sugar_code)
         self.circles[star] = (x, y, sugar_code)
+        self.undo_stack.append(star)
 
     # Add flat diamond
     elif shape == 'flat diamond':
@@ -119,6 +134,7 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
 
         print(x, y, sugar_code)
         self.circles[flat_diamond] = (x, y, sugar_code)
+        self.undo_stack.append(flat_diamond)
 
     # Add hexagon
     elif shape == 'hexagon':
@@ -133,6 +149,7 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
 
         print(x, y, sugar_code)
         self.circles[hexagon] = (x, y, sugar_code)
+        self.undo_stack.append(hexagon)
 
     # Add pentagon
     elif shape == 'pentagon':
@@ -146,4 +163,5 @@ def add_polygon_shape(self, x, y, shape, color, sugar_code):
         pentagon = self.canvas.create_polygon(points, fill=color, outline="black", width=5, tags=sugar_code)
         print(x, y, sugar_code)
         self.circles[pentagon] = (x, y, sugar_code)
+        self.undo_stack.append(pentagon)
 

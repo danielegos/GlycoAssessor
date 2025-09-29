@@ -78,12 +78,14 @@ class GridApplication:
         button_r0_c0 = tk.Frame(column_0)
         button_r0_c0.pack(pady=1, anchor="w")  # Aligns row to the left
 
+        self.undo_stack = [] # Keep track of actions (item IDs)
+
 
     # Sugar buttons ______________________________________________________________
         self.sugar_buttons_dict = {}
 
         # Add "Sugar Menu" text to row 1
-        tk.Label(button_r0_c0, text="Sugar Menu", font=("Arial", 12, "bold"), bg='lightgray').pack(side="left", padx=5)
+        tk.Label(button_r0_c0, text="Sugar Menu", font=("Arial", 11, "bold"), bg='lightgray').pack(side="left", padx=5)
 
 
         button_r1_c0 = tk.Frame(column_0)
@@ -636,58 +638,235 @@ class GridApplication:
         button_r2_0_c0 = tk.Frame(column_0)
         button_r2_0_c0.pack(pady=1, anchor="w")
 
-        tk.Label(button_r2_0_c0, text="Linkage Menu", font=("Arial", 12, "bold"), bg='lightgray').pack()
+        tk.Label(button_r2_0_c0, text="Linkage Menu", font=("Arial", 11, "bold"), bg='lightgray').pack()
 
         button_r2_1_c0 = tk.Frame(column_0)
         button_r2_1_c0.pack(pady=1, anchor="w")
 
-        #TODO: Make these different colors for alpha and beta
-        self.add_a1to2_button = tk.Button(button_r2_1_c0, text="Add α1,2", command=self.select_add_a1to2_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
+        # Category 1: a1-2, a1-3, a1-4, a1-5, a1-6, a1-7, a1-9
+        # Category 2: a2-3, a2-5, a2-6, a2-7, a2-8
+        # Category 3: b1-2, b1-3, b1-4, b1-5, b1-6, b1-7, b1-8, b1-9
+
+        # Category 1 -----------------------------------------------------------
+        self.a1to2_img = Image.open(resource_path("Assets/Button_imgs/α1,2.png")).resize((36, 27))
+        self.a1to2_button_image = ImageTk.PhotoImage(self.a1to2_img)
+        self.add_a1to2_button = tk.Button(button_r2_1_c0, image=self.a1to2_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_a1to2_mode)
         self.add_a1to2_button.pack(side="left", padx=5)
 
-        self.add_a1to3_button = tk.Button(button_r2_1_c0, text="Add α1,3", command=self.select_add_a1to3_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a1to2_button = tk.Button(button_r2_1_c0, text="Add α1,2", command=self.select_add_a1to2_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a1to2_button.pack(side="left", padx=5)
+
+        self.a1to3_img = Image.open(resource_path("Assets/Button_imgs/α1,3.png")).resize((36, 27))
+        self.a1to3_button_image = ImageTk.PhotoImage(self.a1to3_img)
+        self.add_a1to3_button = tk.Button(button_r2_1_c0, image=self.a1to3_button_image,
+                                          borderwidth=0, highlightthickness=0, command=self.select_add_a1to3_mode)
         self.add_a1to3_button.pack(side="left", padx=5)
 
-        self.add_a1to4_button = tk.Button(button_r2_1_c0, text="Add α1,4", command=self.select_add_a1to4_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
-        self.add_a1to4_button.pack(side="left", padx=5)
+        # self.add_a1to3_button = tk.Button(button_r2_1_c0, text="Add α1,3", command=self.select_add_a1to3_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a1to3_button.pack(side="left", padx=5)
 
-        self.add_a1to6_button = tk.Button(button_r2_1_c0, text="Add α1,6", command=self.select_add_a1to6_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
+        self.a1to4_img = Image.open(resource_path("Assets/Button_imgs/α1,4.png")).resize((36, 27))
+        self.a1to4_button_image = ImageTk.PhotoImage(self.a1to4_img)
+        self.add_a1to4_button = tk.Button(button_r2_1_c0, image=self.a1to4_button_image,
+                                          borderwidth=0, highlightthickness=0, command=self.select_add_a1to4_mode)
+        self.add_a1to4_button.pack(side="left", padx=5)
+        #
+        # self.add_a1to4_button = tk.Button(button_r2_1_c0, text="Add α1,4", command=self.select_add_a1to4_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a1to4_button.pack(side="left", padx=5)
+
+        self.a1to5_img = Image.open(resource_path("Assets/Button_imgs/α1,5.png")).resize((36, 27))
+        self.a1to5_button_image = ImageTk.PhotoImage(self.a1to5_img)
+        self.add_a1to5_button = tk.Button(button_r2_1_c0, image=self.a1to5_button_image,
+                                          borderwidth=0, highlightthickness=0, command=self.select_add_a1to5_mode)
+        self.add_a1to5_button.pack(side="left", padx=5)
+
+        # self.add_a1to5_button = tk.Button(button_r2_1_c0, text="Add α1,5", command=self.select_add_a1to5_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a1to5_button.pack(side="left", padx=5)
+
+        self.a1to6_img = Image.open(resource_path("Assets/Button_imgs/α1,6.png")).resize((36, 27))
+        self.a1to6_button_image = ImageTk.PhotoImage(self.a1to6_img)
+        self.add_a1to6_button = tk.Button(button_r2_1_c0, image=self.a1to6_button_image,
+                                          borderwidth=0, highlightthickness=0, command=self.select_add_a1to6_mode)
         self.add_a1to6_button.pack(side="left", padx=5)
 
-        self.add_b1to2_button = tk.Button(button_r2_1_c0, text="Add ß1,2", command=self.select_add_b1to2_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a1to6_button = tk.Button(button_r2_1_c0, text="Add α1,6", command=self.select_add_a1to6_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a1to6_button.pack(side="left", padx=5)
+
+        self.a1to7_img = Image.open(resource_path("Assets/Button_imgs/α1,7.png")).resize((36, 27))
+        self.a1to7_button_image = ImageTk.PhotoImage(self.a1to7_img)
+        self.add_a1to7_button = tk.Button(button_r2_1_c0, image=self.a1to7_button_image,
+                                          borderwidth=0, highlightthickness=0, command=self.select_add_a1to7_mode)
+        self.add_a1to7_button.pack(side="left", padx=5)
+
+        # self.add_a1to7_button = tk.Button(button_r2_1_c0, text="Add α1,7", command=self.select_add_a1to7_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a1to7_button.pack(side="left", padx=5)
+
+        self.a1to9_img = Image.open(resource_path("Assets/Button_imgs/α1,9.png")).resize((36, 27))
+        self.a1to9_button_image = ImageTk.PhotoImage(self.a1to9_img)
+        self.add_a1to9_button = tk.Button(button_r2_1_c0, image=self.a1to9_button_image,
+                                          borderwidth=0, highlightthickness=0, command=self.select_add_a1to9_mode)
+        self.add_a1to9_button.pack(side="left", padx=5)
+
+        # self.add_a1to9_button = tk.Button(button_r2_1_c0, text="Add α1,9", command=self.select_add_a1to9_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a1to9_button.pack(side="left", padx=5)
+
+        # Category 2 -----------------------------------------------------------
+        # ADD a2-3
+        self.a2to3_img = Image.open(resource_path("Assets/Button_imgs/α2,3.png")).resize((36, 27))
+        self.a2to3_button_image = ImageTk.PhotoImage(self.a2to3_img)
+        self.add_a2to3_button = tk.Button(button_r2_1_c0, image=self.a2to3_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_a2to3_mode)
+        self.add_a2to3_button.pack(side="left", padx=5)
+
+        # self.add_a2to3_button = tk.Button(button_r2_1_c0, text="Add α2,3", command=self.select_add_a2to3_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a2to3_button.pack(side="left", padx=5)
+
+        # ADD a2-5
+        self.a2to5_img = Image.open(resource_path("Assets/Button_imgs/α2,5.png")).resize((36, 27))
+        self.a2to5_button_image = ImageTk.PhotoImage(self.a2to5_img)
+        self.add_a2to5_button = tk.Button(button_r2_1_c0, image=self.a2to5_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_a2to5_mode)
+        self.add_a2to5_button.pack(side="left", padx=5)
+        #
+        # self.add_a2to5_button = tk.Button(button_r2_1_c0, text="Add α2,5", command=self.select_add_a2to5_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a2to5_button.pack(side="left", padx=5)
+        #
+        # ADD a2-6
+        self.a2to6_img = Image.open(resource_path("Assets/Button_imgs/α2,6.png")).resize((36, 27))
+        self.a2to6_button_image = ImageTk.PhotoImage(self.a2to6_img)
+        self.add_a2to6_button = tk.Button(button_r2_1_c0, image=self.a2to6_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_a2to6_mode)
+        self.add_a2to6_button.pack(side="left", padx=5)
+
+        # self.add_a2to6_button = tk.Button(button_r2_1_c0, text="Add α2,6", command=self.select_add_a2to6_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a2to6_button.pack(side="left", padx=5)
+        #
+        # ADD a2-7
+        self.a2to7_img = Image.open(resource_path("Assets/Button_imgs/α2,7.png")).resize((36, 27))
+        self.a2to7_button_image = ImageTk.PhotoImage(self.a2to7_img)
+        self.add_a2to7_button = tk.Button(button_r2_1_c0, image=self.a2to7_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_a2to7_mode)
+        self.add_a2to7_button.pack(side="left", padx=5)
+        #
+        # self.add_a2to7_button = tk.Button(button_r2_1_c0, text="Add α2,7", command=self.select_add_a2to7_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a2to7_button.pack(side="left", padx=5)
+        #
+        # ADD a2-8
+        self.a2to8_img = Image.open(resource_path("Assets/Button_imgs/α2,8.png")).resize((36, 27))
+        self.a2to8_button_image = ImageTk.PhotoImage(self.a2to8_img)
+        self.add_a2to8_button = tk.Button(button_r2_1_c0, image=self.a2to8_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_a2to8_mode)
+        self.add_a2to8_button.pack(side="left", padx=5)
+        #
+        # self.add_a2to8_button = tk.Button(button_r2_1_c0, text="Add α2,8", command=self.select_add_a2to8_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_a2to8_button.pack(side="left", padx=5)
+
+
+        # Category 3 -----------------------------------------------------------
+        self.b1to2_img = Image.open(resource_path("Assets/Button_imgs/ß1,2.png")).resize((36, 27))
+        self.b1to2_button_image = ImageTk.PhotoImage(self.b1to2_img)
+        self.add_b1to2_button = tk.Button(button_r2_1_c0, image=self.b1to2_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_b1to2_mode)
         self.add_b1to2_button.pack(side="left", padx=5)
 
-        self.add_b1to3_button = tk.Button(button_r2_1_c0, text="Add ß1,3", command=self.select_add_b1to3_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
+        # self.add_b1to2_button = tk.Button(button_r2_1_c0, text="Add ß1,2", command=self.select_add_b1to2_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_b1to2_button.pack(side="left", padx=5)
+
+        self.b1to3_img = Image.open(resource_path("Assets/Button_imgs/ß1,3.png")).resize((36, 27))
+        self.b1to3_button_image = ImageTk.PhotoImage(self.b1to3_img)
+        self.add_b1to3_button = tk.Button(button_r2_1_c0, image=self.b1to3_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_b1to3_mode)
         self.add_b1to3_button.pack(side="left", padx=5)
+        #
+        # self.add_b1to3_button = tk.Button(button_r2_1_c0, text="Add ß1,3", command=self.select_add_b1to3_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_b1to3_button.pack(side="left", padx=5)
 
-        self.add_b1to4_button = tk.Button(button_r2_1_c0, text="Add ß1,4", command=self.select_add_b1to4_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
+        self.b1to4_img = Image.open(resource_path("Assets/Button_imgs/ß1,4.png")).resize((36, 27))
+        self.b1to4_button_image = ImageTk.PhotoImage(self.b1to4_img)
+        self.add_b1to4_button = tk.Button(button_r2_1_c0, image=self.b1to4_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_b1to4_mode)
         self.add_b1to4_button.pack(side="left", padx=5)
+        #
+        # self.add_b1to4_button = tk.Button(button_r2_1_c0, text="Add ß1,4", command=self.select_add_b1to4_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_b1to4_button.pack(side="left", padx=5)
 
-        self.add_b1to6_button = tk.Button(button_r2_1_c0, text="Add ß1,6", command=self.select_add_b1to6_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
+        self.b1to5_img = Image.open(resource_path("Assets/Button_imgs/ß1,5.png")).resize((36, 27))
+        self.b1to5_button_image = ImageTk.PhotoImage(self.b1to5_img)
+        self.add_b1to5_button = tk.Button(button_r2_1_c0, image=self.b1to5_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_b1to5_mode)
+        self.add_b1to5_button.pack(side="left", padx=5)
+        #
+        # self.add_b1to5_button = tk.Button(button_r2_1_c0, text="Add ß1,5", command=self.select_add_b1to5_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_b1to5_button.pack(side="left", padx=5)
+
+        self.b1to6_img = Image.open(resource_path("Assets/Button_imgs/ß1,6.png")).resize((36, 27))
+        self.b1to6_button_image = ImageTk.PhotoImage(self.b1to6_img)
+        self.add_b1to6_button = tk.Button(button_r2_1_c0, image=self.b1to6_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_b1to6_mode)
         self.add_b1to6_button.pack(side="left", padx=5)
+        #
+        # self.add_b1to6_button = tk.Button(button_r2_1_c0, text="Add ß1,6", command=self.select_add_b1to6_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_b1to6_button.pack(side="left", padx=5)
+
+        self.b1to7_img = Image.open(resource_path("Assets/Button_imgs/ß1,7.png")).resize((36, 27))
+        self.b1to7_button_image = ImageTk.PhotoImage(self.b1to7_img)
+        self.add_b1to7_button = tk.Button(button_r2_1_c0, image=self.b1to7_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_b1to7_mode)
+        self.add_b1to7_button.pack(side="left", padx=5)
+        #
+        # self.add_b1to7_button = tk.Button(button_r2_1_c0, text="Add ß1,7", command=self.select_add_b1to7_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_b1to7_button.pack(side="left", padx=5)
+        #
+
+        self.b1to8_img = Image.open(resource_path("Assets/Button_imgs/ß1,8.png")).resize((36, 27))
+        self.b1to8_button_image = ImageTk.PhotoImage(self.b1to8_img)
+        self.add_b1to8_button = tk.Button(button_r2_1_c0, image=self.b1to8_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_b1to8_mode)
+        self.add_b1to8_button.pack(side="left", padx=5)
+        #
+        # self.add_b1to8_button = tk.Button(button_r2_1_c0, text="Add ß1,8", command=self.select_add_b1to8_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_b1to8_button.pack(side="left", padx=5)
+        #
+        self.b1to9_img = Image.open(resource_path("Assets/Button_imgs/ß1,9.png")).resize((36, 27))
+        self.b1to9_button_image = ImageTk.PhotoImage(self.b1to9_img)
+        self.add_b1to9_button = tk.Button(button_r2_1_c0, image=self.b1to9_button_image,
+                                        borderwidth=0, highlightthickness=0, command=self.select_add_b1to9_mode)
+        self.add_b1to9_button.pack(side="left", padx=5)
+        #
+        # self.add_b1to9_button = tk.Button(button_r2_1_c0, text="Add ß1,9", command=self.select_add_b1to9_mode,
+        #                                   background="#2B2D30", foreground="#DFE1E5")
+        # self.add_b1to9_button.pack(side="left", padx=5)
+
 
         #TODO: Fix the delete buttons!
 
-        self.rm_edge_button = tk.Button(button_r2_1_c0, text="Remove Edge", command=self.select_rm_edge_mode,
-                                        background="#2B2D30", foreground="#DFE1E5")
+        self.rm_edge_button = tk.Button(button_r2_1_c0, text="Remove Edge", command=self.select_rm_edge_mode)
         self.rm_edge_button.pack(side="left", padx=5)
 
-        self.rm_edge_text_button = tk.Button(button_r2_1_c0, text="Remove Edge Text",
-                                             command=self.select_rm_edge_text_mode,
-                                             background="#2B2D30", foreground="#DFE1E5")
+        self.rm_edge_text_button = tk.Button(button_r2_1_c0, text="Remove Edge Text", command=self.select_rm_edge_text_mode)
         self.rm_edge_text_button.pack(side="left", padx=5)
 
-
-        self.rm_circle_button = tk.Button(button_r2_1_c0, text="Remove Node", command=self.select_rm_circle_mode,
-                                          background="#2B2D30", foreground="#DFE1E5")
+        self.rm_circle_button = tk.Button(button_r2_1_c0, text="Remove Node", command=self.select_rm_circle_mode)
         self.rm_circle_button.pack(side="left", padx=5)
 
 
@@ -696,39 +875,59 @@ class GridApplication:
         button_r3_1_c0 = tk.Frame(column_0)
         button_r3_1_c0.pack(pady=1, anchor="w")
 
-        tk.Label(button_r3_1_c0, text="Analysis Tools", font=("Arial", 12, "bold"), bg='lightgray').pack()
+        tk.Label(button_r3_1_c0, text="Analysis Tools", font=("Arial", 11, "bold"), bg='lightgray').pack()
 
         button_r3_c0 = tk.Frame(column_0)
         button_r3_c0.pack(pady=1, anchor="w")
 
         # Calculate DCI
 
-        self.dci_img = Image.open(resource_path("Assets/Button_imgs/dci_img.png")).resize((100, 50))
+        self.dci_img = Image.open(resource_path("Assets/Button_imgs/dci_img.png")).resize((92, 42))
         self.dci_button_image = ImageTk.PhotoImage(self.dci_img)
         self.add_dci_button = tk.Button(button_r3_c0, image=self.dci_button_image, borderwidth=0,
                                            highlightthickness=0, command=self.select_calc_dci_mode)
         self.add_dci_button.pack(side="left", padx=5)
 
+
+        # Calculate PCI with new button image
+
+        self.pci_img = Image.open(resource_path("Assets/Button_imgs/pci_img.png")).resize((92, 42))
+        self.pci_button_image = ImageTk.PhotoImage(self.pci_img)
+        self.add_pci_button = tk.Button(button_r3_c0, image=self.pci_button_image, borderwidth=0,
+                                           highlightthickness=0, command=self.select_calc_pci_mode)
+        self.add_pci_button.pack(side="left", padx=5)
+
         # Export image
-
-        self.export_button = tk.Button(button_r3_c0, text="Export Image", command=self.select_export_image_mode,
-                                         background="#2B2D30", foreground="#DFE1E5", height = 3)
+        self.export_img = Image.open(resource_path("Assets/Button_imgs/exportImage.png")).resize((92, 42))
+        self.export_button_image = ImageTk.PhotoImage(self.export_img)
+        self.export_button = tk.Button(button_r3_c0, image = self.export_button_image, borderwidth=0,
+                                       highlightthickness=0, command=self.select_export_image_mode)
         self.export_button.pack(side="left", padx=5)
+        #
+        # # Button to calculate DCI
+        # self.dci_calc_button = tk.Button(button_r3_c0, text="Calculate DCI", command=self.select_calc_dci_mode,
+        #                                  background="#639F52", foreground="#1E1F22", height = 3)
+        # self.dci_calc_button.pack(side="left", padx=5)
+        #
+        # # Button to calculate PCI
+        # self.pci_calc_button = tk.Button(button_r3_c0, text="Calculate PCI", command=self.select_calc_pci_mode,
+        #                                  background="#639F52", foreground="#1E1F22", height = 3)
+        # self.pci_calc_button.pack(side="left", padx=5)
 
-        # Button to calculate DCI
-        self.dci_calc_button = tk.Button(button_r3_c0, text="Calculate DCI", command=self.select_calc_dci_mode,
-                                         background="#639F52", foreground="#1E1F22", height = 3)
-        self.dci_calc_button.pack(side="left", padx=5)
-
-        # Button to calculate PCI
-        self.pci_calc_button = tk.Button(button_r3_c0, text="Calculate PCI", command=self.select_calc_pci_mode,
-                                         background="#639F52", foreground="#1E1F22", height = 3)
-        self.pci_calc_button.pack(side="left", padx=5)
+        # # Undo Button
+        # self.undo_button = tk.Button(button_r3_c0, text="Undo", command=self.undo)
+        # self.undo_button.pack(side="left", padx=5)
 
         # Button to reset the program
-        self.reset_button = tk.Button(button_r3_c0, text="Reset", command=self.reset_app,
-                                         background="#EC1B25", foreground="black", height = 3)
-        self.reset_button.pack(side="left", padx=25)
+        # self.reset_button = tk.Button(button_r3_c0, text="Reset", command=self.reset_app,
+        #                                  background="#EC1B25", foreground="black", height = 3)
+        # self.reset_button.pack(side="left", padx=25)
+
+        self.reset_img = Image.open(resource_path("Assets/Button_imgs/reset.png")).resize((42, 42))
+        self.reset_button_image = ImageTk.PhotoImage(self.reset_img)
+        self.reset_button = tk.Button(button_r3_c0, image=self.reset_button_image, borderwidth=0,
+                                       highlightthickness=0, command=self.reset_app)
+        self.reset_button.pack(side="left", padx=5)
 
    # Canvas _____________________________________________________________________
 
@@ -1158,6 +1357,9 @@ class GridApplication:
         """Switch to Remove Edge mode."""
         self.mode = "Remove Edge"
 
+    # Category 1 -----------------------------------------------------------
+
+
     def select_add_a1to2_mode(self):
         """Switch to Add A1to2 mode."""
         self.mode = "Add A1to2"
@@ -1170,10 +1372,47 @@ class GridApplication:
         """Switch to Add A1to4 mode."""
         self.mode = "Add A1to4"
 
+    def select_add_a1to5_mode(self):
+        """Switch to Add A1to5 mode."""
+        self.mode = "Add A1to5"
+
     def select_add_a1to6_mode(self):
         """Switch to Add A1to6 mode."""
         self.mode = "Add A1to6"
 
+    def select_add_a1to7_mode(self):
+        """Switch to Add A1to7 mode."""
+        self.mode = "Add A1to7"
+
+    def select_add_a1to9_mode(self):
+        """Switch to Add A1to9 mode."""
+        self.mode = "Add A1to9"
+
+
+
+    # Category 2 -----------------------------------------------------------
+    def select_add_a2to3_mode(self):
+        """Switch to Add A2to3 mode."""
+        self.mode = "Add A2to3"
+
+    def select_add_a2to5_mode(self):
+        """Switch to Add A2to5 mode."""
+        self.mode = "Add A2to5"
+
+    def select_add_a2to6_mode(self):
+        """Switch to Add A2to6 mode."""
+        self.mode = "Add A2to6"
+
+    def select_add_a2to7_mode(self):
+        """Switch to Add A2to7 mode."""
+        self.mode = "Add A2to7"
+
+    def select_add_a2to8_mode(self):
+        """Switch to Add A2to8 mode."""
+        self.mode = "Add A2to8"
+
+
+    # Category 3 -----------------------------------------------------------
     def select_add_b1to2_mode(self):
         """Switch to Add B1to2 mode."""
         self.mode = "Add B1to2"
@@ -1186,9 +1425,27 @@ class GridApplication:
         """Switch to Add B1to4 mode."""
         self.mode = "Add B1to4"
 
+    def select_add_b1to5_mode(self):
+        """Switch to Add B1to5 mode."""
+        self.mode = "Add B1to5"
+
     def select_add_b1to6_mode(self):
         """Switch to Add B1to6 mode."""
         self.mode = "Add B1to6"
+
+    def select_add_b1to7_mode(self):
+        """Switch to Add B1to7 mode."""
+        self.mode = "Add B1to7"
+
+    def select_add_b1to8_mode(self):
+        """Switch to Add B1to8 mode."""
+        self.mode = "Add B1to8"
+
+    def select_add_b1to9_mode(self):
+        """Switch to Add B1to9 mode."""
+        self.mode = "Add B1to9"
+
+    # Remove Elements
 
     def select_rm_edge_text_mode(self):
         """Switch to Remove Edge text mode."""
@@ -1507,6 +1764,7 @@ class GridApplication:
             add_vertex(self, x, y, self.add_sia_node)
 
     # Check for linkage modes
+        # Category 1 ---------------------------
         elif self.mode == "Add A1to2":
             add_edge(self, x, y, self.add_a1to2)
 
@@ -1516,9 +1774,35 @@ class GridApplication:
         elif self.mode == "Add A1to4":
             add_edge(self, x, y, self.add_a1to4)
 
+        elif self.mode == "Add A1to5":
+            add_edge(self, x, y, self.add_a1to5)
+
         elif self.mode == "Add A1to6":
             add_edge(self, x, y, self.add_a1to6)
 
+        elif self.mode == "Add A1to7":
+            add_edge(self, x, y, self.add_a1to7)
+
+        elif self.mode == "Add A1to9":
+            add_edge(self, x, y, self.add_a1to9)
+
+        # Category 2 ---------------------------
+        elif self.mode == "Add A2to3":
+            add_edge(self, x, y, self.add_a2to3)
+
+        elif self.mode == "Add A2to5":
+            add_edge(self, x, y, self.add_a2to5)
+
+        elif self.mode == "Add A2to6":
+            add_edge(self, x, y, self.add_a2to6)
+
+        elif self.mode == "Add A2to7":
+            add_edge(self, x, y, self.add_a2to7)
+
+        elif self.mode == "Add A2to8":
+            add_edge(self, x, y, self.add_a2to8)
+
+        # Category 3 ---------------------------
         elif self.mode == "Add B1to2":
             add_edge(self, x, y, self.add_b1to2)
 
@@ -1528,8 +1812,21 @@ class GridApplication:
         elif self.mode == "Add B1to4":
             add_edge(self, x, y, self.add_b1to4)
 
+        elif self.mode == "Add B1to5":
+            add_edge(self, x, y, self.add_b1to5)
+
         elif self.mode == "Add B1to6":
             add_edge(self, x, y, self.add_b1to6)
+
+        elif self.mode == "Add B1to7":
+            add_edge(self, x, y, self.add_b1to7)
+
+        elif self.mode == "Add B1to8":
+            add_edge(self, x, y, self.add_b1to8)
+
+        elif self.mode == "Add B1to9":
+            add_edge(self, x, y, self.add_b1to9)
+
 
         # Check for removal modes
         elif self.mode == "Remove Circle":
@@ -1860,11 +2157,8 @@ class GridApplication:
     def add_sia_node(self, x, y):
         add_polygon_shape(self, x, y, 'diamond', 'red', 'Sia')
 
-
-
-
     # Linkages _______________________________________________________________
-
+    # Category 1 --------------------------
     # Add α1,2
     def add_a1to2(self, vertex1, vertex2):
         add_linkage_type(self, vertex1, vertex2, "α1,2", "a1to2")
@@ -1877,10 +2171,39 @@ class GridApplication:
     def add_a1to4(self, vertex1, vertex2):
         add_linkage_type(self, vertex1, vertex2, "α1,4", "a1to4")
 
+    # Add α1,5
+    def add_a1to5(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "α1,5", "a1to5")
+
     # Add α1,6
     def add_a1to6(self, vertex1, vertex2):
         add_linkage_type(self, vertex1, vertex2, "α1,6", "a1to6")
 
+    # Add α1,7
+    def add_a1to7(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "α1,7", "a1to7")
+
+    # Add α1,9
+    def add_a1to9(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "α1,9", "a1to9")
+
+    # Category 2 --------------------------
+    def add_a2to3(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "α2,3", "a2to3")
+
+    def add_a2to5(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "α2,5", "a2to5")
+
+    def add_a2to6(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "α2,6", "a2to6")
+
+    def add_a2to7(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "α2,7", "a2to7")
+
+    def add_a2to8(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "α2,8", "a2to8")
+
+    # Category 3 --------------------------
     # Add ß1,2
     def add_b1to2(self, vertex1, vertex2):
         add_linkage_type(self, vertex1, vertex2, "ß1,2", "b1to2")
@@ -1893,9 +2216,25 @@ class GridApplication:
     def add_b1to4(self, vertex1, vertex2):
         add_linkage_type(self, vertex1, vertex2, "ß1,4", "b1to4")
 
+    # Add ß1,5
+    def add_b1to5(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "ß1,5", "b1to5")
+
     # Add ß1,6
     def add_b1to6(self, vertex1, vertex2):
         add_linkage_type(self, vertex1, vertex2, "ß1,6", "b1to6")
+
+    # Add ß1,7
+    def add_b1to7(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "ß1,7", "b1to7")
+
+    # Add ß1,8
+    def add_b1to8(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "ß1,8", "b1to8")
+
+    # Add ß1,9
+    def add_b1to9(self, vertex1, vertex2):
+        add_linkage_type(self, vertex1, vertex2, "ß1,9", "b1to9")
 
 
     def find_node_degrees(self, edges):
@@ -2255,6 +2594,11 @@ class GridApplication:
         self.mode = "Calculate PCI"
         self.calculate_pci(self.circles, self.edges)
 
+    def undo(self):
+        if self.undo_stack:
+            last_item = self.undo_stack.pop()
+            self.canvas.delete(last_item)
+
     def select_export_image_mode(self):
         """Switch to Export Image mode."""
         self.mode = "Export Image"
@@ -2268,6 +2612,8 @@ class GridApplication:
         file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
         if file_path:
             image.save(file_path)
+
+
 
 # Create the main window and run the application
 def main():
