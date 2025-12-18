@@ -7,6 +7,8 @@ GlycoAssessor is a Python application designed to calculate and visualize Distan
 [![GlycoAssessor-Beta-Tutorial](https://github.com/user-attachments/assets/a67caf8d-17cf-44c0-9b12-1bd85a412580)](https://www.youtube.com/watch?v=C6A-OxZNR2g)
 The image above links to a YouTube tutorial ([https://www.youtube.com/watch?v=4d3WOO03Q34](https://www.youtube.com/watch?v=C6A-OxZNR2g)).
 
+**Quickstart Guide for Mac Users**:
+[https://www.youtube.com/watch?v=H2xw6jTPMyw](https://www.youtube.com/watch?v=H2xw6jTPMyw)
 
 ---
 ## **Features**
