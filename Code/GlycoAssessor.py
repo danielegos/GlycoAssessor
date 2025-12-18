@@ -8,10 +8,262 @@ import sys
 import os
 
 
-from Code.Shapes.Edge import add_edge
-from Code.Shapes.Linkage import add_linkage_type
-from Code.Shapes.Vertex import add_vertex
-from Code.Shapes.Polygon import add_polygon_shape
+# from Code.Shapes.Edge import add_edge
+# from Code.Shapes.Linkage import add_linkage_type
+# from Code.Shapes.Vertex import add_vertex
+# from Code.Shapes.Polygon import add_polygon_shape
+
+
+# from Code.Shapes.Edge import add_edge
+def add_edge(self, x, y, func):
+# Handle adding edges (black) between two vertices
+    grid_x = round(x / self.grid_size) * self.grid_size
+    grid_y = round(y / self.grid_size) * self.grid_size
+
+    if not self.first_vertex:
+        # First click to select the first vertex for the edge
+        if (grid_x, grid_y) in self.vertices:
+            self.first_vertex = (grid_x, grid_y)
+        else:
+            print("First point must be an existing vertex!")
+    else:
+        # Second click to select the second vertex and add an edge
+        if (grid_x, grid_y) in self.vertices and (grid_x, grid_y) != self.first_vertex:
+            func(self.first_vertex, (grid_x, grid_y))
+            self.first_vertex = None  # Reset for the next edge creation
+        else:
+            print("Second point must be an existing vertex and different from the first one!")
+
+# from Code.Shapes.Linkage import add_linkage_type
+def add_linkage_type(self, vertex1, vertex2, edge_label, type_tag):
+    """Draw a black edge between two vertices."""
+    # Draw a black edge between the selected vertices with increased width (3x)
+
+    # Category 1: a1-2, a1-3, a1-4, a1-5, a1-6, a1-7, a1-9
+    # Category 2: a2-3, a2-5, a2-6, a2-7, a2-8
+    # Category 3: b1-2, b1-3, b1-4, b1-5, b1-6, b1-7, b1-8, b1-9
+
+    edge = None
+
+    if type_tag == 'a1to2' or type_tag == 'a1to3' or type_tag == 'a1to4' or type_tag == 'a1to5' or type_tag == 'a1to6' or type_tag == 'a1to7' or type_tag == 'a1to9':
+        edge = self.canvas.create_line(
+            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
+            width=5, fill="#F5791F", capstyle=tk.ROUND, tags=type_tag
+        )
+    elif type_tag == 'a2to3' or type_tag == 'a2to5' or type_tag == 'a2to6' or type_tag == 'a2to7' or type_tag == 'a2to8':
+        edge = self.canvas.create_line(
+            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
+            width=5, fill="#0072BB", capstyle=tk.ROUND, tags=type_tag
+        )
+    else:
+        edge = self.canvas.create_line(
+            vertex1[0], vertex1[1], vertex2[0], vertex2[1],
+            width=5, fill="#01A653", capstyle=tk.ROUND, tags=type_tag
+        )
+    edge_text = self.canvas.create_text(
+        (vertex1[0] + vertex2[0]) / 2, (vertex1[1] + vertex2[1]) / 2, text=edge_label, fill="#DFE1E5", anchor=tk.N, )
+    self.edges[edge] = (vertex1, vertex2, type_tag)
+    self.edge_text[edge_text] = edge_label
+    self.undo_stack.append(edge)
+    self.undo_stack.append(edge_text)
+    # print(self.edges)
+
+# from Code.Shapes.Vertex import add_vertex
+# Place vertex in Circle mode
+import math
+
+def add_vertex(self, x, y, func):
+    # Define the fixed position for the first vertex
+    fixed_x = 80
+    fixed_y = 240
+
+    grid_x = round(x / self.grid_size) * self.grid_size
+    grid_y = round(y / self.grid_size) * self.grid_size
+
+    if not self.first_circle_placed:
+        func(fixed_x, fixed_y)
+        self.first_circle_placed = True
+    else:
+        # Check if the distance condition (8 times the radius) and perpendicular/parallel condition hold
+        radius = self.grid_size / 2
+        for center in self.vertices:
+            dx = grid_x - center[0]
+            dy = grid_y - center[1]
+            distance = math.sqrt(dx ** 2 + dy ** 2)
+            required_distance = 8 * radius  # Distance should be eight times the radius
+
+            # If the distance is correct, check for perpendicular or parallel alignment
+            if abs(distance - required_distance) < self.grid_size / 2:
+                if grid_x == center[0] or grid_y == center[1]:  # Same x or same y
+                    func(grid_x, grid_y)
+                    return  # Place only one circle per click
+
+# from Code.Shapes.Polygon import add_polygon_shape
+def add_polygon_shape(self, x, y, shape, color, sugar_code):
+    """Add a vertex and draw a green node."""
+    radius = self.grid_size / 2
+    self.vertices.append((x, y))
+
+    if shape == 'circle':
+        # Draw green circle with radius = 2 * vertex radius
+        circle = self.canvas.create_oval(
+            x - 2 * radius, y - 2 * radius,
+            x + 2 * radius, y + 2 * radius,
+            fill=color, outline="black", width=5, tags=sugar_code  # , width=10
+        )
+        print(x, y, sugar_code)
+        self.circles[circle] = (x, y, sugar_code)
+        self.undo_stack.append(circle)
+
+    elif shape == 'triangle':
+        triangle = self.canvas.create_polygon(
+            x - 2 * radius, y + 2 * radius, x, y - 2 * radius, x + 2 * radius, y + 2 * radius,
+            fill=color, outline="black", width=5, tags=sugar_code  # , width=10
+        )
+        print(x, y, sugar_code)
+        self.circles[triangle] = (x, y, sugar_code)
+        self.undo_stack.append(triangle)
+
+    elif shape == 'diamond':
+        diamond = self.canvas.create_polygon(
+            x, y - 2 * radius, x + 2 * radius, y, x, y + 2 * radius, x - 2 * radius, y,
+            fill=color, outline="black", width=5, tags=sugar_code  # , width=10
+        )
+        print(x, y, sugar_code)
+        self.circles[diamond] = (x, y, sugar_code)
+        self.undo_stack.append(diamond)
+
+    elif shape == 'square':
+        square = self.canvas.create_rectangle(
+            x - 2 * radius, y - 2 * radius,
+            x + 2 * radius, y + 2 * radius,
+            fill=color, outline="black", width=5, tags=sugar_code  # , width=10
+        )
+        print(x, y, sugar_code)
+        self.circles[square] = (x, y, sugar_code)
+        self.undo_stack.append(square)
+
+    # Add crossed square
+    elif shape == 'crossed square':
+        half = 2 * radius
+
+        crossed_square = self.canvas.create_rectangle(
+            x - half, y - half, x + half, y + half,
+            fill=color, outline="black", width=5, tags=sugar_code
+        )
+        cross = self.canvas.create_line(x - half, y - half, x + half, y + half, fill="black", width=5, tags=sugar_code)
+        crossed = self.canvas.create_polygon(
+            x - 2 * radius, y + 2 * radius, x - 2 * radius, y - 2 * radius, x + 2 * radius, y + 2 * radius,
+            fill='white', outline="black", width=5, tags=sugar_code  # , width=10
+        )
+        print(x, y, sugar_code)
+        self.circles[crossed_square] = (x, y, sugar_code)
+        self.undo_stack.append(crossed_square)
+        self.undo_stack.append(cross)
+        self.undo_stack.append(crossed)
+
+    # Add divided diamond
+    elif shape == 'divided diamond':
+        points = [x, y - 2 * radius, x + 2 * radius, y, x, y + 2 * radius, x - 2 * radius, y]
+        div_diamond = self.canvas.create_polygon(points, fill=color, outline="black", width=5, tags=sugar_code)
+        self.canvas.create_line(x - 2 * radius, y, x + 2 * radius, y, fill="black", width=5, tags=sugar_code)
+
+        # if AltA or IdoA, place white triangle on top
+        div_2 = None
+        if sugar_code == 'AltA' or sugar_code == 'IdoA':
+            div2 = self.canvas.create_polygon(
+                x - 2 * radius, y, x, y - 2 * radius, x + 2 * radius, y,
+                fill='white', outline="black", width=5, tags=sugar_code  # , width=10
+            )
+        # else, place it on bottom
+        else:
+            div2 = self.canvas.create_polygon(
+                x - 2 * radius, y, x, y + 2 * radius, x + 2 * radius, y,
+                fill='white', outline="black", width=5, tags=sugar_code  # , width=10
+            )
+        print(x, y, sugar_code)
+        self.circles[div_diamond] = (x, y, sugar_code)
+        self.undo_stack.append(div_diamond)
+        self.undo_stack.append(div2)
+
+    # Add divided triangle
+    elif shape == 'divided triangle':
+        triangle = self.canvas.create_polygon(
+            x - 2 * radius, y + 2 * radius, x, y - 2 * radius, x + 2 * radius, y + 2 * radius,
+            fill=color, outline="black", width=5, tags=sugar_code  # , width=10
+        )
+        tri2 = self.canvas.create_polygon(
+            x, y + 2 * radius, x, y - 2 * radius, x - 2 * radius, y + 2 * radius,
+            fill='white', outline="black", width=5, tags=sugar_code  # , width=10
+        )
+        print(x, y, sugar_code)
+        self.circles[triangle] = (x, y, sugar_code)
+
+        self.undo_stack.append(triangle)
+        self.undo_stack.append(tri2)
+
+    # Add rectangle
+    elif shape == 'rectangle':
+        rectangle = self.canvas.create_rectangle(x - 2 * radius, y - 1.2 * radius, x + 2 * radius, y + 1.2 * radius,
+                                fill=color, outline="black", width=5, tags=sugar_code )
+        print(x, y, sugar_code)
+        self.circles[rectangle] = (x, y, sugar_code)
+        self.undo_stack.append(rectangle)
+
+    # Add star
+    elif shape == 'star':
+        points = []
+        for i in range(10):
+            angle = math.pi / 5 * i
+            r = 2 * radius if i % 2 == 0 else radius
+            px = x + r * math.sin(angle)
+            py = y - r * math.cos(angle)
+            points.extend([px, py])
+
+        star = self.canvas.create_polygon(points, fill=color, outline="black", width=5, tags=sugar_code)
+        print(x, y, sugar_code)
+        self.circles[star] = (x, y, sugar_code)
+        self.undo_stack.append(star)
+
+    # Add flat diamond
+    elif shape == 'flat diamond':
+        points = [x, y - 1.3 * radius, x + 2 * radius, y, x, y + 1.3 * radius, x - 2 * radius, y]
+
+        flat_diamond = self.canvas.create_polygon(points, fill=color, outline="black", width=5, tags=sugar_code)
+
+        print(x, y, sugar_code)
+        self.circles[flat_diamond] = (x, y, sugar_code)
+        self.undo_stack.append(flat_diamond)
+
+    # Add hexagon
+    elif shape == 'hexagon':
+        points = []
+        for i in range(6):
+            angle = math.radians(60 * i)
+            px = x + 2 * radius * math.cos(angle)
+            py = y + 1.5 * radius * math.sin(angle)
+            points.extend([px, py])
+
+        hexagon = self.canvas.create_polygon(points, fill=color, outline="black", width=5, tags=sugar_code)
+
+        print(x, y, sugar_code)
+        self.circles[hexagon] = (x, y, sugar_code)
+        self.undo_stack.append(hexagon)
+
+    # Add pentagon
+    elif shape == 'pentagon':
+        points = []
+        for i in range(5):
+            angle = math.radians(72 * i - 90)
+            px = x + 2 * radius * math.cos(angle)
+            py = y + 2 * radius * math.sin(angle)
+            points.extend([px, py])
+
+        pentagon = self.canvas.create_polygon(points, fill=color, outline="black", width=5, tags=sugar_code)
+        print(x, y, sugar_code)
+        self.circles[pentagon] = (x, y, sugar_code)
+        self.undo_stack.append(pentagon)
+
 
 
 # TODO: Make the canvas zoomable
@@ -2622,4 +2874,5 @@ def main():
     root.mainloop()
 
 if __name__ == "__main__":
+
     main()
