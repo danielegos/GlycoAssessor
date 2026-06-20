@@ -7,13 +7,6 @@ import pandas as pd
 import sys
 import os
 
-
-# from Code.Shapes.Edge import add_edge
-# from Code.Shapes.Linkage import add_linkage_type
-# from Code.Shapes.Vertex import add_vertex
-# from Code.Shapes.Polygon import add_polygon_shape
-
-
 # from Code.Shapes.Edge import add_edge
 def add_edge(self, x, y, func):
 # Handle adding edges (black) between two vertices
