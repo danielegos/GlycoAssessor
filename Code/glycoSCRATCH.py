@@ -1,3 +1,5 @@
+# 092526 Update
+
 import tkinter as tk
 from collections import deque, defaultdict
 from PIL import ImageGrab, Image, ImageTk
@@ -16,6 +18,8 @@ import os
 #    This should be as easy as simply adding a new item to sugar_dict which
 #    displays in the correct location.
 # 4. Low priority: edit colors
+# 5. Add the PC Index and DC Index to the filename? Or some other way to retain it
+#    that does not mess up the matrix excel files
 
 # Dict of sugar monomers in the correct display order
 sugar_dict = {
